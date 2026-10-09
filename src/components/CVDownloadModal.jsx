@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiDownload, FiExternalLink, FiFileText, FiCheck, FiBriefcase, FiBookOpen } from 'react-icons/fi';
 import { cvDataEn, cvDataId } from '../data/cvData';
 
 const CVDownloadModal = ({ isOpen, onClose }) => {
     const [selectedLang, setSelectedLang] = useState('en');
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape') {
+                    onClose();
+                }
+            };
+            window.addEventListener('keydown', handleKeyDown);
+            return () => {
+                document.body.style.overflow = 'unset';
+                window.removeEventListener('keydown', handleKeyDown);
+            };
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isOpen, onClose]);
+
     if (!isOpen) return null;
 
     const isEn = selectedLang === 'en';
@@ -45,15 +64,19 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                     className="relative w-full max-w-2xl bg-neutral-dark border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 my-8 overflow-hidden"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="cv-modal-title"
                 >
                     {/* Background glow effect */}
                     <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
                     {/* Close Button */}
                     <button
+                        type="button"
                         onClick={onClose}
                         aria-label="Close CV Download Modal"
-                        className="absolute top-6 right-6 p-2.5 rounded-full bg-gray-900/80 border border-gray-700/80 text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
+                        className="absolute top-6 right-6 p-2.5 rounded-full bg-gray-900/80 border border-gray-700/80 text-gray-400 hover:text-white hover:border-gray-500 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                     >
                         <FiX className="text-xl" />
                     </button>
@@ -63,7 +86,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-3">
                             <FiCheck className="text-sm" /> ATS-Friendly Curriculum Vitae
                         </div>
-                        <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white uppercase tracking-tight">
+                        <h3 id="cv-modal-title" className="text-2xl sm:text-3xl font-heading font-bold text-white uppercase tracking-tight">
                             Download Professional CV
                         </h3>
                         <p className="text-gray-400 text-sm mt-1 font-body">
@@ -76,7 +99,8 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <button
                             type="button"
                             onClick={() => setSelectedLang('en')}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                            aria-pressed={isEn}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 ${
                                 isEn 
                                     ? 'bg-primary text-black shadow-lg font-black' 
                                     : 'text-gray-400 hover:text-white'
@@ -87,7 +111,8 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <button
                             type="button"
                             onClick={() => setSelectedLang('id')}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                            aria-pressed={!isEn}
+                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 ${
                                 !isEn 
                                     ? 'bg-primary text-black shadow-lg font-black' 
                                     : 'text-gray-400 hover:text-white'
@@ -128,7 +153,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <a
                             href={pdfPath}
                             download={pdfDownloadName}
-                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/5 to-transparent border border-primary/40 hover:border-primary hover:from-primary/25 transition-all group"
+                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/5 to-transparent border border-primary/40 hover:border-primary hover:from-primary/25 active:scale-[0.99] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-xl bg-primary text-black flex items-center justify-center font-bold text-xl group-hover:scale-105 transition-transform">
@@ -137,7 +162,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                 <div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-white font-heading font-bold text-base sm:text-lg">
-                                            {isEn ? 'Download PDF Format (EN)' : 'Unduh Format PDF (ID)'}
+                                             {isEn ? 'Download PDF Format (EN)' : 'Unduh Format PDF (ID)'}
                                         </span>
                                         <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 uppercase tracking-widest">
                                             Recommended
@@ -157,7 +182,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <a
                             href={docxPath}
                             download={docxDownloadName}
-                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-gray-900/80 border border-gray-800 hover:border-gray-600 hover:bg-gray-800/60 transition-all group"
+                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-gray-900/80 border border-gray-800 hover:border-gray-600 hover:bg-gray-800/60 active:scale-[0.99] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-xl group-hover:scale-105 transition-transform">
@@ -192,7 +217,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                             href={pdfPath}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline font-bold uppercase tracking-wider"
+                            className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-white font-bold uppercase tracking-wider rounded px-1.5 py-0.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         >
                             {isEn ? 'Open PDF in Browser' : 'Buka PDF di Browser'} <FiExternalLink />
                         </a>

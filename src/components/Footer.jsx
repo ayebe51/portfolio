@@ -15,7 +15,7 @@ const Footer = ({ onOpenCV }) => {
                         {onOpenCV && (
                             <button
                                 onClick={onOpenCV}
-                                className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline font-bold uppercase tracking-wider"
+                                className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-white active:scale-95 transition-all duration-300 font-bold uppercase tracking-wider rounded px-1 py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                             >
                                 <FiDownload className="text-sm" /> Download ATS CV (PDF / DOCX)
                             </button>
@@ -28,7 +28,7 @@ const Footer = ({ onOpenCV }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="GitHub Profile"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black transition-all"
+                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FiGithub className="text-lg" />
                         </a>
@@ -37,7 +37,7 @@ const Footer = ({ onOpenCV }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="LinkedIn Profile"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black transition-all"
+                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FiLinkedin className="text-lg" />
                         </a>
@@ -46,14 +46,14 @@ const Footer = ({ onOpenCV }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="WhatsApp Contact"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-green-500 hover:text-white transition-all"
+                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-green-500 hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FaWhatsapp className="text-lg" />
                         </a>
                         <a 
                             href="mailto:ayb.n1994@gmail.com" 
                             aria-label="Email Contact"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black transition-all"
+                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FiMail className="text-lg" />
                         </a>

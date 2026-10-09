@@ -39,8 +39,8 @@ const PortfolioGrid = () => {
                 </div>
 
                 <div className="mt-24 text-center">
-                    <MagneticButton href="https://github.com/ayebe51" target="_blank">
-                       <span className="inline-block px-10 py-4 border border-white/20 rounded-full text-white uppercase tracking-widest hover:bg-white hover:text-black transition-colors font-bold">
+                    <MagneticButton href="https://github.com/ayebe51" target="_blank" rel="noopener noreferrer">
+                       <span className="inline-block px-10 py-4 border border-white/20 rounded-full text-white uppercase tracking-widest hover:bg-white hover:text-black active:scale-95 transition-all duration-300 font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                             View All Archives
                        </span>
                     </MagneticButton>

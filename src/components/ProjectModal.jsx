@@ -6,13 +6,20 @@ const ProjectModal = ({ project, onClose }) => {
     useEffect(() => {
         if (project) {
             document.body.style.overflow = 'hidden';
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape') {
+                    onClose();
+                }
+            };
+            window.addEventListener('keydown', handleKeyDown);
+            return () => {
+                document.body.style.overflow = 'unset';
+                window.removeEventListener('keydown', handleKeyDown);
+            };
         } else {
             document.body.style.overflow = 'unset';
         }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [project]);
+    }, [project, onClose]);
 
     if (!project) return null;
 
@@ -34,11 +41,15 @@ const ProjectModal = ({ project, onClose }) => {
                         exit={{ opacity: 0, y: 50, scale: 0.95 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         className="relative bg-[#0a0a0a] rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)] w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col overflow-hidden border border-gray-800/50"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="project-modal-title"
                         data-lenis-prevent
                     >
                         <button
                             onClick={onClose}
-                            className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-black/90 rounded-full text-white backdrop-blur-md transition-all border border-white/20 hover:scale-110"
+                            className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-white hover:text-black rounded-full text-white backdrop-blur-md transition-all duration-300 border border-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                            aria-label="Close project modal"
                         >
                             <FiX className="text-xl" />
                         </button>
@@ -61,7 +72,7 @@ const ProjectModal = ({ project, onClose }) => {
 
                         {/* Content Body */}
                         <div className="p-8 md:p-12 w-full">
-                            <h3 className="text-4xl md:text-5xl font-black mb-6 font-heading text-white tracking-tight">{project.title}</h3>
+                            <h3 id="project-modal-title" className="text-4xl md:text-5xl font-black mb-6 font-heading text-white tracking-tight">{project.title}</h3>
                             <p className="text-gray-300 mb-8 leading-relaxed text-lg font-body">
                                 {project.description}
                             </p>
@@ -143,7 +154,7 @@ const ProjectModal = ({ project, onClose }) => {
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="btn bg-primary text-black hover:bg-white flex-1 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-4 rounded-xl transition-all duration-300"
+                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-primary text-black hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                                     >
                                         View Live Project <FiExternalLink className="text-lg" />
                                     </a>
@@ -153,7 +164,7 @@ const ProjectModal = ({ project, onClose }) => {
                                         href={project.repoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-center bg-gray-800/50 border border-gray-700 hover:border-white text-white hover:bg-white hover:text-black flex-1 gap-2 text-sm font-bold uppercase tracking-widest py-4 rounded-xl transition-all duration-300"
+                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-gray-800/80 border border-gray-700 hover:border-white text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                                     >
                                         Source Code <FiGithub className="text-lg" />
                                     </a>

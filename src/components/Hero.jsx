@@ -121,19 +121,18 @@ const Hero = ({ onOpenCV }) => {
 
                         <div className="flex flex-wrap items-center justify-center gap-4">
                             <MagneticButton href="#portfolio">
-                                <span className="px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all shadow-lg">
+                                <span className="inline-block px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     Explore Work
                                 </span>
                             </MagneticButton>
-                            <button
-                                onClick={onOpenCV}
-                                className="px-8 py-3 rounded-full bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-black font-body uppercase tracking-widest text-sm transition-all shadow-lg flex items-center gap-2 group font-semibold backdrop-blur-md cursor-pointer"
-                            >
-                                <FiDownload className="text-base group-hover:translate-y-0.5 transition-transform" />
-                                Download CV
-                            </button>
+                            <MagneticButton onClick={onOpenCV} className="cursor-pointer">
+                                <span className="px-8 py-3 rounded-full bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-black active:scale-95 font-body uppercase tracking-widest text-sm transition-all duration-300 shadow-lg flex items-center gap-2 group font-semibold backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
+                                    <FiDownload className="text-base group-hover:translate-y-0.5 transition-transform" />
+                                    Download CV
+                                </span>
+                            </MagneticButton>
                             <MagneticButton href="#contact">
-                                <span className="px-8 py-3 rounded-full bg-white text-black font-body uppercase tracking-widest text-sm hover:bg-primary hover:text-white transition-all shadow-lg">
+                                <span className="inline-block px-8 py-3 rounded-full bg-white text-black font-body uppercase tracking-widest text-sm hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 shadow-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     Let's Talk
                                 </span>
                             </MagneticButton>

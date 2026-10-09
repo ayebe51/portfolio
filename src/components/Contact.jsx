@@ -50,7 +50,7 @@ const Contact = () => {
                                 href="https://wa.me/62895349177555?text=Hello%20Ahmad,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity." 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-between p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-green-500/60 hover:bg-gray-800/80 transition-all group shadow-lg"
+                                className="flex items-center justify-between p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-green-500/60 hover:bg-gray-800/80 active:scale-[0.99] transition-all duration-300 group shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                             >
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-105 transition-transform">
@@ -66,7 +66,7 @@ const Contact = () => {
 
                             <a 
                                 href="mailto:ayb.n1994@gmail.com" 
-                                className="flex items-center justify-between p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-primary/60 hover:bg-gray-800/80 transition-all group shadow-lg"
+                                className="flex items-center justify-between p-5 rounded-2xl bg-gray-900/90 border border-gray-800 hover:border-primary/60 hover:bg-gray-800/80 active:scale-[0.99] transition-all duration-300 group shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                             >
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
@@ -138,7 +138,7 @@ const Contact = () => {
                             <div className="pt-8">
                                 <MagneticButton 
                                     type="submit"
-                                    className="w-full md:w-auto px-12 py-5 bg-white text-black font-heading font-bold text-xl uppercase tracking-widest rounded-full hover:bg-primary hover:text-white transition-all flex items-center justify-between gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full md:w-auto px-12 py-5 bg-white text-black font-heading font-bold text-xl uppercase tracking-widest rounded-full hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 flex items-center justify-between gap-4 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                                     disabled={status === 'sending'}
                                 >
                                     {status === 'sending' ? 'Sending...' : 'Send Message'}
