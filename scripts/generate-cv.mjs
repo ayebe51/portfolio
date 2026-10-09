@@ -306,11 +306,44 @@ function generateHtmlCv(data) {
 </html>`;
 }
 
-// 2. Generate PDF via Headless Edge
+// 2. Discover Headless Browser & Generate PDF
+function findBrowserExecutable() {
+    const candidatePaths = [
+        'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+        'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+        'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+        'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+        '/usr/bin/google-chrome',
+        '/usr/bin/chromium',
+        '/usr/bin/chromium-browser',
+        '/snap/bin/chromium'
+    ];
+
+    for (const p of candidatePaths) {
+        if (fs.existsSync(p)) return p;
+    }
+
+    try {
+        const whichCmd = process.platform === 'win32' ? 'where' : 'which';
+        const browserBin = process.platform === 'win32' ? 'msedge' : 'google-chrome';
+        const stdout = execFileSync(whichCmd, [browserBin], { stdio: 'pipe' }).toString().trim().split('\n')[0].trim();
+        if (stdout && fs.existsSync(stdout)) return stdout;
+    } catch {
+        // Ignored
+    }
+
+    return null;
+}
+
 function buildPdf(htmlPath, pdfPath) {
-    const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
-    if (!fs.existsSync(edgePath)) {
-        throw new Error(`Edge executable not found at ${edgePath}`);
+    const browserPath = findBrowserExecutable();
+    if (!browserPath) {
+        if (fs.existsSync(pdfPath)) {
+            console.log(`ℹ Headless browser not detected in CI/cloud build. Retaining verified pre-built PDF: ${path.basename(pdfPath)}`);
+            return;
+        }
+        console.warn(`⚠ Warning: Headless browser not found and ${path.basename(pdfPath)} does not exist yet.`);
+        return;
     }
 
     const args = [
@@ -322,7 +355,7 @@ function buildPdf(htmlPath, pdfPath) {
         htmlPath
     ];
 
-    execFileSync(edgePath, args, { stdio: 'pipe' });
+    execFileSync(browserPath, args, { stdio: 'pipe' });
     console.log(`✓ PDF successfully generated: ${path.basename(pdfPath)}`);
 }
 
