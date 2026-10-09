@@ -88,7 +88,7 @@ export const cvDataEn = {
     ],
     education: [
         {
-            degree: "Sarjana Hukum (S.H.) — Islamic Law / Jurisprudence",
+            degree: "Sarjana Hukum (S.H.) — Islamic Economic Law",
             institution: "STAI At-Tahdzib Jombang",
             location: "Jombang, East Java, Indonesia",
             graduationYear: "Graduated 2019"
@@ -186,7 +186,7 @@ export const cvDataId = {
     ],
     education: [
         {
-            degree: "Sarjana Hukum (S.H.) — Hukum Islam",
+            degree: "Sarjana Hukum (S.H.) — Hukum Ekonomi Syariah",
             institution: "STAI At-Tahdzib Jombang",
             location: "Jombang, Jawa Timur, Indonesia",
             graduationYear: "Lulus 2019"
