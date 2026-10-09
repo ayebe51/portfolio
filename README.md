@@ -65,24 +65,52 @@ npm run preview
 
 ---
 
-## 🌐 Deployment Guide (Coolify & Self-Hosted PaaS)
+## 🌐 Deployment Guide
 
-This project produces a clean, static single-page application (SPA) in `dist/`. It can be deployed effortlessly to **Coolify** on any VPS:
+This project produces an optimized static Single Page Application (SPA) in `dist/`.
 
-### Option A: Coolify via Nixpacks / Static Site (Recommended)
-1. In your **Coolify Dashboard**, click **"+ Create New Resource"** > **"Public/Private Git Repository"**.
-2. Select your repository: `https://github.com/ayebe51/portfolio.git`.
-3. Set **Build Pack** to `Static` or `Nixpacks`.
-4. Configure Build & Publish:
+### 1. Deploy ke Vercel (Rekomendasi Utama)
+
+Karena repositori sudah tersedia di GitHub ([`github.com/ayebe51/portfolio`](https://github.com/ayebe51/portfolio)), Vercel akan otomatis mendeteksi konfigurasi [`vercel.json`](vercel.json):
+
+#### Cara A: Melalui Vercel Dashboard (Paling Praktis)
+1. Buka [vercel.com](https://vercel.com) dan login menggunakan akun GitHub Anda (**`ayebe51`**).
+2. Di dashboard, klik tombol **"Add New..."** > pilih **"Project"**.
+3. Cari repositori **`portfolio`** dan klik **"Import"**.
+4. Pengaturan build akan otomatis terisi sesuai `vercel.json`:
+   * **Framework Preset**: `Vite`
+   * **Build Command**: `npm run build`
+   * **Output Directory**: `dist`
+5. Klik **"Deploy"**.
+6. Selesai! Website Anda langsung aktif dengan domain gratis `*.vercel.app` (dan auto-deploy setiap kali push ke `main`).
+
+#### Cara B: Melalui Vercel CLI
+```bash
+# 1. Login ke akun Vercel
+npx vercel login
+
+# 2. Deploy langsung ke production
+npx vercel --prod
+```
+
+---
+
+### 2. Deploy ke Coolify (Self-Hosted VPS)
+
+Jika ingin di-hosting di server/VPS mandiri menggunakan **Coolify**:
+
+#### Opsi Nixpacks / Static Site (Direkomendasikan)
+1. Di **Coolify Dashboard**, klik **"+ Create New Resource"** > **"Public/Private Git Repository"**.
+2. Masukkan URL repositori: `https://github.com/ayebe51/portfolio.git`.
+3. Pilih **Build Pack**: `Static` atau `Nixpacks`.
+4. Konfigurasi:
    * **Build Command**: `npm run build`
    * **Publish Directory**: `dist`
-5. Set your custom domain (e.g. `portfolio.ayub.dev` or `ayub.dev`) and enable automatic SSL with Let's Encrypt.
-6. Click **Deploy**.
+5. Masukkan custom domain (misal: `portfolio.ayub.dev` atau `ayub.dev`) dan aktifkan SSL otomatis Let's Encrypt.
+6. Klik **Deploy**.
 
-### Option B: Coolify via Dockerfile / Nginx
-Create a lightweight multi-stage `Dockerfile`:
+#### Opsi Dockerfile / Nginx
 ```dockerfile
-# Stage 1: Build
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -90,17 +118,11 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
-```
-
-### Option C: Vercel CLI
-```bash
-npx vercel deploy --prod
 ```
 
 ---
