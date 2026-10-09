@@ -650,14 +650,22 @@ async function processCvVersion(data, suffix) {
     await buildDocx(data, targetDocxPath);
 
     // Aliases
-    if (isDefault) {
-        fs.copyFileSync(targetPdfPath, path.join(cvOutputDir, 'software-engineer-cv.pdf'));
-        fs.copyFileSync(targetDocxPath, path.join(cvOutputDir, 'software-engineer-cv.docx'));
-        fs.copyFileSync(targetPdfPath, path.join(cvOutputDir, 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV.pdf'));
-        fs.copyFileSync(targetDocxPath, path.join(cvOutputDir, 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV.docx'));
-    } else {
-        fs.copyFileSync(targetPdfPath, path.join(cvOutputDir, 'software-engineer-cv-id.pdf'));
-        fs.copyFileSync(targetDocxPath, path.join(cvOutputDir, 'software-engineer-cv-id.docx'));
+    if (fs.existsSync(targetPdfPath)) {
+        if (isDefault) {
+            fs.copyFileSync(targetPdfPath, path.join(cvOutputDir, 'software-engineer-cv.pdf'));
+            fs.copyFileSync(targetPdfPath, path.join(cvOutputDir, 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV.pdf'));
+        } else {
+            fs.copyFileSync(targetPdfPath, path.join(cvOutputDir, 'software-engineer-cv-id.pdf'));
+        }
+    }
+
+    if (fs.existsSync(targetDocxPath)) {
+        if (isDefault) {
+            fs.copyFileSync(targetDocxPath, path.join(cvOutputDir, 'software-engineer-cv.docx'));
+            fs.copyFileSync(targetDocxPath, path.join(cvOutputDir, 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV.docx'));
+        } else {
+            fs.copyFileSync(targetDocxPath, path.join(cvOutputDir, 'software-engineer-cv-id.docx'));
+        }
     }
 
     if (fs.existsSync(tempHtmlPath)) {
