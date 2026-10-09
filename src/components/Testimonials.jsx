@@ -5,7 +5,7 @@ const stats = [
     {
         number: "3",
         label: "Enterprise Platforms",
-        description: "Architected education ERP, pesantren governance SaaS, and retail inventory systems"
+        description: "Architected education ERP, integrated pesantren management systems, and retail inventory platforms"
     },
     {
         number: "Multi-Entity",

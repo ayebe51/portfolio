@@ -61,7 +61,7 @@ export const cvDataEn = {
             ]
         },
         {
-            name: "Koneksi Santri — Islamic Boarding School Multi-Tenant ERP",
+            name: "Koneksi Santri — Integrated Islamic Boarding School ERP",
             techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma ORM, Closed-Loop Wallet, Docker",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
@@ -69,7 +69,7 @@ export const cvDataEn = {
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
                 "Architected a closed-loop digital wallet system for cashless on-campus merchant & canteen spending, featuring parent-controlled daily spending caps and instant balance ledgers.",
-                "Engineered a multi-tenant SaaS ERP bridging student administration, guardian communications, automated tuition billing, and multi-branch double-entry general ledger accounting (PostgreSQL RLS).",
+                "Engineered an integrated ERP system bridging student administration, guardian communications, automated tuition billing, and multi-branch double-entry general ledger accounting.",
                 "Designed QR-code Smart Gate security checkpoint logging integrated with automated WhatsApp notification dispatches for verified student pickups."
             ]
         },
@@ -159,7 +159,7 @@ export const cvDataId = {
             ]
         },
         {
-            name: "Koneksi Santri — SaaS ERP Multi-Tenant Pesantren",
+            name: "Koneksi Santri — Sistem Informasi & Manajemen Terpadu Pesantren (ERP)",
             techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma ORM, Closed-Loop Wallet, Docker",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
@@ -167,7 +167,7 @@ export const cvDataId = {
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
                 "Merancang sistem dompet digital tertutup (closed-loop wallet) untuk transaksi non-tunai di kantin dan koperasi kampus dengan pembatasan limit belanja harian oleh wali santri.",
-                "Membangun platform SaaS multi-tenant yang menghubungkan administrasi santri, komunikasi wali, penagihan SPP digital, dan pembukuan buku besar konsolidasi multi-cabang (PostgreSQL RLS).",
+                "Membangun platform sistem manajemen pesantren yang menghubungkan administrasi santri, komunikasi wali, penagihan SPP digital, dan pembukuan buku besar konsolidasi multi-cabang.",
                 "Mengembangkan sistem pos jaga Smart Gate QR dengan notifikasi webhook WhatsApp otomatis saat santri dijemput oleh wali terverifikasi."
             ]
         },

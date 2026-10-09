@@ -13,8 +13,8 @@ Features authentic project case studies, live demo links, interactive galleries,
    * **Tech Stack**: React 19, TypeScript, Laravel 12, PostgreSQL 16, Vite PWA, PHPUnit / Pest.
    * **Live Demo**: [sim-maarif-fullstack.vercel.app](https://sim-maarif-fullstack.vercel.app/dashboard)
 
-2. **[Koneksi Santri](https://github.com/ayebe51/koneksi-santri)** — *Islamic Boarding School Multi-Tenant ERP*
-   * Distributed SaaS platform featuring a closed-loop digital wallet for cashless santri spending with parent spending caps, QR-code Smart Gate security checkouts, automated guardian notification dispatch, and multi-entity accounting.
+2. **[Koneksi Santri](https://github.com/ayebe51/koneksi-santri)** — *Integrated Islamic Boarding School ERP Platform*
+   * Comprehensive enterprise platform featuring a closed-loop digital wallet for cashless santri spending with parent spending caps, QR-code Smart Gate security checkouts, automated guardian notification dispatch, and multi-entity accounting.
    * **Tech Stack**: Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma, Closed-Loop Wallet, Tailwind CSS.
    * **Live Demo**: [admin.koneksisantri.tech](https://admin.koneksisantri.tech)
 
