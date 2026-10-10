@@ -44,14 +44,34 @@ export const projects = [
         videoUrl: "",
         gallery: [
             {
+                src: "/images/projects/koneksi-santri/mobile-1-beranda.webp",
+                caption: "Portal Wali Santri (Flutter Mobile) — Beranda & Saldo Dompet Digital: Monitoring saldo uang saku real-time, top-up cepat, QR santri, dan kontrol limit belanja kantin.",
+                alt: "Portal Wali Santri Beranda dan Saldo Dompet Digital Santri",
+                isMobile: true
+            },
+            {
+                src: "/images/projects/koneksi-santri/mobile-2-tagihan.webp",
+                caption: "Portal Wali Santri (Flutter Mobile) — Manajemen Tagihan SPP: Rincian pos biaya bulanan santri (makan, asrama, laundry, maulid) dengan pelacakan status pembayaran.",
+                alt: "Portal Wali Santri Tagihan dan Rincian Biaya Bulanan",
+                isMobile: true
+            },
+            {
+                src: "/images/projects/koneksi-santri/mobile-3-hafalan.webp",
+                caption: "Portal Wali Santri (Flutter Mobile) — Monitoring Progres Hafalan: Pelaporan berkala capaian tahfidz Al-Qur'an (target juz dan histori nilai setoran santri).",
+                alt: "Portal Wali Santri Monitoring Progres Hafalan Al-Quran",
+                isMobile: true
+            },
+            {
                 src: "/images/projects/koneksi-santri/key-feature.webp",
-                caption: "Smart Gate & Student Pickup Dispatch — QR-code authorized guardian gate permits with security checkpoint verification and real-time gate logs.",
-                alt: "Koneksi Santri Smart Gate QR Security and Student Pickup Dispatch"
+                caption: "Web Superadmin — Smart Gate & Student Pickup Dispatch: Otorisasi izin penjemputan santri via QR kode dengan verifikasi pos keamanan dan log real-time.",
+                alt: "Koneksi Santri Smart Gate QR Security and Student Pickup Dispatch",
+                isMobile: false
             },
             {
                 src: "/images/projects/koneksi-santri/supporting-view.webp",
-                caption: "Enterprise Multi-Entity General Ledger — double-entry accounting with consolidated trial balance (Neraca Saldo) and chart of accounts.",
-                alt: "Koneksi Santri Multi-Entity General Ledger and Consolidated Trial Balance"
+                caption: "Web Superadmin — Multi-Entity General Ledger: Pembukuan buku besar akuntansi double-entry dengan neraca saldo konsolidasi multi-cabang yayasan.",
+                alt: "Koneksi Santri Multi-Entity General Ledger and Consolidated Trial Balance",
+                isMobile: false
             }
         ]
     },

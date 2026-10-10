@@ -114,38 +114,95 @@ const ProjectModal = ({ project, onClose }) => {
                             </div>
 
                             {/* Project Gallery */}
-                            {project.gallery && project.gallery.length > 0 && (
-                                <div className="mb-10">
-                                    <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Project Gallery & Feature Views</h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {project.gallery.map((item, idx) => {
-                                            const imgSrc = typeof item === 'string' ? item : item.src;
-                                            const imgAlt = typeof item === 'object' && item.alt ? item.alt : `${project.title} screenshot ${idx + 1}`;
-                                            const imgCaption = typeof item === 'object' && item.caption ? item.caption : null;
+                            {project.gallery && project.gallery.length > 0 && (() => {
+                                const mobileItems = project.gallery.filter(item => item.isMobile);
+                                const webItems = project.gallery.filter(item => !item.isMobile);
 
-                                            return (
-                                                <div key={idx} className="flex flex-col rounded-2xl overflow-hidden border border-gray-800/80 bg-gray-900/60 shadow-lg hover:border-primary/40 transition-all duration-300 group">
-                                                    <div className="aspect-video w-full overflow-hidden bg-black/60 relative">
-                                                        <img 
-                                                            src={imgSrc} 
-                                                            alt={imgAlt} 
-                                                            loading="lazy"
-                                                            decoding="async"
-                                                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" 
-                                                        />
-                                                    </div>
-                                                    {imgCaption && (
-                                                        <div className="p-4 bg-gray-900/90 border-t border-gray-800/60 flex items-start gap-2 text-xs text-gray-300 leading-relaxed font-body">
-                                                            <span className="text-primary font-bold select-none">{"//"}</span>
-                                                            <span>{imgCaption}</span>
-                                                        </div>
-                                                    )}
+                                return (
+                                    <div className="mb-10 space-y-10">
+                                        {/* Mobile App Showcase */}
+                                        {mobileItems.length > 0 && (
+                                            <div>
+                                                <div className="flex items-center gap-3 mb-6">
+                                                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></div>
+                                                    <h4 className="font-bold text-white uppercase tracking-wider text-sm">
+                                                        Flutter Mobile App — Portal Wali Santri
+                                                    </h4>
+                                                    <span className="text-xs font-mono text-gray-400 bg-gray-800/80 px-2.5 py-0.5 rounded-full border border-gray-700/80">
+                                                        {mobileItems.length} Screens
+                                                    </span>
                                                 </div>
-                                            );
-                                        })}
+                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                                    {mobileItems.map((item, idx) => {
+                                                        const imgSrc = typeof item === 'string' ? item : item.src;
+                                                        const imgAlt = typeof item === 'object' && item.alt ? item.alt : `${project.title} mobile screenshot ${idx + 1}`;
+                                                        const imgCaption = typeof item === 'object' && item.caption ? item.caption : null;
+
+                                                        return (
+                                                            <div key={idx} className="flex flex-col rounded-3xl overflow-hidden border border-gray-800/90 bg-gray-950 shadow-2xl hover:border-primary/50 transition-all duration-300 group">
+                                                                <div className="w-full aspect-[9/18] overflow-hidden bg-black relative flex items-center justify-center">
+                                                                    <img 
+                                                                        src={imgSrc} 
+                                                                        alt={imgAlt} 
+                                                                        loading="lazy"
+                                                                        decoding="async"
+                                                                        className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out" 
+                                                                    />
+                                                                </div>
+                                                                {imgCaption && (
+                                                                    <div className="p-4 bg-gray-900/95 border-t border-gray-800/80 flex items-start gap-2 text-xs text-gray-300 leading-relaxed font-body">
+                                                                        <span className="text-primary font-bold select-none">{"//"}</span>
+                                                                        <span>{imgCaption}</span>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Web Platform Views */}
+                                        {webItems.length > 0 && (
+                                            <div>
+                                                <div className="flex items-center gap-3 mb-6">
+                                                    <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>
+                                                    <h4 className="font-bold text-white uppercase tracking-wider text-sm">
+                                                        {mobileItems.length > 0 ? "Web Management ERP & Infrastructure" : "Project Gallery & Feature Views"}
+                                                    </h4>
+                                                </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    {webItems.map((item, idx) => {
+                                                        const imgSrc = typeof item === 'string' ? item : item.src;
+                                                        const imgAlt = typeof item === 'object' && item.alt ? item.alt : `${project.title} screenshot ${idx + 1}`;
+                                                        const imgCaption = typeof item === 'object' && item.caption ? item.caption : null;
+
+                                                        return (
+                                                            <div key={idx} className="flex flex-col rounded-2xl overflow-hidden border border-gray-800/80 bg-gray-900/60 shadow-lg hover:border-primary/40 transition-all duration-300 group">
+                                                                <div className="aspect-video w-full overflow-hidden bg-black/60 relative">
+                                                                    <img 
+                                                                        src={imgSrc} 
+                                                                        alt={imgAlt} 
+                                                                        loading="lazy"
+                                                                        decoding="async"
+                                                                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" 
+                                                                    />
+                                                                </div>
+                                                                {imgCaption && (
+                                                                    <div className="p-4 bg-gray-900/90 border-t border-gray-800/60 flex items-start gap-2 text-xs text-gray-300 leading-relaxed font-body">
+                                                                        <span className="text-primary font-bold select-none">{"//"}</span>
+                                                                        <span>{imgCaption}</span>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
-                                </div>
-                            )}
+                                );
+                            })()}
 
                             {/* Actions */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-gray-800/50">
