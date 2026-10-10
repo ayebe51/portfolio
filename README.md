@@ -11,7 +11,7 @@ Features authentic project case studies, live demo links, interactive galleries,
 1. **[SIMMACI](https://github.com/ayebe51/simmaci)** — *Enterprise Education Governance Platform*
    * Centralized administrative decree (SK) issuance and institutional governance for 270+ educational institutions, 2,000+ PTK staff, and 17,000+ students.
    * **Tech Stack**: React 19, TypeScript, Laravel 12, PostgreSQL 16, Vite PWA, PHPUnit / Pest.
-   * **Live Demo**: [sim-maarif-fullstack.vercel.app](https://sim-maarif-fullstack.vercel.app/dashboard)
+   * **System Access**: Internal Enterprise System (LP Ma'arif NU Cilacap) — Codebase & test suite on [GitHub](https://github.com/ayebe51/simmaci)
 
 2. **[Koneksi Santri](https://github.com/ayebe51/koneksi-santri)** — *Integrated Islamic Boarding School ERP Platform*
    * Comprehensive enterprise platform featuring a closed-loop digital wallet for cashless santri spending with parent spending caps, QR-code Smart Gate security checkouts, automated guardian notification dispatch, and multi-entity accounting.

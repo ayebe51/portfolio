@@ -565,14 +565,24 @@ async function buildDocx(data, docxPath) {
                 ]
             })
         );
-        docChildren.push(
-            new Paragraph({
-                spacing: { after: 35 },
-                children: [
-                    new TextRun({ text: `${demoLabel} ${proj.demoDisplay}  |  ${repoLabel} ${proj.repoDisplay}`, size: 16, color: "2B6CB0" })
-                ]
-            })
-        );
+        const linkRuns = [];
+        if (proj.demoDisplay) {
+            linkRuns.push(new TextRun({ text: `${demoLabel} ${proj.demoDisplay}`, size: 16, color: "2B6CB0" }));
+        }
+        if (proj.demoDisplay && proj.repoDisplay) {
+            linkRuns.push(new TextRun({ text: "  |  ", size: 16, color: "718096" }));
+        }
+        if (proj.repoDisplay) {
+            linkRuns.push(new TextRun({ text: `${repoLabel} ${proj.repoDisplay}`, size: 16, color: "2B6CB0" }));
+        }
+        if (linkRuns.length > 0) {
+            docChildren.push(
+                new Paragraph({
+                    spacing: { after: 35 },
+                    children: linkRuns
+                })
+            );
+        }
 
         proj.highlights.forEach(h => {
             docChildren.push(

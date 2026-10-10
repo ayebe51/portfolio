@@ -38,7 +38,7 @@ const tailoredCvDataId = {
         portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
         portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
     },
-    summary: "Web & Application Developer dengan pengalaman 2+ tahun memimpin siklus hidup pengembangan aplikasi web end-to-end (SDLC), mulai dari perancangan antarmuka berbasis kebutuhan pengguna (UI/UX), arsitektur full-stack, integrasi REST API, hingga pengujian otomatis dan pemeliharaan server. Berhasil merancang dan mendeploy platform tata kelola pendidikan SIMMACI (270+ sekolah/madrasah, 17.000+ pengguna aktif) serta sistem ERP multi-tenant. Menguasai pemrograman PHP (Laravel), JavaScript/TypeScript (React, Next.js, NestJS), pengelolaan database PostgreSQL & MySQL, serta dasar keamanan aplikasi (RBAC, OWASP, audit integritas data). Terbiasa mengoperasikan Agentic AI IDE (Antigravity, Kiro, Codex, OpenCode) untuk akselerasi efisiensi rekayasa perangkat lunak, perancangan arsitektur, refaktorisasi, dan troubleshooting aplikasi (cepat beradaptasi dengan berbagai fondasi model seperti Claude dan Grok). Berlatar belakang pendidikan tinggi Islam (Muslim) dengan etika kerja amanah dan orientasi kuat pada kualitas solusi.",
+    summary: "Web & Application Developer dengan pengalaman 2+ tahun memimpin siklus hidup pengembangan aplikasi web end-to-end (SDLC), mulai dari perancangan antarmuka berbasis kebutuhan pengguna (UI/UX), arsitektur full-stack, integrasi REST API, hingga pengujian otomatis dan pemeliharaan server. Berhasil merancang dan mendeploy platform tata kelola pendidikan SIMMACI (mengelola 270+ sekolah/madrasah, 2.000+ staf, dan 17.000+ data siswa) serta sistem ERP multi-tenant. Menguasai pemrograman PHP (Laravel), JavaScript/TypeScript (React, Next.js, NestJS), pengelolaan database PostgreSQL & MySQL, serta dasar keamanan aplikasi (RBAC, OWASP, audit integritas data). Terbiasa mengoperasikan Agentic AI IDE (Antigravity, Kiro, Codex, OpenCode) untuk akselerasi efisiensi rekayasa perangkat lunak, perancangan arsitektur, refaktorisasi, dan troubleshooting aplikasi (cepat beradaptasi dengan berbagai fondasi model seperti Claude dan Grok). Berlatar belakang pendidikan tinggi Islam (Muslim) dengan etika kerja amanah dan orientasi kuat pada kualitas solusi.",
     skills: {
         languages: ["PHP 8+", "JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3"],
         frontend: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Blade", "Zustand", "Responsive UI/UX Design", "Translasi Kebutuhan Pengguna"],
@@ -77,8 +77,8 @@ const tailoredCvDataId = {
         {
             name: "SIMMACI — Enterprise Education Governance Platform",
             techStack: "React 19, TypeScript, Laravel 12, PostgreSQL 16, Tailwind CSS, REST API, PHPUnit/Pest",
-            demoUrl: "https://sim-maarif-fullstack.vercel.app/dashboard",
-            demoDisplay: "sim-maarif-fullstack.vercel.app",
+            demoUrl: "",
+            demoDisplay: "",
             repoUrl: "https://github.com/ayebe51/simmaci",
             repoDisplay: "github.com/ayebe51/simmaci",
             highlights: [
@@ -116,7 +116,7 @@ const tailoredCvDataId = {
             institution: "STAI At-Tahdzib Jombang",
             location: "Jombang, Jawa Timur, Indonesia",
             graduationYear: "Lulus 2019",
-            notes: "Fondasi logika sistematis, kepatuhan tata kelola, dan integritas tinggi (Muslim). Didukung 5+ tahun rekayasa perangkat lunak mandiri secara intensif (Autodidact & Continuous Learning) dengan portofolio aplikasi produksi nyata berskala puluhan ribu pengguna."
+            notes: "Memiliki fondasi penalaran logis, etika kerja amanah (Muslim), dan dedikasi mendalam pada rekayasa perangkat lunak web secara mandiri (Autodidact & Continuous Learning)."
         }
     ]
 };
@@ -138,7 +138,7 @@ const tailoredCvDataEn = {
         portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
         portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
     },
-    summary: "Web & Application Developer with 2+ years of comprehensive experience directing the end-to-end software development lifecycle (SDLC) across modern web platforms. Proven track record architecting and deploying large-scale enterprise solutions (SIMMACI for 270+ institutions and 17,000+ active users) and multi-tenant financial ERP engines. Proficient in frontend engineering (HTML5, CSS3, JavaScript, React, Tailwind CSS), robust backend services (PHP/Laravel, Node.js/NestJS, TypeScript), relational databases (PostgreSQL, MySQL), RESTful API integrations, automated testing (1,800+ test cases), and web application security (RBAC, OWASP, server hardening). Experienced in leveraging Agentic AI IDEs and autonomous development tools (Antigravity, Kiro, Codex, OpenCode) for software engineering acceleration, architectural planning, and rapid troubleshooting (readily adaptable to Claude and Grok ecosystems).",
+    summary: "Web & Application Developer with 2+ years of comprehensive experience directing the end-to-end software development lifecycle (SDLC) across modern web platforms. Proven track record architecting and deploying large-scale enterprise solutions (SIMMACI administering 270+ institutions, 2,000+ staff, and 17,000+ students) and multi-tenant financial ERP engines. Proficient in frontend engineering (HTML5, CSS3, JavaScript, React, Tailwind CSS), robust backend services (PHP/Laravel, Node.js/NestJS, TypeScript), relational databases (PostgreSQL, MySQL), RESTful API integrations, automated testing (1,800+ test cases), and web application security (RBAC, OWASP, server hardening). Experienced in leveraging Agentic AI IDEs and autonomous development tools (Antigravity, Kiro, Codex, OpenCode) for software engineering acceleration, architectural planning, and rapid troubleshooting (readily adaptable to Claude and Grok ecosystems).",
     skills: {
         languages: ["PHP 8+", "JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3"],
         frontend: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Blade", "Zustand", "Responsive UI/UX Design", "User Requirement Mapping"],
@@ -177,8 +177,8 @@ const tailoredCvDataEn = {
         {
             name: "SIMMACI — Enterprise Education Governance Platform",
             techStack: "React 19, TypeScript, Laravel 12, PostgreSQL 16, Tailwind CSS, REST API, PHPUnit/Pest",
-            demoUrl: "https://sim-maarif-fullstack.vercel.app/dashboard",
-            demoDisplay: "sim-maarif-fullstack.vercel.app",
+            demoUrl: "",
+            demoDisplay: "",
             repoUrl: "https://github.com/ayebe51/simmaci",
             repoDisplay: "github.com/ayebe51/simmaci",
             highlights: [
@@ -216,7 +216,7 @@ const tailoredCvDataEn = {
             institution: "STAI At-Tahdzib Jombang",
             location: "Jombang, East Java, Indonesia",
             graduationYear: "Graduated 2019",
-            notes: "Developed strong logical reasoning, regulatory governance, and ethical integrity. Complemented by 5+ years of rigorous independent software engineering (Autodidact & Continuous Learning) with verified production platforms serving tens of thousands of users."
+            notes: "Developed strong logical reasoning and ethical integrity. Complemented by dedicated independent software engineering (Autodidact & Continuous Learning) with verified production web platforms."
         }
     ]
 };
@@ -766,14 +766,24 @@ async function buildDocx(data, docxPath) {
                 ]
             })
         );
-        docChildren.push(
-            new Paragraph({
-                spacing: { after: 30 },
-                children: [
-                    new TextRun({ text: `${demoLabel} ${proj.demoDisplay}  |  ${repoLabel} ${proj.repoDisplay}`, size: 15, color: "2B6CB0" })
-                ]
-            })
-        );
+        const linkRuns = [];
+        if (proj.demoDisplay) {
+            linkRuns.push(new TextRun({ text: `${demoLabel} ${proj.demoDisplay}`, size: 15, color: "2B6CB0" }));
+        }
+        if (proj.demoDisplay && proj.repoDisplay) {
+            linkRuns.push(new TextRun({ text: "  |  ", size: 15, color: "718096" }));
+        }
+        if (proj.repoDisplay) {
+            linkRuns.push(new TextRun({ text: `${repoLabel} ${proj.repoDisplay}`, size: 15, color: "2B6CB0" }));
+        }
+        if (linkRuns.length > 0) {
+            docChildren.push(
+                new Paragraph({
+                    spacing: { after: 30 },
+                    children: linkRuns
+                })
+            );
+        }
 
         proj.highlights.forEach(h => {
             docChildren.push(

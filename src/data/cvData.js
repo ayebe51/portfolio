@@ -53,8 +53,8 @@ export const cvDataEn = {
         {
             name: "SIMMACI — Enterprise Education Governance Platform",
             techStack: "React 19, TypeScript, Laravel 12, PostgreSQL 16, Tailwind CSS, Vite PWA, PHPUnit/Pest",
-            demoUrl: "https://sim-maarif-fullstack.vercel.app/dashboard",
-            demoDisplay: "sim-maarif-fullstack.vercel.app",
+            demoUrl: "",
+            demoDisplay: "",
             repoUrl: "https://github.com/ayebe51/simmaci",
             repoDisplay: "github.com/ayebe51/simmaci",
             highlights: [
@@ -153,8 +153,8 @@ export const cvDataId = {
         {
             name: "SIMMACI — Platform Tata Kelola Pendidikan Enterprise",
             techStack: "React 19, TypeScript, Laravel 12, PostgreSQL 16, Tailwind CSS, Vite PWA, PHPUnit/Pest",
-            demoUrl: "https://sim-maarif-fullstack.vercel.app/dashboard",
-            demoDisplay: "sim-maarif-fullstack.vercel.app",
+            demoUrl: "",
+            demoDisplay: "",
             repoUrl: "https://github.com/ayebe51/simmaci",
             repoDisplay: "github.com/ayebe51/simmaci",
             highlights: [

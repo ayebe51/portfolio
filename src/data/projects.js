@@ -10,8 +10,8 @@ export const projects = [
         approach: "Architected a decoupled fullstack solution utilizing a high-performance React 19 SPA (Vite PWA) paired with a robust Laravel 12 REST API on PostgreSQL 16, automated Word/PDF batch document templating (PHPWord/Docxtemplater), S3/MinIO cloud storage isolation, and comprehensive test coverage (1,800+ PHPUnit/Pest test cases).",
         tools: ["React 19", "TypeScript", "Laravel 12", "PostgreSQL 16", "Tailwind CSS", "Vite PWA", "PHPUnit / Pest"],
         results: "Decreased manual decree issuance overhead by over 70%, eliminated record duplication across 270+ institutions, and achieved 100% test pass rate with 36,000+ assertions.",
-        demoUrl: "https://sim-maarif-fullstack.vercel.app/dashboard",
-        demoNote: "Public live demo available at sim-maarif-fullstack.vercel.app displaying full executive command center dashboards and decree services.",
+        demoUrl: "",
+        demoNote: "Internal institutional platform for LP Ma'arif NU Cilacap administering 270+ institutions. Full codebase, database migrations, and 1,800+ automated test cases are accessible on GitHub. Live system walkthrough available upon interview request.",
         repoUrl: "https://github.com/ayebe51/simmaci",
         videoUrl: "",
         gallery: [
