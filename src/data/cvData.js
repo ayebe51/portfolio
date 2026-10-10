@@ -18,8 +18,8 @@ export const cvDataEn = {
     },
     summary: "Full-Stack Software Engineer with comprehensive experience directing the end-to-end software development lifecycle (SDLC) from business domain analysis to containerized production deployment. Proven track record architecting institutional education governance (SIMMACI for 270+ institutions) and multi-tenant core financial ERP engines with clean Domain-Driven Architecture (DDD), Segregation of Duties (Maker-Checker), and Money Value Objects. Experienced in rigorous quality assurance (1,800+ automated test cases), high-concurrency database design, and server hardening on Linux/Docker/Coolify.",
     skills: {
-        languages: ["TypeScript", "JavaScript", "PHP 8+", "SQL", "HTML5", "CSS3"],
-        frontend: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Blade", "Zustand", "Framer Motion", "Shadcn UI"],
+        languages: ["TypeScript", "JavaScript", "Dart", "PHP 8+", "SQL", "HTML5", "CSS3"],
+        frontend: ["React 18/19", "Next.js (App Router)", "Flutter", "Tailwind CSS", "Blade", "Zustand", "Framer Motion", "Shadcn UI"],
         backend: ["Laravel 11/12", "NestJS", "Node.js", "Express", "RESTful APIs", "Microservices", "Role-Based Access Control (RBAC)"],
         databases: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Schema Design", "Composite Indexing", "Database Constraints"],
         devops: ["Docker & Docker Compose", "Coolify", "Vercel", "Git / GitHub", "Linux/VPS Administration", "Nginx (HSTS/CSP)", "S3 / MinIO"],
@@ -63,16 +63,16 @@ export const cvDataEn = {
             ]
         },
         {
-            name: "Koneksi Santri — Integrated Islamic Boarding School ERP",
-            techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma ORM, Closed-Loop Wallet, Docker",
+            name: "Koneksi Santri — Integrated Islamic Boarding School ERP & Mobile App",
+            techStack: "Next.js 14, Flutter (Dart), NestJS, TypeScript, PostgreSQL, Prisma ORM, Docker",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
             repoUrl: "https://github.com/ayebe51/koneksi-santri",
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
-                "Architected a closed-loop digital wallet system for cashless on-campus merchant & canteen spending, featuring parent-controlled daily spending caps and instant balance ledgers.",
-                "Engineered an integrated ERP system bridging student administration, guardian communications, automated tuition billing, and multi-branch double-entry general ledger accounting.",
-                "Designed QR-code Smart Gate security checkpoint logging integrated with automated WhatsApp notification dispatches for verified student pickups."
+                "Engineered a dedicated Flutter mobile application for guardians (Portal Wali Santri) to monitor real-time canteen spending, manage closed-loop daily limits, and receive smart gate pickup alerts.",
+                "Architected an integrated web & mobile ERP bridging student administration, QR-code Smart Gate security checkouts, automated tuition billing, and multi-branch general ledger accounting.",
+                "Designed a closed-loop digital wallet system with instant balance ledgers, fraud-proof transaction verification, and automated WhatsApp notification dispatch."
             ]
         },
         {
@@ -118,8 +118,8 @@ export const cvDataId = {
     },
     summary: "Full-Stack Software Engineer dengan rekam jejak kepemilikan penuh siklus rekayasa perangkat lunak (end-to-end SDLC), mulai dari perumusan analisis proses bisnis, arsitektur teknis, rekayasa full-stack, hingga orkestrasi deployment VPS/Docker. Berpengalaman merancang platform tata kelola pendidikan (SIMMACI untuk 270+ madrasah/sekolah) serta mesin inti akuntansi keuangan (Core Financial ERP) berbasis Domain-Driven Design (DDD), Segregation of Duties (Maker-Checker), dan Money Value Object. Terbiasa dengan jaminan mutu otomatis (1.800+ automated test cases) dan penguatan keamanan server (security hardening).",
     skills: {
-        languages: ["TypeScript", "JavaScript", "PHP 8+", "SQL", "HTML5", "CSS3"],
-        frontend: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Blade", "Zustand", "Framer Motion", "Shadcn UI"],
+        languages: ["TypeScript", "JavaScript", "Dart", "PHP 8+", "SQL", "HTML5", "CSS3"],
+        frontend: ["React 18/19", "Next.js (App Router)", "Flutter", "Tailwind CSS", "Blade", "Zustand", "Framer Motion", "Shadcn UI"],
         backend: ["Laravel 11/12", "NestJS", "Node.js", "Express", "RESTful APIs", "Microservices", "Role-Based Access Control (RBAC)"],
         databases: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Perancangan Skema", "Composite Indexing", "Database Constraints"],
         devops: ["Docker & Docker Compose", "Coolify", "Vercel", "Git / GitHub", "Administrasi Linux/VPS", "Nginx (HSTS/CSP)", "S3 / MinIO"],
@@ -163,16 +163,16 @@ export const cvDataId = {
             ]
         },
         {
-            name: "Koneksi Santri — Sistem Informasi & Manajemen Terpadu Pesantren (ERP)",
-            techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma ORM, Closed-Loop Wallet, Docker",
+            name: "Koneksi Santri — Sistem Informasi Manajemen Pesantren & Mobile App",
+            techStack: "Next.js 14, Flutter (Dart), NestJS, TypeScript, PostgreSQL, Prisma ORM, Docker",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
             repoUrl: "https://github.com/ayebe51/koneksi-santri",
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
-                "Merancang sistem dompet digital tertutup (closed-loop wallet) untuk transaksi non-tunai di kantin dan koperasi kampus dengan pembatasan limit belanja harian oleh wali santri.",
-                "Membangun platform sistem manajemen pesantren yang menghubungkan administrasi santri, komunikasi wali, penagihan SPP digital, dan pembukuan buku besar konsolidasi multi-cabang.",
-                "Mengembangkan sistem pos jaga Smart Gate QR dengan notifikasi webhook WhatsApp otomatis saat santri dijemput oleh wali terverifikasi."
+                "Mengembangkan aplikasi mobile Flutter untuk wali santri (Portal Wali Santri) guna memantau saldo dompet digital santri, mengatur limit belanja harian kantin, dan menerima notifikasi izin keluar kampus.",
+                "Membangun platform sistem manajemen pesantren yang menghubungkan administrasi santri, izin penjemputan via Smart Gate QR, penagihan SPP digital, dan pembukuan buku besar konsolidasi multi-cabang.",
+                "Merancang sistem dompet digital tertutup (closed-loop wallet) dengan pencatatan saldo instan, verifikasi transaksi bebas fraud, dan integrasi notifikasi WhatsApp otomatis."
             ]
         },
         {

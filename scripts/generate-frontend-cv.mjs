@@ -40,7 +40,7 @@ const frontendCvData = {
     summary: "Detail-oriented Front-End Developer with 1+ years of production experience translating UI/UX mockups into pixel-perfect, accessible, and high-performance web applications. Highly proficient in HTML5, modern CSS3, SASS/SCSS, JavaScript (ES6+), and TypeScript, with strong expertise in React 18/19, Next.js, and Tailwind CSS. Proven track record architecting modular, reusable component libraries for complex enterprise dashboards and creative interactive web applications. Skilled in Responsive Web Design (RWD), cross-browser compatibility testing, Core Web Vitals optimization, and SEO best practices (semantic HTML, Open Graph, structured JSON-LD). Experienced using Git version control, command line tools, and Agile workflows (JIRA, Slack, Backlog). Driven by craftsmanship, clean code structure, and continuous learning.",
     skills: {
         coreWeb: ["HTML5 (Semantic)", "CSS3", "SASS / SCSS", "LESS", "JavaScript (ES6+)", "TypeScript", "Responsive Web Design (RWD)"],
-        frameworks: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Framer Motion", "Vite PWA", "Zustand", "Blade"],
+        frameworks: ["React 18/19", "Next.js (App Router)", "Flutter", "Tailwind CSS", "Framer Motion", "Vite PWA", "Zustand", "Blade"],
         uiArchitecture: ["Reusable Component Architecture", "Design Mockup Implementation (Figma to Code)", "Mobile-First Design", "Design Systems"],
         optimizationAndSeo: ["SEO Principles (Meta Tags, Open Graph, JSON-LD Schema)", "Core Web Vitals", "Website Optimization", "Code Splitting"],
         testingAndTools: ["Cross-Browser Testing & Compatibility", "Responsive UI Testing", "Git & GitHub (1,940+ Commits)", "Command Line (CLI)"],
@@ -97,15 +97,15 @@ const frontendCvData = {
             ]
         },
         {
-            name: "Koneksi Santri — Modern Campus ERP & Management Dashboard",
-            techStack: "Next.js 14, TypeScript, Tailwind CSS, Responsive Web Design, REST API Integration",
+            name: "Koneksi Santri — Campus ERP Dashboard & Flutter Mobile Portal",
+            techStack: "Next.js 14, Flutter (Dart), TypeScript, Tailwind CSS, REST API Integration",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
             repoUrl: "https://github.com/ayebe51/koneksi-santri",
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
-                "Developed clean, responsive dashboard interfaces for student admissions, tuition billing overviews, and closed-loop merchant point-of-sale spending controls.",
-                "Ensured full mobile and tablet responsiveness with adaptive layouts, accessible touch targets, and instant UI state updates."
+                "Developed clean, responsive dashboard interfaces and Flutter mobile views for student admissions, tuition billing, and guardian balance monitoring.",
+                "Ensured full cross-platform responsiveness with adaptive layouts, accessible touch targets, and instant UI state updates."
             ]
         },
         {

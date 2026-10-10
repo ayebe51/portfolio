@@ -40,8 +40,8 @@ const tailoredCvDataId = {
     },
     summary: "Web & Application Developer dengan pengalaman 2+ tahun memimpin siklus hidup pengembangan aplikasi web end-to-end (SDLC), mulai dari perancangan antarmuka berbasis kebutuhan pengguna (UI/UX), arsitektur full-stack, integrasi REST API, hingga pengujian otomatis dan pemeliharaan server. Berhasil merancang dan mendeploy platform tata kelola pendidikan SIMMACI (mengelola 270+ sekolah/madrasah, 2.000+ staf, dan 17.000+ data siswa) serta sistem ERP multi-tenant. Menguasai pemrograman PHP (Laravel), JavaScript/TypeScript (React, Next.js, NestJS), pengelolaan database PostgreSQL & MySQL, serta dasar keamanan aplikasi (RBAC, OWASP, audit integritas data). Terbiasa mengoperasikan Agentic AI IDE (Antigravity, Kiro, Codex, OpenCode) untuk akselerasi efisiensi rekayasa perangkat lunak, perancangan arsitektur, refaktorisasi, dan troubleshooting aplikasi (cepat beradaptasi dengan berbagai fondasi model seperti Claude dan Grok). Berlatar belakang pendidikan tinggi Islam (Muslim) dengan etika kerja amanah dan orientasi kuat pada kualitas solusi.",
     skills: {
-        languages: ["PHP 8+", "JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3"],
-        frontend: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Blade", "Zustand", "Responsive UI/UX Design", "Translasi Kebutuhan Pengguna"],
+        languages: ["PHP 8+", "JavaScript (ES6+)", "TypeScript", "Dart", "SQL", "HTML5", "CSS3"],
+        frontend: ["React 18/19", "Next.js (App Router)", "Flutter", "Tailwind CSS", "Blade", "Zustand", "Responsive UI/UX Design"],
         backend: ["Laravel 11/12", "NestJS", "Node.js", "Express", "RESTful APIs", "Integrasi Antar Sistem (Webhook, Gateway)", "Microservices"],
         databases: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Perancangan Skema", "Composite Indexing", "Pengelolaan & Integritas Data"],
         testingAndTroubleshooting: ["Automated Testing (PHPUnit, Pest, Jest - 1.800+ Test Cases)", "Application Debugging", "Maintenance & Troubleshooting", "Log Analysis"],
@@ -87,14 +87,14 @@ const tailoredCvDataId = {
             ]
         },
         {
-            name: "Koneksi Santri — Integrated Islamic Boarding School ERP & Web App",
-            techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma ORM, REST API, Docker",
+            name: "Koneksi Santri — Integrated Pesantren ERP & Flutter Mobile App",
+            techStack: "Next.js 14, Flutter (Dart), NestJS, PostgreSQL, Prisma ORM, REST API, Docker",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
             repoUrl: "https://github.com/ayebe51/koneksi-santri",
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
-                "Aplikasi web ERP terintegrasi menghubungkan administrasi santri, tagihan SPP berkala, komunikasi wali santri, dan akuntansi buku besar multi-cabang.",
+                "Aplikasi web ERP & mobile Flutter terintegrasi menghubungkan portal wali santri, administrasi santri, tagihan SPP berkala, dan buku besar multi-cabang.",
                 "Merancang sistem dompet digital tertutup (closed-loop wallet) untuk transaksi kantin nontunai dengan kontrol limit harian wali dan integrasi gateway notifikasi WhatsApp otomatis."
             ]
         },
@@ -140,8 +140,8 @@ const tailoredCvDataEn = {
     },
     summary: "Web & Application Developer with 2+ years of comprehensive experience directing the end-to-end software development lifecycle (SDLC) across modern web platforms. Proven track record architecting and deploying large-scale enterprise solutions (SIMMACI administering 270+ institutions, 2,000+ staff, and 17,000+ students) and multi-tenant financial ERP engines. Proficient in frontend engineering (HTML5, CSS3, JavaScript, React, Tailwind CSS), robust backend services (PHP/Laravel, Node.js/NestJS, TypeScript), relational databases (PostgreSQL, MySQL), RESTful API integrations, automated testing (1,800+ test cases), and web application security (RBAC, OWASP, server hardening). Experienced in leveraging Agentic AI IDEs and autonomous development tools (Antigravity, Kiro, Codex, OpenCode) for software engineering acceleration, architectural planning, and rapid troubleshooting (readily adaptable to Claude and Grok ecosystems).",
     skills: {
-        languages: ["PHP 8+", "JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3"],
-        frontend: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "Blade", "Zustand", "Responsive UI/UX Design", "User Requirement Mapping"],
+        languages: ["PHP 8+", "JavaScript (ES6+)", "TypeScript", "Dart", "SQL", "HTML5", "CSS3"],
+        frontend: ["React 18/19", "Next.js (App Router)", "Flutter", "Tailwind CSS", "Blade", "Zustand", "Responsive UI/UX Design"],
         backend: ["Laravel 11/12", "NestJS", "Node.js", "Express", "RESTful APIs", "Inter-System Integration (Webhooks, Gateways)", "Microservices"],
         databases: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Schema Design", "Composite Indexing", "Data Integrity & Management"],
         testingAndTroubleshooting: ["Automated Testing (PHPUnit, Pest, Jest - 1,800+ Test Cases)", "Application Debugging", "Maintenance & Troubleshooting", "Log Analysis"],
@@ -187,14 +187,14 @@ const tailoredCvDataEn = {
             ]
         },
         {
-            name: "Koneksi Santri — Integrated Islamic Boarding School ERP & Web App",
-            techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma ORM, REST API, Docker",
+            name: "Koneksi Santri — Integrated Pesantren ERP & Flutter Mobile App",
+            techStack: "Next.js 14, Flutter (Dart), NestJS, PostgreSQL, Prisma ORM, REST API, Docker",
             demoUrl: "https://admin.koneksisantri.tech",
             demoDisplay: "admin.koneksisantri.tech",
             repoUrl: "https://github.com/ayebe51/koneksi-santri",
             repoDisplay: "github.com/ayebe51/koneksi-santri",
             highlights: [
-                "Integrated ERP web application bridging student management, recurring tuition billing, parent communications, and multi-branch general ledger accounting.",
+                "Integrated web & Flutter mobile ERP bridging guardian communications (Portal Wali Santri), student records, tuition billing, and general ledger accounting.",
                 "Engineered a closed-loop digital wallet system for cashless canteen transactions with parent-controlled spending limits and automated WhatsApp notification dispatch."
             ]
         },

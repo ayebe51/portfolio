@@ -5,7 +5,7 @@ const stats = [
     {
         number: "3",
         label: "Enterprise Platforms",
-        description: "Architected SIMMACI for 270+ educational institutions, Koneksi Santri pesantren ERP with closed-loop wallets, and Kiro omnichannel retail POS.",
+        description: "Architected SIMMACI for 270+ educational institutions, Koneksi Santri pesantren ERP & Flutter mobile app, and Kiro omnichannel retail POS.",
         tags: ["SIMMACI (270+ Org)", "Koneksi Santri", "Kiro Retail POS"]
     },
     {
@@ -17,8 +17,8 @@ const stats = [
     {
         number: "Full-Stack",
         label: "Production Delivery",
-        description: "End-to-end engineering across React 19, Next.js, Laravel 12, NestJS, TypeScript, and PostgreSQL 16. Delivered scalable RESTful APIs, Docker containers, and 1,800+ automated test cases with zero financial discrepancies.",
-        tags: ["React 19", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL 16", "Docker", "PHPUnit/Pest"]
+        description: "End-to-end engineering across React 19, Next.js, Flutter, Laravel 12, NestJS, TypeScript, and PostgreSQL 16. Delivered scalable RESTful APIs, Docker containers, and 1,800+ automated test cases with zero financial discrepancies.",
+        tags: ["React 19", "Next.js", "Flutter", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL 16", "Docker", "PHPUnit/Pest"]
     }
 ];
 

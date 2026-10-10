@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-    // Frontend
-    "React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML5", "CSS3",
+    // Frontend & Mobile
+    "React", "Next.js", "Flutter", "TypeScript", "JavaScript", "Dart", "Tailwind CSS", "HTML5", "CSS3",
     // Backend & Databases
     "Laravel", "NestJS", "PHP", "Node.js", "Express", "PostgreSQL", "MySQL", "Prisma",
     // Libraries & Tools

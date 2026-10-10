@@ -13,9 +13,9 @@ Features authentic project case studies, live demo links, interactive galleries,
    * **Tech Stack**: React 19, TypeScript, Laravel 12, PostgreSQL 16, Vite PWA, PHPUnit / Pest.
    * **System Access**: Internal Enterprise System (LP Ma'arif NU Cilacap) — Codebase & test suite on [GitHub](https://github.com/ayebe51/simmaci)
 
-2. **[Koneksi Santri](https://github.com/ayebe51/koneksi-santri)** — *Integrated Islamic Boarding School ERP Platform*
-   * Comprehensive enterprise platform featuring a closed-loop digital wallet for cashless santri spending with parent spending caps, QR-code Smart Gate security checkouts, automated guardian notification dispatch, and multi-entity accounting.
-   * **Tech Stack**: Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma, Closed-Loop Wallet, Tailwind CSS.
+2. **[Koneksi Santri](https://github.com/ayebe51/koneksi-santri)** — *Integrated Islamic Boarding School ERP & Flutter Mobile Ecosystem*
+   * Comprehensive enterprise platform featuring a dedicated **Flutter mobile app for guardians (Portal Wali Santri)**, closed-loop cashless canteen digital wallet with daily spending caps, QR-code Smart Gate security checkouts, automated guardian notification dispatch, and multi-entity accounting.
+   * **Tech Stack**: Next.js 14, Flutter (Dart), NestJS, TypeScript, PostgreSQL, Prisma, Closed-Loop Wallet, Docker.
    * **Live Demo**: [admin.koneksisantri.tech](https://admin.koneksisantri.tech)
 
 3. **[Enterprise POS & Inventory (Kiro ERP)](https://github.com/ayebe51/inventory-pos)** — *Retail ERP & Omnichannel Point of Sale*
@@ -27,7 +27,7 @@ Features authentic project case studies, live demo links, interactive galleries,
 
 ## 🚀 Tech Stack & Core Tools
 
-* **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion, React Icons
+* **Frontend & Mobile**: React 18/19, Next.js, Flutter, Dart, Vite, Tailwind CSS, Framer Motion
 * **Backend & Systems**: Laravel, NestJS, PHP, Node.js, Express, PostgreSQL, MySQL, Prisma
 * **DevOps & Infrastructure**: Docker, Coolify, Vercel, Git
 
