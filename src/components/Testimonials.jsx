@@ -46,7 +46,7 @@ const Testimonials = () => {
                             transition={{ delay: index * 0.2 }}
                             className="relative group h-full"
                         >
-                            <div className="h-full flex flex-col bg-neutral-800/50 backdrop-blur-sm border border-gray-800 rounded-lg p-8 hover:border-primary/50 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                            <div className="h-full flex flex-col bg-neutral-800/50 backdrop-blur-sm border border-gray-800 rounded-3xl overflow-hidden p-8 hover:border-primary/50 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
                                 <h3 className="text-6xl md:text-7xl font-heading font-bold text-white mb-4 group-hover:text-primary transition-colors">
                                     {stat.number}
                                 </h3>
@@ -61,7 +61,7 @@ const Testimonials = () => {
                                         {stat.tags.map((tag, tIndex) => (
                                             <span 
                                                 key={tIndex}
-                                                className="text-[11px] font-mono px-2.5 py-1 rounded bg-neutral-900 border border-gray-800 text-gray-400 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
+                                                className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-neutral-900 border border-gray-800 text-gray-400 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
                                             >
                                                 {tag}
                                             </span>
