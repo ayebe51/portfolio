@@ -5,17 +5,20 @@ const stats = [
     {
         number: "3",
         label: "Enterprise Platforms",
-        description: "Architected education ERP, integrated pesantren management systems, and retail inventory platforms"
+        description: "Architected SIMMACI for 270+ educational institutions, Koneksi Santri pesantren ERP with closed-loop wallets, and Kiro omnichannel retail POS.",
+        tags: ["SIMMACI (270+ Org)", "Koneksi Santri", "Kiro Retail POS"]
     },
     {
         number: "Multi-Entity",
         label: "Domain Architecture",
-        description: "Implemented double-entry ledgers, RBAC boundaries, and append-only audit stores"
+        description: "Implemented double-entry accounting ledgers, Maker-Checker transaction verification, Money Value Objects, and append-only audit stores with strict RBAC.",
+        tags: ["Domain-Driven Design", "Maker-Checker", "Money Objects", "RBAC"]
     },
     {
         number: "Full-Stack",
         label: "Production Delivery",
-        description: "End-to-end engineering across React, Next.js, NestJS, Prisma, and PostgreSQL"
+        description: "End-to-end engineering across React 19, Next.js, Laravel 12, NestJS, TypeScript, and PostgreSQL 16. Delivered scalable RESTful APIs, Docker containers, and 1,800+ automated test cases with zero financial discrepancies.",
+        tags: ["React 19", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL 16", "Docker", "PHPUnit/Pest"]
     }
 ];
 
@@ -50,9 +53,21 @@ const Testimonials = () => {
                                 <h4 className="text-xl font-heading font-bold text-white uppercase tracking-wider mb-2">
                                     {stat.label}
                                 </h4>
-                                <p className="text-neutral-300 text-sm leading-relaxed">
+                                <p className="text-neutral-300 text-sm leading-relaxed mb-6">
                                     {stat.description}
                                 </p>
+                                {stat.tags && (
+                                    <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-gray-800/80">
+                                        {stat.tags.map((tag, tIndex) => (
+                                            <span 
+                                                key={tIndex}
+                                                className="text-[11px] font-mono px-2.5 py-1 rounded bg-neutral-900 border border-gray-800 text-gray-400 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
                     ))}

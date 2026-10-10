@@ -6,8 +6,8 @@ const services = [
     {
         id: "01",
         title: "Full Stack Development",
-        description: "Building complete web applications from database to UI using React, Next.js, Node.js, and PostgreSQL/MySQL. Expertise in authentication, state management, and deployment.",
-        tags: ["React", "Next.js", "Node.js", "Express", "TypeScript"]
+        description: "Building complete enterprise web applications from database to UI using React 19, Next.js, Laravel 12, NestJS, TypeScript, and PostgreSQL/MySQL. Expertise in authentication (RBAC), REST APIs, state management, and containerized deployment.",
+        tags: ["React 19", "Next.js", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL"]
     },
     {
         id: "02",

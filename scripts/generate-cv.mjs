@@ -228,6 +228,9 @@ function generateHtmlCv(data) {
       <a href="${personal.linkedin}">${personal.linkedinDisplay}</a>
       <span class="sep">•</span>
       <a href="${personal.github}">${personal.githubDisplay}</a>
+      ${(personal.portfolio || personal.portfolioUrl) ? `
+      <span class="sep">•</span>
+      <a href="${personal.portfolio || personal.portfolioUrl}">${personal.portfolioDisplay}</a>` : ''}
     </div>
   </div>
 
@@ -431,7 +434,8 @@ async function buildDocx(data, docxPath) {
                 new TextRun({ text: `${personal.email}  •  `, size: 17 }),
                 new TextRun({ text: `${personal.phone}  •  `, size: 17 }),
                 new TextRun({ text: `${personal.linkedinDisplay}  •  `, size: 17 }),
-                new TextRun({ text: `${personal.githubDisplay}`, size: 17 })
+                new TextRun({ text: `${personal.githubDisplay}${personal.portfolioDisplay ? '  •  ' : ''}`, size: 17 }),
+                ...(personal.portfolioDisplay ? [new TextRun({ text: `${personal.portfolioDisplay}`, size: 17 })] : [])
             ]
         })
     );

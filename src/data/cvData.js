@@ -12,7 +12,9 @@ export const cvDataEn = {
         githubDisplay: "github.com/ayebe51",
         linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
         linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
-        portfolioDisplay: "ayub.dev"
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioUrl: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
     },
     summary: "Full-Stack Software Engineer with comprehensive experience directing the end-to-end software development lifecycle (SDLC) from business domain analysis to containerized production deployment. Proven track record architecting institutional education governance (SIMMACI for 270+ institutions) and multi-tenant core financial ERP engines with clean Domain-Driven Architecture (DDD), Segregation of Duties (Maker-Checker), and Money Value Objects. Experienced in rigorous quality assurance (1,800+ automated test cases), high-concurrency database design, and server hardening on Linux/Docker/Coolify.",
     skills: {
@@ -110,7 +112,9 @@ export const cvDataId = {
         githubDisplay: "github.com/ayebe51",
         linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
         linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
-        portfolioDisplay: "ayub.dev"
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioUrl: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
     },
     summary: "Full-Stack Software Engineer dengan rekam jejak kepemilikan penuh siklus rekayasa perangkat lunak (end-to-end SDLC), mulai dari perumusan analisis proses bisnis, arsitektur teknis, rekayasa full-stack, hingga orkestrasi deployment VPS/Docker. Berpengalaman merancang platform tata kelola pendidikan (SIMMACI untuk 270+ madrasah/sekolah) serta mesin inti akuntansi keuangan (Core Financial ERP) berbasis Domain-Driven Design (DDD), Segregation of Duties (Maker-Checker), dan Money Value Object. Terbiasa dengan jaminan mutu otomatis (1.800+ automated test cases) dan penguatan keamanan server (security hardening).",
     skills: {

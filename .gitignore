@@ -126,3 +126,6 @@ dist-ssr
 .idea/
 .DS_Store
 Thumbs.db
+
+# Tailored Application CVs (Local only)
+tailored-cv/
