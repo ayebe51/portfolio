@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ReactLenis } from '@studio-freight/react-lenis';
+import { LanguageProvider } from './context/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -11,7 +12,7 @@ import Footer from './components/Footer';
 import GrainOverlay from './components/ui/GrainOverlay';
 import CVDownloadModal from './components/CVDownloadModal';
 
-function App() {
+function AppContent() {
     const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
     return (
@@ -34,6 +35,14 @@ function App() {
                 />
             </div>
         </ReactLenis>
+    );
+}
+
+function App() {
+    return (
+        <LanguageProvider>
+            <AppContent />
+        </LanguageProvider>
     );
 }
 

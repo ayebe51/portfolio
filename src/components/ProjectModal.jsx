@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const ProjectModal = ({ project, onClose }) => {
+    const { language } = useLanguage();
+    const t = translations[language].modal;
+
     useEffect(() => {
         if (project) {
             document.body.style.overflow = 'hidden';
@@ -49,7 +54,7 @@ const ProjectModal = ({ project, onClose }) => {
                         <button
                             onClick={onClose}
                             className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-white hover:text-black rounded-full text-white backdrop-blur-md transition-all duration-300 border border-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
-                            aria-label="Close project modal"
+                            aria-label={t.close}
                         >
                             <FiX className="text-xl" />
                         </button>
@@ -81,7 +86,7 @@ const ProjectModal = ({ project, onClose }) => {
                                 <div className="mb-10 p-4 bg-primary/10 border border-primary/30 rounded-2xl flex items-start gap-3">
                                     <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0 animate-pulse"></div>
                                     <div className="text-sm text-gray-200 leading-relaxed font-body">
-                                        <strong className="text-white font-semibold">Live Demo Access: </strong>
+                                        <strong className="text-white font-semibold">{t.liveDemoAccess} </strong>
                                         {project.demoNote}
                                     </div>
                                 </div>
@@ -89,25 +94,25 @@ const ProjectModal = ({ project, onClose }) => {
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
                                 <div>
-                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">Challenge</h4>
+                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">{t.challenge}</h4>
                                     <p className="text-sm text-gray-400 leading-relaxed">{project.challenge}</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">Approach</h4>
+                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">{t.approach}</h4>
                                     <p className="text-sm text-gray-400 leading-relaxed">{project.approach}</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">Results</h4>
+                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">{t.results}</h4>
                                     <p className="text-sm text-gray-400 leading-relaxed">{project.results}</p>
                                 </div>
                             </div>
 
                             <div className="mb-10">
-                                <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-sm">Tools & Technologies</h4>
+                                <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-sm">{t.tools}</h4>
                                 <div className="flex flex-wrap gap-2">
                                     {project.tools.map((tool, idx) => (
                                         <span key={idx} className="text-sm font-medium text-gray-300 bg-gray-800/50 hover:bg-gray-800 px-4 py-2 rounded-lg border border-gray-700/50 transition-colors">
-                                            {tool}
+                                             {tool}
                                         </span>
                                     ))}
                                 </div>
@@ -126,10 +131,10 @@ const ProjectModal = ({ project, onClose }) => {
                                                 <div className="flex items-center gap-3 mb-6">
                                                     <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></div>
                                                     <h4 className="font-bold text-white uppercase tracking-wider text-sm">
-                                                        Flutter Mobile App — Portal Wali Santri
+                                                        {t.mobileTitle}
                                                     </h4>
                                                     <span className="text-xs font-mono text-gray-400 bg-gray-800/80 px-2.5 py-0.5 rounded-full border border-gray-700/80">
-                                                        {mobileItems.length} Screens
+                                                        {mobileItems.length} {t.screens}
                                                     </span>
                                                 </div>
                                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -168,7 +173,7 @@ const ProjectModal = ({ project, onClose }) => {
                                                 <div className="flex items-center gap-3 mb-6">
                                                     <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>
                                                     <h4 className="font-bold text-white uppercase tracking-wider text-sm">
-                                                        {mobileItems.length > 0 ? "Web Management ERP & Infrastructure" : "Project Gallery & Feature Views"}
+                                                        {mobileItems.length > 0 ? t.webTitle : t.defaultGalleryTitle}
                                                     </h4>
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -213,7 +218,7 @@ const ProjectModal = ({ project, onClose }) => {
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-primary text-black hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                                     >
-                                        View Live Project <FiExternalLink className="text-lg" />
+                                        {t.viewLive} <FiExternalLink className="text-lg" />
                                     </a>
                                 )}
                                 {project.repoUrl && (
@@ -223,7 +228,7 @@ const ProjectModal = ({ project, onClose }) => {
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-gray-800/80 border border-gray-700 hover:border-white text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
                                     >
-                                        Source Code <FiGithub className="text-lg" />
+                                        {t.sourceCode} <FiGithub className="text-lg" />
                                     </a>
                                 )}
                             </div>

@@ -2,8 +2,12 @@ import React from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
 import MagneticButton from './ui/MagneticButton';
 import { FiDownload } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const Hero = ({ onOpenCV }) => {
+    const { language } = useLanguage();
+    const t = translations[language].hero;
     const { scrollY } = useScroll();
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
     const y2 = useTransform(scrollY, [0, 500], [0, -100]);
@@ -68,7 +72,7 @@ const Hero = ({ onOpenCV }) => {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                     </span>
-                    <span className="font-heading uppercase tracking-widest text-sm text-gray-400">Available for Software Engineering Roles</span>
+                    <span className="font-heading uppercase tracking-widest text-sm text-gray-400">{t.status}</span>
                 </motion.div>
 
                 {/* LAYERED LAYOUT WRAPPER - Golden Ratio Vertical Spacing */}
@@ -114,26 +118,26 @@ const Hero = ({ onOpenCV }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1 }}
-                            className="text-white/90 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl mix-blend-difference leading-relaxed"
+                            className="text-white/90 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl mix-blend-difference leading-relaxed px-4"
                         >
-                            Engineering scalable enterprise web systems<br className="hidden md:inline" /> & robust distributed architectures.
+                            {t.subtitle}
                         </motion.p>
 
                         <div className="flex flex-wrap items-center justify-center gap-4">
                             <MagneticButton href="#portfolio">
                                 <span className="inline-block px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                    Explore Work
+                                    {t.exploreWork}
                                 </span>
                             </MagneticButton>
                             <MagneticButton onClick={onOpenCV} className="cursor-pointer">
                                 <span className="px-8 py-3 rounded-full bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-black active:scale-95 font-body uppercase tracking-widest text-sm transition-all duration-300 shadow-lg flex items-center gap-2 group font-semibold backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     <FiDownload className="text-base group-hover:translate-y-0.5 transition-transform" />
-                                    Download CV
+                                    {t.downloadCv}
                                 </span>
                             </MagneticButton>
                             <MagneticButton href="#contact">
                                 <span className="inline-block px-8 py-3 rounded-full bg-white text-black font-body uppercase tracking-widest text-sm hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 shadow-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                    Let's Talk
+                                    {t.letsTalk}
                                 </span>
                             </MagneticButton>
                         </div>
@@ -149,7 +153,7 @@ const Hero = ({ onOpenCV }) => {
                 transition={{ delay: 2 }}
                 className="absolute right-8 md:right-12 bottom-12 flex flex-col items-center gap-4 z-30"
             >
-                <span className="writing-vertical text-xs uppercase tracking-widest text-gray-500 font-heading">Scroll Down</span>
+                <span className="writing-vertical text-xs uppercase tracking-widest text-gray-500 font-heading">{t.scrollDown || 'Scroll Down'}</span>
                 <div className="h-16 w-[1px] bg-gray-600"></div>
             </motion.div>
         </section>

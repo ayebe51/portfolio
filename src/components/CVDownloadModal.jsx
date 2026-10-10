@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiDownload, FiExternalLink, FiFileText, FiCheck, FiBriefcase, FiBookOpen } from 'react-icons/fi';
 import { cvDataEn, cvDataId } from '../data/cvData';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const CVDownloadModal = ({ isOpen, onClose }) => {
-    const [selectedLang, setSelectedLang] = useState('en');
+    const { language: currentLang } = useLanguage();
+    const [selectedLang, setSelectedLang] = useState(currentLang || 'en');
 
     useEffect(() => {
         if (isOpen) {
+            setSelectedLang(currentLang);
             document.body.style.overflow = 'hidden';
             const handleKeyDown = (e) => {
                 if (e.key === 'Escape') {
@@ -22,12 +26,13 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
         } else {
             document.body.style.overflow = 'unset';
         }
-    }, [isOpen, onClose]);
+    }, [isOpen, currentLang, onClose]);
 
     if (!isOpen) return null;
 
     const isEn = selectedLang === 'en';
     const activeData = isEn ? cvDataEn : cvDataId;
+    const t = translations[selectedLang].cvModal;
 
     const pdfPath = isEn 
         ? '/cv/Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-EN.pdf' 
@@ -75,7 +80,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     <button
                         type="button"
                         onClick={onClose}
-                        aria-label="Close CV Download Modal"
+                        aria-label={t.close || "Close modal"}
                         className="absolute top-6 right-6 p-2.5 rounded-full bg-gray-900/80 border border-gray-700/80 text-gray-400 hover:text-white hover:border-gray-500 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                     >
                         <FiX className="text-xl" />
@@ -84,13 +89,13 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     {/* Header */}
                     <div className="mb-5 pr-10">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-3">
-                            <FiCheck className="text-sm" /> ATS-Friendly Curriculum Vitae
+                            <FiCheck className="text-sm" /> {t.badge}
                         </div>
                         <h3 id="cv-modal-title" className="text-2xl sm:text-3xl font-heading font-bold text-white uppercase tracking-tight">
-                            Download Professional CV
+                            {t.title}
                         </h3>
                         <p className="text-gray-400 text-sm mt-1 font-body">
-                            Formatted for Applicant Tracking Systems (ATS) and technical hiring managers.
+                            {t.subtitle}
                         </p>
                     </div>
 
@@ -106,7 +111,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                     : 'text-gray-400 hover:text-white'
                             }`}
                         >
-                            English (EN)
+                            {translations[selectedLang].cvModal.tabEn}
                         </button>
                         <button
                             type="button"
@@ -118,7 +123,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                     : 'text-gray-400 hover:text-white'
                             }`}
                         >
-                            Bahasa Indonesia (ID)
+                            {translations[selectedLang].cvModal.tabId}
                         </button>
                     </div>
 
@@ -162,14 +167,14 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                 <div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-white font-heading font-bold text-base sm:text-lg">
-                                             {isEn ? 'Download PDF Format (EN)' : 'Unduh Format PDF (ID)'}
+                                             {t.pdfTitle}
                                         </span>
                                         <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 uppercase tracking-widest">
-                                            Recommended
+                                            {t.recommended}
                                         </span>
                                     </div>
                                     <span className="text-gray-400 text-xs font-body block mt-0.5">
-                                        {isEn ? 'Submission-ready vector PDF • 100% ATS searchable text' : 'PDF vektor siap kirim • 100% teks terbaca oleh ATS'}
+                                        {t.pdfDesc}
                                     </span>
                                 </div>
                             </div>
@@ -191,14 +196,14 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                 <div>
                                     <div className="flex items-center gap-2">
                                         <span className="text-white font-heading font-semibold text-base sm:text-lg">
-                                            {isEn ? 'Download Editable Word (DOCX)' : 'Unduh Word Dapat Diedit (DOCX)'}
+                                            {t.docxTitle}
                                         </span>
                                         <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-800 text-gray-400 border border-gray-700 uppercase tracking-widest">
-                                            Editable
+                                            {t.editable}
                                         </span>
                                     </div>
                                     <span className="text-gray-400 text-xs font-body block mt-0.5">
-                                        {isEn ? 'Microsoft Word format for recruiters requiring .docx' : 'Format Microsoft Word untuk rekruter yang mensyaratkan .docx'}
+                                        {t.docxDesc}
                                     </span>
                                 </div>
                             </div>
@@ -211,7 +216,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     {/* Preview Online Button */}
                     <div className="pt-4 border-t border-gray-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
                         <span className="text-xs text-gray-400 font-body">
-                            {isEn ? 'Language:' : 'Bahasa:'} <strong className="text-white">{isEn ? 'English (EN)' : 'Bahasa Indonesia (ID)'}</strong> • Verified against production repositories
+                            {isEn ? 'Language:' : 'Bahasa:'} <strong className="text-white">{isEn ? 'English (EN)' : 'Bahasa Indonesia (ID)'}</strong> • {t.verified}
                         </span>
                         <a
                             href={pdfPath}
@@ -219,7 +224,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-white font-bold uppercase tracking-wider rounded px-1.5 py-0.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                         >
-                            {isEn ? 'Open PDF in Browser' : 'Buka PDF di Browser'} <FiExternalLink />
+                            {t.openPdf} <FiExternalLink />
                         </a>
                     </div>
                 </motion.div>

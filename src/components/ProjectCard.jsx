@@ -1,8 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const ProjectCard = ({ project, onClick }) => {
+    const { language } = useLanguage();
+    const t = translations[language].portfolio;
+
     return (
         <motion.article
             layout
@@ -17,7 +22,7 @@ const ProjectCard = ({ project, onClick }) => {
                 type="button"
                 onClick={() => onClick(project)}
                 className="aspect-video w-full overflow-hidden relative block text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset"
-                aria-label={`View details and screenshots for ${project.title}`}
+                aria-label={language === 'id' ? `Lihat detail dan tangkapan layar untuk ${project.title}` : `View details and screenshots for ${project.title}`}
             >
                 <div className="absolute inset-0 bg-neutral-dark/20 group-hover:bg-neutral-dark/0 transition-all duration-500 z-10 pointer-events-none"></div>
                 <img
@@ -39,7 +44,7 @@ const ProjectCard = ({ project, onClick }) => {
                 {project.demoUrl && (
                     <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-green-500/40 shadow-sm pointer-events-none">
                         <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                        <span className="text-[10px] font-bold text-green-300 uppercase tracking-widest">Live Demo</span>
+                        <span className="text-[10px] font-bold text-green-300 uppercase tracking-widest">{t.liveDemo}</span>
                     </div>
                 )}
             </button>
@@ -81,9 +86,9 @@ const ProjectCard = ({ project, onClick }) => {
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
                                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/20 hover:bg-primary text-primary hover:text-black border border-primary/40 rounded-full text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-gray-900"
-                                    title={`Open ${project.title} live demonstration`}
+                                    title={language === 'id' ? `Buka demo langsung ${project.title}` : `Open ${project.title} live demonstration`}
                                 >
-                                    <span>Live Demo</span>
+                                    <span>{t.liveDemo}</span>
                                     <FiExternalLink className="text-xs" />
                                 </a>
                             )}
@@ -94,9 +99,9 @@ const ProjectCard = ({ project, onClick }) => {
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
                                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 hover:bg-white text-gray-300 hover:text-black border border-gray-700 rounded-full text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-gray-900"
-                                    title="View Source Code on GitHub"
+                                    title={language === 'id' ? "Lihat Kode Sumber di GitHub" : "View Source Code on GitHub"}
                                 >
-                                    <span>GitHub</span>
+                                    <span>{t.github}</span>
                                     <FiGithub className="text-xs" />
                                 </a>
                             )}
@@ -106,9 +111,9 @@ const ProjectCard = ({ project, onClick }) => {
                             type="button"
                             onClick={() => onClick(project)}
                             className="text-xs font-bold uppercase tracking-widest text-gray-400 group-hover:text-white hover:text-primary active:scale-95 flex items-center gap-1.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded py-1 px-2 cursor-pointer"
-                            aria-label={`View full case study for ${project.title}`}
+                            aria-label={language === 'id' ? `Lihat studi kasus lengkap untuk ${project.title}` : `View full case study for ${project.title}`}
                         >
-                            <span>Case Study</span>
+                            <span>{t.caseStudyBtn || 'Case Study'}</span>
                             <FiArrowUpRight className="text-sm" />
                         </button>
                     </div>

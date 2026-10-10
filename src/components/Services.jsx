@@ -1,63 +1,28 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight } from 'react-icons/fi';
-
-const services = [
-    {
-        id: "01",
-        title: "Full Stack Development",
-        description: "Building complete enterprise web applications from database to UI using React 19, Next.js, Laravel 12, NestJS, TypeScript, and PostgreSQL/MySQL. Expertise in authentication (RBAC), REST APIs, state management, and containerized deployment.",
-        tags: ["React 19", "Next.js", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL"]
-    },
-    {
-        id: "02",
-        title: "SaaS Development",
-        description: "Creating subscription-based platforms with multi-tier pricing, user management, payment integration, and analytics. From MVP to production-ready SaaS products.",
-        tags: ["Subscriptions", "Stripe", "Multi-tenancy", "Analytics"]
-    },
-    {
-        id: "03",
-        title: "Database Architecture",
-        description: "Designing normalized schemas, optimizing queries, and implementing data migration strategies for PostgreSQL and MySQL. Focus on scalability and data integrity.",
-        tags: ["PostgreSQL", "MySQL", "Prisma", "Supabase", "Migrations"]
-    },
-    {
-        id: "04",
-        title: "Dashboard & Analytics",
-        description: "Building data-rich admin panels with real-time updates, interactive charts, role-based access control, and comprehensive reporting systems.",
-        tags: ["Recharts", "Real-time", "RBAC", "Data Viz"]
-    },
-    {
-        id: "05",
-        title: "API Development",
-        description: "Designing and implementing RESTful APIs with proper authentication, validation, error handling, and documentation. Focus on performance and security.",
-        tags: ["REST", "JWT", "Validation", "Documentation"]
-    },
-    {
-        id: "06",
-        title: "Frontend Engineering",
-        description: "Crafting responsive, accessible interfaces with smooth animations and optimal performance. Expert in Tailwind CSS, Shadcn UI, and Framer Motion.",
-        tags: ["Tailwind CSS", "Shadcn UI", "Framer Motion", "Responsive"]
-    }
-];
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const Services = () => {
     const [hoveredService, setHoveredService] = useState(null);
+    const { language } = useLanguage();
+    const t = translations[language].services;
 
     return (
         <section id="services" className="section-padding bg-neutral-dark relative z-10">
             <div className="container mx-auto container-padding">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-[calc(5vw*1.618)]">
                     <h2 className="text-[10vw] leading-[0.8] font-heading font-bold text-white uppercase opacity-100">
-                        Expertise
+                        {t.title}
                     </h2>
                     <p className="text-gray-200 text-lg max-w-sm text-right mt-8 md:mt-0 font-body uppercase tracking-widest font-medium">
-                        A toolkit built for the modern edge of the web.
+                        {t.subtitle}
                     </p>
                 </div>
 
                 <div className="flex flex-col">
-                    {services.map((service) => (
+                    {t.items.map((service) => (
                         <motion.div
                             key={service.id}
                             initial={{ opacity: 0, y: 20 }}

@@ -1,43 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const stats = [
-    {
-        number: "3",
-        label: "Enterprise Platforms",
-        description: "Architected SIMMACI for 270+ educational institutions, Koneksi Santri pesantren ERP & Flutter mobile app, and Kiro omnichannel retail POS.",
-        tags: ["SIMMACI (270+ Org)", "Koneksi Santri", "Kiro Retail POS"]
-    },
-    {
-        number: "Multi-Entity",
-        label: "Domain Architecture",
-        description: "Implemented double-entry accounting ledgers, Maker-Checker transaction verification, Money Value Objects, and append-only audit stores with strict RBAC.",
-        tags: ["Domain-Driven Design", "Maker-Checker", "Money Objects", "RBAC"]
-    },
-    {
-        number: "Full-Stack",
-        label: "Production Delivery",
-        description: "End-to-end engineering across React 19, Next.js, Flutter, Laravel 12, NestJS, TypeScript, and PostgreSQL 16. Delivered scalable RESTful APIs, Docker containers, and 1,800+ automated test cases with zero financial discrepancies.",
-        tags: ["React 19", "Next.js", "Flutter", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL 16", "Docker", "PHPUnit/Pest"]
-    }
-];
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const Testimonials = () => {
+    const { language } = useLanguage();
+    const t = translations[language].testimonials;
+
     return (
         <section className="section-padding bg-neutral-dark relative z-10 overflow-hidden border-t border-gray-800">
             <div className="container mx-auto container-padding">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24">
                      <h2 className="text-[10vw] leading-[0.8] font-heading font-bold text-white uppercase opacity-100">
-                        Track<br />Record
+                        {language === 'id' ? (
+                            <>Rekam<br />Jejak</>
+                        ) : (
+                            <>Track<br />Record</>
+                        )}
                     </h2>
                      <div className="flex items-center gap-4 mt-8 md:mt-0">
                         <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-                        <span className="text-gray-200 font-mono text-sm tracking-widest uppercase font-bold">Proven Results</span>
+                        <span className="text-gray-200 font-mono text-sm tracking-widest uppercase font-bold">{t.status}</span>
                      </div>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-12">
-                    {stats.map((stat, index) => (
+                    {t.stats.map((stat, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 50 }}

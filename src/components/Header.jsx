@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
 import MagneticButton from './ui/MagneticButton';
-
-const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' },
-];
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const Header = ({ onOpenCV }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const { language, setLanguage, isEn } = useLanguage();
+    const t = translations[language].nav;
+
+    const navLinks = [
+        { name: t.services, href: '#services' },
+        { name: t.portfolio, href: '#portfolio' },
+        { name: t.contact, href: '#contact' },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -50,29 +53,84 @@ const Header = ({ onOpenCV }) => {
                     </nav>
 
                     <div className="hidden md:flex items-center gap-3">
+                        {/* Language Switcher */}
+                        <div className="flex items-center bg-gray-900/80 border border-gray-700/80 rounded-full p-1 text-xs font-mono font-bold mr-1">
+                            <button
+                                type="button"
+                                onClick={() => setLanguage('en')}
+                                aria-label="Switch to English"
+                                className={`px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer ${
+                                    isEn 
+                                        ? 'bg-primary text-black shadow-sm font-black' 
+                                        : 'text-gray-400 hover:text-white'
+                                }`}
+                            >
+                                EN
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setLanguage('id')}
+                                aria-label="Ganti ke Bahasa Indonesia"
+                                className={`px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer ${
+                                    !isEn 
+                                        ? 'bg-primary text-black shadow-sm font-black' 
+                                        : 'text-gray-400 hover:text-white'
+                                }`}
+                            >
+                                ID
+                            </button>
+                        </div>
+
                         <MagneticButton onClick={onOpenCV} className="cursor-pointer">
                             <span className="px-5 py-2.5 rounded-full bg-primary/10 border border-primary/30 text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                <FiDownload className="text-sm" /> CV
+                                <FiDownload className="text-sm" /> {t.downloadCv}
                             </span>
                         </MagneticButton>
                         <MagneticButton href="#contact">
                             <span className="inline-block px-6 py-2.5 rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                Let's Talk
+                                {t.letsTalk}
                             </span>
                         </MagneticButton>
                     </div>
 
-                    {/* Mobile Menu Toggle */}
-                    <button
-                        type="button"
-                        className="md:hidden p-2 text-white hover:text-primary active:scale-90 transition-all rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-                        aria-expanded={isMobileMenuOpen}
-                        aria-controls="mobile-navigation-menu"
-                    >
-                        {isMobileMenuOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
-                    </button>
+                    {/* Mobile Controls (Language + Hamburger) */}
+                    <div className="md:hidden flex items-center gap-2">
+                        <div className="flex items-center bg-gray-900/80 border border-gray-700/80 rounded-full p-0.5 text-xs font-mono font-bold">
+                            <button
+                                type="button"
+                                onClick={() => setLanguage('en')}
+                                className={`px-2 py-0.5 rounded-full transition-all duration-300 ${
+                                    isEn 
+                                        ? 'bg-primary text-black font-black' 
+                                        : 'text-gray-400 hover:text-white'
+                                }`}
+                            >
+                                EN
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setLanguage('id')}
+                                className={`px-2 py-0.5 rounded-full transition-all duration-300 ${
+                                    !isEn 
+                                        ? 'bg-primary text-black font-black' 
+                                        : 'text-gray-400 hover:text-white'
+                                }`}
+                            >
+                                ID
+                            </button>
+                        </div>
+
+                        <button
+                            type="button"
+                            className="p-2 text-white hover:text-primary active:scale-90 transition-all rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                            aria-expanded={isMobileMenuOpen}
+                            aria-controls="mobile-navigation-menu"
+                        >
+                            {isMobileMenuOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
+                        </button>
+                    </div>
                 </div>
             </header>
 
@@ -104,14 +162,14 @@ const Header = ({ onOpenCV }) => {
                                 }}
                                 className="w-full py-4 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-black font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                             >
-                                <FiDownload className="text-base" /> Download CV (ATS-Ready)
+                                <FiDownload className="text-base" /> {t.fullCvBtn}
                             </button>
                             <a
                                 href="#contact"
                                 className="w-full py-4 rounded-full bg-white text-black hover:bg-primary hover:text-black font-bold uppercase tracking-widest text-sm text-center block active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
-                                Let's Talk
+                                {t.letsTalk}
                             </a>
                         </div>
                     </motion.div>

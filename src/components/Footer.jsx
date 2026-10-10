@@ -1,8 +1,17 @@
 import React from 'react';
 import { FiGithub, FiMail, FiLinkedin, FiDownload } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
 
 const Footer = ({ onOpenCV }) => {
+    const { language } = useLanguage();
+    const t = translations[language].footer;
+
+    const waText = language === 'id'
+        ? "Halo%20Ahmad,%20saya%20melihat%20portfolio%20Anda."
+        : "Hello%20Ahmad,%20I%20saw%20your%20portfolio.";
+
     return (
         <footer className="bg-neutral-dark border-t border-gray-800 pt-16 pb-8">
             <div className="container mx-auto container-padding">
@@ -10,14 +19,14 @@ const Footer = ({ onOpenCV }) => {
                     <div className="text-center md:text-left">
                         <span className="text-2xl font-bold font-heading text-primary block mb-2">ayub.dev</span>
                         <p className="text-gray-400 text-sm max-w-xs mb-3">
-                            Engineering reliable, scalable web applications with precision.
+                            {t.tagline}
                         </p>
                         {onOpenCV && (
                             <button
                                 onClick={onOpenCV}
                                 className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-white active:scale-95 transition-all duration-300 font-bold uppercase tracking-wider rounded px-1 py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                             >
-                                <FiDownload className="text-sm" /> Download ATS CV (PDF / DOCX)
+                                <FiDownload className="text-sm" /> {t.downloadCv}
                             </button>
                         )}
                     </div>
@@ -42,7 +51,7 @@ const Footer = ({ onOpenCV }) => {
                             <FiLinkedin className="text-lg" />
                         </a>
                         <a 
-                            href="https://wa.me/62895349177555?text=Hello%20Ahmad,%20I%20saw%20your%20portfolio." 
+                            href={`https://wa.me/62895349177555?text=${waText}`}
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="WhatsApp Contact"
@@ -61,8 +70,8 @@ const Footer = ({ onOpenCV }) => {
                 </div>
 
                 <div className="border-t border-gray-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p>&copy; {new Date().getFullYear()} Ahmad Ayub Nu'man. All rights reserved.</p>
-                    <p>Built with React, Vite & Tailwind CSS</p>
+                    <p>&copy; {new Date().getFullYear()} Ahmad Ayub Nu'man. {t.rights}</p>
+                    <p>{t.builtWith}</p>
                 </div>
             </div>
         </footer>
