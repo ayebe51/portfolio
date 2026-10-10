@@ -66,6 +66,7 @@ const Services = () => {
                             transition={{ duration: 0.618 }}
                             onMouseEnter={() => setHoveredService(service.id)}
                             onMouseLeave={() => setHoveredService(null)}
+                            onClick={() => setHoveredService(hoveredService === service.id ? null : service.id)}
                             className="group border-t border-gray-800 py-12 md:py-[5vw] grid grid-cols-1 md:grid-cols-[0.38fr_auto] gap-8 cursor-pointer hover:bg-white/5 transition-colors duration-500 px-4 md:px-0"
                         >
                             <span className="text-gray-400 font-body text-sm tracking-widest uppercase font-bold pt-4">
@@ -76,13 +77,13 @@ const Services = () => {
                                 <h3 className="text-5xl md:text-[5vw] leading-[1.1] font-heading font-bold text-white uppercase mb-4 group-hover:text-primary transition-colors duration-300">
                                     {service.title}
                                 </h3>
-                                <div className={`overflow-hidden transition-all duration-500 ${hoveredService === service.id ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'} md:group-hover:max-h-64 md:group-hover:opacity-100`}>
-                                    <p className="text-xl md:text-2xl text-neutral-300 max-w-[38.2vw] leading-[1.618] mb-6 font-normal">
+                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hoveredService === service.id ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} md:group-hover:max-h-[600px] md:group-hover:opacity-100`}>
+                                    <p className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl md:max-w-3xl leading-relaxed mb-6 font-normal">
                                         {service.description}
                                     </p>
-                                    <div className="flex flex-wrap gap-3">
+                                    <div className="flex flex-wrap gap-2.5 pb-2">
                                         {service.tags.map(tag => (
-                                            <span key={tag} className="px-4 py-2 border border-gray-600 rounded-full text-sm text-gray-300 uppercase tracking-wider font-semibold">
+                                            <span key={tag} className="px-3.5 py-1.5 border border-gray-700 bg-neutral-900/80 rounded-full text-xs sm:text-sm text-gray-200 uppercase tracking-wider font-semibold hover:border-primary/50 hover:text-primary transition-colors">
                                                 {tag}
                                             </span>
                                         ))}
