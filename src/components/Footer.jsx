@@ -13,7 +13,7 @@ const Footer = ({ onOpenCV }) => {
         : "Hello%20Ahmad,%20I%20saw%20your%20portfolio.";
 
     return (
-        <footer className="bg-neutral-dark border-t border-gray-800 pt-16 pb-8">
+        <footer className="bg-neutral-dark border-t border-neutral-border pt-16 pb-8">
             <div className="container mx-auto container-padding">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-8">
                     <div className="text-center md:text-left">
@@ -37,7 +37,7 @@ const Footer = ({ onOpenCV }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="GitHub Profile"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="w-10 h-10 rounded-full bg-neutral-surface border border-neutral-border flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FiGithub className="text-lg" />
                         </a>
@@ -46,7 +46,7 @@ const Footer = ({ onOpenCV }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="LinkedIn Profile"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="w-10 h-10 rounded-full bg-neutral-surface border border-neutral-border flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FiLinkedin className="text-lg" />
                         </a>
@@ -55,21 +55,21 @@ const Footer = ({ onOpenCV }) => {
                             target="_blank" 
                             rel="noopener noreferrer"
                             aria-label="WhatsApp Contact"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-green-500 hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="w-10 h-10 rounded-full bg-neutral-surface border border-neutral-border flex items-center justify-center text-gray-400 hover:bg-green-500 hover:text-white active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FaWhatsapp className="text-lg" />
                         </a>
                         <a 
                             href="mailto:ayb.n1994@gmail.com" 
                             aria-label="Email Contact"
-                            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="w-10 h-10 rounded-full bg-neutral-surface border border-neutral-border flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <FiMail className="text-lg" />
                         </a>
                     </div>
                 </div>
 
-                <div className="border-t border-gray-800 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <div className="border-t border-neutral-border pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
                     <p>&copy; {new Date().getFullYear()} Ahmad Ayub Nu'man. {t.rights}</p>
                     <p>{t.builtWith}</p>
                 </div>

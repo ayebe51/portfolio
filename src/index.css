@@ -64,22 +64,22 @@
   }
 }
 
-/* Custom Scrollbar for Chrome, Safari and Opera */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #0b0d13;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #1e2433;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #334155;
 }
 
 @layer components {
@@ -96,20 +96,20 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-black shadow-lg hover:bg-white hover:text-black focus-visible:ring-primary;
+    @apply bg-primary text-white shadow-lg shadow-indigo-500/25 hover:bg-white hover:text-neutral-dark focus-visible:ring-primary;
   }
 
   .btn-secondary {
-    @apply bg-white text-black shadow-lg hover:bg-primary hover:text-black focus-visible:ring-primary;
+    @apply bg-white text-neutral-dark shadow-lg hover:bg-primary hover:text-white focus-visible:ring-primary;
   }
 
   .btn-outline {
-    @apply border border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-white hover:text-black hover:border-white focus-visible:ring-white;
+    @apply border border-white/20 bg-neutral-surface/60 backdrop-blur-md text-white hover:bg-white hover:text-neutral-dark hover:border-white focus-visible:ring-white;
   }
 
   /* Glassmorphism utility */
   .glass {
-    @apply bg-white/60 backdrop-blur-lg border border-white/20 shadow-xl;
+    @apply bg-neutral-surface/80 backdrop-blur-lg border border-neutral-border shadow-xl;
   }
 
   /* Card Hover */

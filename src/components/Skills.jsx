@@ -14,7 +14,7 @@ const skills = [
 
 const Skills = () => {
     return (
-        <section className="section-padding bg-neutral-dark overflow-hidden border-t border-gray-800">
+        <section className="section-padding bg-neutral-dark overflow-hidden border-t border-neutral-border">
             <div className="flex relative">
                 <motion.div 
                     initial={{ x: 0 }}

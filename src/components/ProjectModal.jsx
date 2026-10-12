@@ -45,7 +45,7 @@ const ProjectModal = ({ project, onClose }) => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.95 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative bg-[#0a0a0a] rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)] w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col overflow-hidden border border-gray-800/50"
+                        className="relative bg-neutral-surface rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)] w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col overflow-hidden border border-neutral-border"
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="project-modal-title"
@@ -53,15 +53,15 @@ const ProjectModal = ({ project, onClose }) => {
                     >
                         <button
                             onClick={onClose}
-                            className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-white hover:text-black rounded-full text-white backdrop-blur-md transition-all duration-300 border border-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                            className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-white hover:text-neutral-dark rounded-full text-white backdrop-blur-md transition-all duration-300 border border-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
                             aria-label={t.close}
                         >
                             <FiX className="text-xl" />
                         </button>
 
                         {/* Image Header */}
-                        <div className="w-full aspect-video bg-black relative border-b border-gray-800/50 flex-shrink-0">
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10"></div>
+                        <div className="w-full aspect-video bg-neutral-dark relative border-b border-neutral-border flex-shrink-0">
+                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-surface via-transparent to-transparent z-10"></div>
                             <img
                                 src={project.image}
                                 alt={project.title}
@@ -210,13 +210,13 @@ const ProjectModal = ({ project, onClose }) => {
                             })()}
 
                             {/* Actions */}
-                            <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-gray-800/50">
+                            <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-neutral-border">
                                 {project.demoUrl && (
                                     <a
                                         href={project.demoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-primary text-black hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-primary text-white hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg shadow-indigo-500/25 flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
                                     >
                                         {t.viewLive} <FiExternalLink className="text-lg" />
                                     </a>
@@ -226,7 +226,7 @@ const ProjectModal = ({ project, onClose }) => {
                                         href={project.repoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-gray-800/80 border border-gray-700 hover:border-white text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-neutral-dark border border-neutral-border hover:border-white text-white hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
                                     >
                                         {t.sourceCode} <FiGithub className="text-lg" />
                                     </a>

@@ -54,14 +54,14 @@ const Header = ({ onOpenCV }) => {
 
                     <div className="hidden md:flex items-center gap-3">
                         {/* Language Switcher */}
-                        <div className="flex items-center bg-gray-900/80 border border-gray-700/80 rounded-full p-1 text-xs font-mono font-bold mr-1">
+                        <div className="flex items-center bg-neutral-surface/90 border border-neutral-border rounded-full p-1 text-xs font-mono font-bold mr-1">
                             <button
                                 type="button"
                                 onClick={() => setLanguage('en')}
                                 aria-label="Switch to English"
                                 className={`px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer ${
                                     isEn 
-                                        ? 'bg-primary text-black shadow-sm font-black' 
+                                        ? 'bg-primary text-white shadow-sm font-black' 
                                         : 'text-gray-400 hover:text-white'
                                 }`}
                             >
@@ -73,7 +73,7 @@ const Header = ({ onOpenCV }) => {
                                 aria-label="Ganti ke Bahasa Indonesia"
                                 className={`px-2.5 py-1 rounded-full transition-all duration-300 cursor-pointer ${
                                     !isEn 
-                                        ? 'bg-primary text-black shadow-sm font-black' 
+                                        ? 'bg-primary text-white shadow-sm font-black' 
                                         : 'text-gray-400 hover:text-white'
                                 }`}
                             >
@@ -82,12 +82,12 @@ const Header = ({ onOpenCV }) => {
                         </div>
 
                         <MagneticButton onClick={onOpenCV} className="cursor-pointer">
-                            <span className="px-5 py-2.5 rounded-full bg-primary/10 border border-primary/30 text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
+                            <span className="px-5 py-2.5 rounded-full bg-primary/15 border border-primary/40 text-xs font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                 <FiDownload className="text-sm" /> {t.downloadCv}
                             </span>
                         </MagneticButton>
                         <MagneticButton href="#contact">
-                            <span className="inline-block px-6 py-2.5 rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-black active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
+                            <span className="inline-block px-6 py-2.5 rounded-full border border-white/20 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                 {t.letsTalk}
                             </span>
                         </MagneticButton>
@@ -95,13 +95,13 @@ const Header = ({ onOpenCV }) => {
 
                     {/* Mobile Controls (Language + Hamburger) */}
                     <div className="md:hidden flex items-center gap-2">
-                        <div className="flex items-center bg-gray-900/80 border border-gray-700/80 rounded-full p-0.5 text-xs font-mono font-bold">
+                        <div className="flex items-center bg-neutral-surface/90 border border-neutral-border rounded-full p-0.5 text-xs font-mono font-bold">
                             <button
                                 type="button"
                                 onClick={() => setLanguage('en')}
                                 className={`px-2 py-0.5 rounded-full transition-all duration-300 ${
                                     isEn 
-                                        ? 'bg-primary text-black font-black' 
+                                        ? 'bg-primary text-white font-black' 
                                         : 'text-gray-400 hover:text-white'
                                 }`}
                             >
@@ -112,7 +112,7 @@ const Header = ({ onOpenCV }) => {
                                 onClick={() => setLanguage('id')}
                                 className={`px-2 py-0.5 rounded-full transition-all duration-300 ${
                                     !isEn 
-                                        ? 'bg-primary text-black font-black' 
+                                        ? 'bg-primary text-white font-black' 
                                         : 'text-gray-400 hover:text-white'
                                 }`}
                             >
@@ -154,19 +154,19 @@ const Header = ({ onOpenCV }) => {
                                 {link.name}
                             </a>
                         ))}
-                        <div className="pt-8 border-t border-gray-800 space-y-4">
+                        <div className="pt-8 border-t border-neutral-border space-y-4">
                             <button
                                 onClick={() => {
                                     setIsMobileMenuOpen(false);
                                     onOpenCV();
                                 }}
-                                className="w-full py-4 rounded-full bg-primary/10 border border-primary/30 text-primary hover:bg-primary hover:text-black font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                className="w-full py-4 rounded-full bg-primary/15 border border-primary/40 text-primary hover:bg-primary hover:text-white font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                             >
                                 <FiDownload className="text-base" /> {t.fullCvBtn}
                             </button>
                             <a
                                 href="#contact"
-                                className="w-full py-4 rounded-full bg-white text-black hover:bg-primary hover:text-black font-bold uppercase tracking-widest text-sm text-center block active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                                className="w-full py-4 rounded-full bg-white text-neutral-dark hover:bg-primary hover:text-white font-bold uppercase tracking-widest text-sm text-center block active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {t.letsTalk}

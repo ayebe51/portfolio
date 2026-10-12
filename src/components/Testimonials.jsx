@@ -8,7 +8,7 @@ const Testimonials = () => {
     const t = translations[language].testimonials;
 
     return (
-        <section className="section-padding bg-neutral-dark relative z-10 overflow-hidden border-t border-gray-800">
+        <section className="section-padding bg-neutral-dark relative z-10 overflow-hidden border-t border-neutral-border">
             <div className="container mx-auto container-padding">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24">
                      <h2 className="text-[10vw] leading-[0.8] font-heading font-bold text-white uppercase opacity-100">
@@ -34,7 +34,7 @@ const Testimonials = () => {
                             transition={{ delay: index * 0.2 }}
                             className="relative group h-full"
                         >
-                            <div className="h-full flex flex-col bg-neutral-800/50 backdrop-blur-sm border border-gray-800 rounded-3xl overflow-hidden p-8 hover:border-primary/50 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                            <div className="h-full flex flex-col bg-neutral-surface backdrop-blur-sm border border-neutral-border rounded-3xl overflow-hidden p-8 hover:border-primary/50 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]">
                                 <h3 className="text-6xl md:text-7xl font-heading font-bold text-white mb-4 group-hover:text-primary transition-colors">
                                     {stat.number}
                                 </h3>
@@ -45,11 +45,11 @@ const Testimonials = () => {
                                     {stat.description}
                                 </p>
                                 {stat.tags && (
-                                    <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-gray-800/80">
+                                    <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-neutral-border">
                                         {stat.tags.map((tag, tIndex) => (
                                             <span 
                                                 key={tIndex}
-                                                className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-neutral-900 border border-gray-800 text-gray-400 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
+                                                className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-neutral-dark border border-neutral-border text-gray-400 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
                                             >
                                                 {tag}
                                             </span>

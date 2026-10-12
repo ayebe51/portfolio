@@ -9,11 +9,20 @@ module.exports = {
         body: ["Inter", "sans-serif"],
       },
       colors: {
-        primary: "#00E5FF", // Cyber Cyan
-        secondary: "#3B82F6", // Blue
-        accent: "#f97316", // Orange (keeping as accent)
+        primary: {
+          DEFAULT: "#6366F1", // Electric Indigo
+          hover: "#4F46E5",
+          light: "#818CF8",
+        },
+        secondary: {
+          DEFAULT: "#8B5CF6", // Electric Violet
+          hover: "#7C3AED",
+        },
+        accent: "#38BDF8", // Ice Sky Blue
         neutral: {
-          dark: "#050505", // True Black
+          dark: "#0B0D13", // Deep Obsidian base
+          surface: "#131722", // Card / Panel surface
+          border: "#1E2433", // Subtle panel border
           light: "#f8fafc",
         },
       },

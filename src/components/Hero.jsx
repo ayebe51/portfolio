@@ -1,6 +1,7 @@
-import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
 import MagneticButton from './ui/MagneticButton';
+import TechOrbit from './ui/TechOrbit';
 import { FiDownload } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
@@ -12,6 +13,37 @@ const Hero = ({ onOpenCV }) => {
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
     const y2 = useTransform(scrollY, [0, 500], [0, -100]);
     const imageScale = useTransform(scrollY, [0, 500], [1, 1.1]);
+
+    const [isPhotoHovered, setIsPhotoHovered] = useState(false);
+    const [isMobileView, setIsMobileView] = useState(false);
+    const hoverTimeoutRef = useRef(null);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobileView(window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const handleMouseEnter = () => {
+        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+        setIsPhotoHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        // 350ms grace period to allow mouse to travel smoothly to orbiting badges without collapsing
+        hoverTimeoutRef.current = setTimeout(() => {
+            setIsPhotoHovered(false);
+        }, 350);
+    };
+
+    const handleToggleClick = (e) => {
+        e.stopPropagation();
+        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+        setIsPhotoHovered(prev => !prev);
+    };
 
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
@@ -28,14 +60,14 @@ const Hero = ({ onOpenCV }) => {
             className="group relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-neutral-dark pt-32 md:pt-0"
             onMouseMove={handleMouseMove}
         >
-            {/* Dynamic Interactive Grid Pattern (Vercel Style) */}
+            {/* Dynamic Interactive Grid Pattern (Linear / Vercel Indigo Style) */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
                 {/* Subtle base grid visible everywhere */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50" />
                 
-                {/* Glowing cyan grid revealed only strictly under the cursor */}
+                {/* Glowing electric indigo grid revealed strictly under cursor */}
                 <motion.div
-                    className="absolute inset-0 bg-[linear-gradient(rgba(0,229,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(0,229,255,0.3)_1px,transparent_1px)] bg-[size:4rem_4rem]"
+                    className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.35)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.35)_1px,transparent_1px)] bg-[size:4rem_4rem]"
                     style={{
                         maskImage: useMotionTemplate`radial-gradient(30vw circle at ${mouseX}px ${mouseY}px, black, transparent)`,
                         WebkitMaskImage: useMotionTemplate`radial-gradient(30vw circle at ${mouseX}px ${mouseY}px, black, transparent)`
@@ -93,50 +125,67 @@ const Hero = ({ onOpenCV }) => {
                             FULL STACK
                         </motion.h2>
                     </div>
-                    {/* Layer 2: Profile Image */}
-                    {/* Size Relationship: The Golden Section (38.2%) */}
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.9, y: 50 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ duration: 1.618, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ scale: imageScale }}
-                        className="relative z-20 w-[85vw] md:w-[38.2vw] mx-auto overflow-hidden rounded-sm shadow-2xl"
+                    {/* Layer 2: Interactive Profile & Tech Orbit Wrapper */}
+                    <div 
+                        className="group/profile relative z-20 w-[85vw] md:w-[38.2vw] mx-auto flex items-center justify-center cursor-pointer"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={handleToggleClick}
                     >
-                         {/* Seamless fade to black at the bottom */}
-                         <div className="absolute inset-0 bg-gradient-to-t from-neutral-dark via-neutral-dark/40 to-transparent z-20 pointer-events-none"></div>
-                         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-neutral-dark to-transparent z-20 pointer-events-none"></div>
-                         <img 
-                            src="/assets/profile.png" 
-                            alt="Ahmad Ayub Nu'man" 
-                            className="w-full h-auto object-cover object-center grayscale contrast-110 hover:grayscale-0 transition-all duration-[1.618s] ease-out" 
+                        {/* Tech Stack Orbiting Halo (Positioned outside overflow-hidden) */}
+                        <TechOrbit 
+                            isHovered={isPhotoHovered} 
+                            isMobileView={isMobileView} 
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
                         />
-                    </motion.div>
+
+                        {/* Profile Image */}
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            transition={{ duration: 1.618, ease: [0.16, 1, 0.3, 1] }}
+                            style={{ scale: imageScale }}
+                            onMouseEnter={handleMouseEnter}
+                            className="relative z-20 w-full overflow-hidden rounded-sm shadow-2xl"
+                        >
+                             {/* Seamless fade to neutral-dark at the bottom */}
+                             <div className="absolute inset-0 bg-gradient-to-t from-neutral-dark via-neutral-dark/40 to-transparent z-20 pointer-events-none"></div>
+                             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-neutral-dark to-transparent z-20 pointer-events-none"></div>
+                             <img 
+                                src="/assets/profile.png" 
+                                alt="Ahmad Ayub Nu'man" 
+                                onMouseEnter={handleMouseEnter}
+                                className="w-full h-auto object-cover object-center grayscale contrast-110 hover:grayscale-0 transition-all duration-[1.618s] ease-out" 
+                            />
+                        </motion.div>
+                    </div>
 
                     {/* Layer 3: Foreground Buttons (On Top of Image Gradient) */}
-                    <div className="relative z-30 -mt-[12vw] flex flex-col items-center justify-center gap-6 pb-12 pointer-events-auto">
+                    <div className="relative z-30 -mt-[12vw] flex flex-col items-center justify-center gap-6 pb-12 pointer-events-none">
                         <motion.p 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1 }}
-                            className="text-white/90 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl mix-blend-difference leading-relaxed px-4"
+                            className="text-white/90 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl mix-blend-difference leading-relaxed px-4 pointer-events-auto"
                         >
                             {t.subtitle}
                         </motion.p>
 
-                        <div className="flex flex-wrap items-center justify-center gap-4">
+                        <div className="flex flex-wrap items-center justify-center gap-4 pointer-events-auto">
                             <MagneticButton href="#portfolio">
-                                <span className="inline-block px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-black active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
+                                <span className="inline-block px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     {t.exploreWork}
                                 </span>
                             </MagneticButton>
                             <MagneticButton onClick={onOpenCV} className="cursor-pointer">
-                                <span className="px-8 py-3 rounded-full bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-black active:scale-95 font-body uppercase tracking-widest text-sm transition-all duration-300 shadow-lg flex items-center gap-2 group font-semibold backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
+                                <span className="px-8 py-3 rounded-full bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-white active:scale-95 font-body uppercase tracking-widest text-sm transition-all duration-300 shadow-lg flex items-center gap-2 group font-semibold backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     <FiDownload className="text-base group-hover:translate-y-0.5 transition-transform" />
                                     {t.downloadCv}
                                 </span>
                             </MagneticButton>
                             <MagneticButton href="#contact">
-                                <span className="inline-block px-8 py-3 rounded-full bg-white text-black font-body uppercase tracking-widest text-sm hover:bg-primary hover:text-black active:scale-95 transition-all duration-300 shadow-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
+                                <span className="inline-block px-8 py-3 rounded-full bg-white text-neutral-dark font-body uppercase tracking-widest text-sm hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 shadow-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     {t.letsTalk}
                                 </span>
                             </MagneticButton>

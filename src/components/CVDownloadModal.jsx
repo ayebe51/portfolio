@@ -100,14 +100,14 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     </div>
 
                     {/* Language Selector Tabs */}
-                    <div className="flex items-center gap-2 bg-gray-900/90 p-1.5 rounded-2xl border border-gray-800 w-fit mb-6">
+                    <div className="flex items-center gap-2 bg-neutral-surface p-1.5 rounded-2xl border border-neutral-border w-fit mb-6">
                         <button
                             type="button"
                             onClick={() => setSelectedLang('en')}
                             aria-pressed={isEn}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 ${
+                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
                                 isEn 
-                                    ? 'bg-primary text-black shadow-lg font-black' 
+                                    ? 'bg-primary text-white shadow-lg font-black' 
                                     : 'text-gray-400 hover:text-white'
                             }`}
                         >
@@ -117,9 +117,9 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                             type="button"
                             onClick={() => setSelectedLang('id')}
                             aria-pressed={!isEn}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 ${
+                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
                                 !isEn 
-                                    ? 'bg-primary text-black shadow-lg font-black' 
+                                    ? 'bg-primary text-white shadow-lg font-black' 
                                     : 'text-gray-400 hover:text-white'
                             }`}
                         >
@@ -178,7 +178,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-black transition-all">
+                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
                                 <FiDownload className="text-lg" />
                             </div>
                         </a>
@@ -187,7 +187,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <a
                             href={docxPath}
                             download={docxDownloadName}
-                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-gray-900/80 border border-gray-800 hover:border-gray-600 hover:bg-gray-800/60 active:scale-[0.99] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-neutral-surface border border-neutral-border hover:border-gray-600 hover:bg-neutral-surface/60 active:scale-[0.99] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                         >
                             <div className="flex items-center gap-4">
                                 <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-xl group-hover:scale-105 transition-transform">
@@ -198,7 +198,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                         <span className="text-white font-heading font-semibold text-base sm:text-lg">
                                             {t.docxTitle}
                                         </span>
-                                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-800 text-gray-400 border border-gray-700 uppercase tracking-widest">
+                                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-neutral-dark text-gray-400 border border-neutral-border uppercase tracking-widest">
                                             {t.editable}
                                         </span>
                                     </div>
@@ -207,7 +207,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                     </span>
                                 </div>
                             </div>
-                            <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-300 group-hover:bg-white group-hover:text-black transition-all">
+                            <div className="w-10 h-10 rounded-full bg-neutral-dark flex items-center justify-center text-gray-300 group-hover:bg-white group-hover:text-neutral-dark transition-all">
                                 <FiDownload className="text-lg" />
                             </div>
                         </a>

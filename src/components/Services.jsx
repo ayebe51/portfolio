@@ -32,7 +32,7 @@ const Services = () => {
                             onMouseEnter={() => setHoveredService(service.id)}
                             onMouseLeave={() => setHoveredService(null)}
                             onClick={() => setHoveredService(hoveredService === service.id ? null : service.id)}
-                            className="group border-t border-gray-800 py-12 md:py-[5vw] grid grid-cols-1 md:grid-cols-[0.38fr_auto] gap-8 cursor-pointer hover:bg-white/5 transition-colors duration-500 px-4 md:px-0"
+                            className="group border-t border-neutral-border py-12 md:py-[5vw] grid grid-cols-1 md:grid-cols-[0.38fr_auto] gap-8 cursor-pointer hover:bg-white/5 transition-colors duration-500 px-4 md:px-0"
                         >
                             <span className="text-gray-400 font-body text-sm tracking-widest uppercase font-bold pt-4">
                                 /{service.id}
@@ -48,7 +48,7 @@ const Services = () => {
                                     </p>
                                     <div className="flex flex-wrap gap-2.5 pb-2">
                                         {service.tags.map(tag => (
-                                            <span key={tag} className="px-3.5 py-1.5 border border-gray-700 bg-neutral-900/80 rounded-full text-xs sm:text-sm text-gray-200 uppercase tracking-wider font-semibold hover:border-primary/50 hover:text-primary transition-colors">
+                                            <span key={tag} className="px-3.5 py-1.5 border border-neutral-border bg-neutral-surface/80 rounded-full text-xs sm:text-sm text-gray-200 uppercase tracking-wider font-semibold hover:border-primary/50 hover:text-primary transition-colors">
                                                 {tag}
                                             </span>
                                         ))}
