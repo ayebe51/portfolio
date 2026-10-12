@@ -63,7 +63,7 @@ const Hero = ({ onOpenCV }) => {
     return (
         <section 
             id="about" 
-            className="group relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-neutral-dark pt-32 md:pt-0"
+            className="group relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-neutral-dark"
             onMouseMove={handleMouseMove}
         >
             {/* Dynamic Interactive Grid Pattern (Linear / Vercel Indigo Style) */}
@@ -99,22 +99,24 @@ const Hero = ({ onOpenCV }) => {
 
             <div className="container mx-auto container-padding relative z-20 h-full flex flex-col justify-center">
                 
-                {/* 1. Status Line (Top Left) */}
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="absolute top-32 left-6 md:left-24 flex items-center gap-3 z-30"
-                >
-                     <span className="relative flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
-                    <span className="font-heading uppercase tracking-widest text-sm text-gray-400">{t.status}</span>
-                </motion.div>
+                {/* 1. Status Line (Top Left - In flow to prevent collision with hero heading) */}
+                <div className="w-full flex items-center justify-start pt-20 sm:pt-24 md:pt-28 pb-2 md:pb-4 z-30 pointer-events-none">
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="flex items-center gap-3 pointer-events-auto"
+                    >
+                         <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-green-500"></span>
+                        </span>
+                        <span className="font-heading uppercase tracking-wider md:tracking-widest text-xs sm:text-sm text-gray-400">{t.status}</span>
+                    </motion.div>
+                </div>
 
                 {/* LAYERED LAYOUT WRAPPER - Refined Vertical Balance */}
-                <div className="relative w-full flex flex-col items-center justify-center pt-[6vw] md:pt-[4vw] mt-16 md:mt-0">
+                <div className="relative w-full flex flex-col items-center justify-center">
 
                     {/* Layer 0: Background Text "AHMAD AYUB" (Opsi 1: Depth Sandwich - z-10 behind z-20 profile photo) */}
                     {/* Size Relationship: The Foundation (Largest) */}
