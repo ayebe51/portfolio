@@ -14,6 +14,7 @@ export const projectsEn = [
         results: "Decreased manual decree issuance overhead by over 70%, eliminated record duplication across 270+ institutions, and achieved 100% test pass rate with 36,000+ assertions.",
         demoUrl: "",
         demoNote: "Internal institutional platform for LP Ma'arif NU Cilacap administering 270+ institutions. Full codebase, database migrations, and 1,800+ automated test cases are accessible on GitHub. Live system walkthrough available upon interview request.",
+        repoType: "public",
         repoUrl: "https://github.com/ayebe51/simmaci",
         videoUrl: "",
         gallery: [
@@ -43,7 +44,8 @@ export const projectsEn = [
         tools: ["Next.js 14", "Flutter", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "Closed-Loop Wallet", "Docker"],
         results: "Established a 100% cashless campus ecosystem with fraud-proof closed-loop wallet controls, auditable guardian pickup verification, and zero financial ledger discrepancies.",
         demoUrl: "https://admin.koneksisantri.tech",
-        demoNote: "Showroom demo running with automated daily resets at 02:00 WIB. Interactive role selectors (Pesantren Admin, Treasurer, Teacher/Ustadz, Guardian, Cashier) available directly on the login portal. Full credential access available upon request.",
+        demoNote: "Showroom demo running with automated daily resets at 02:00 WIB. Interactive role selectors (Pesantren Admin, Treasurer, Teacher/Ustadz, Guardian, Cashier) available directly on the login portal. Full enterprise codebase protected under private license; walkthrough available upon request.",
+        repoType: "private",
         repoUrl: "https://github.com/ayebe51/koneksi-santri",
         videoUrl: "",
         gallery: [
@@ -92,6 +94,7 @@ export const projectsEn = [
         results: "Delivered an auditable retail ecosystem supporting multi-warehouse replenishment, real-time inventory valuations, and zero discrepancy cashier reconciliations.",
         demoUrl: "https://inventory-pos-hazel.vercel.app",
         demoNote: "Production-ready enterprise retail system. Access to multi-branch operational accounts available upon inquiry for technical recruiter review.",
+        repoType: "public",
         repoUrl: "https://github.com/ayebe51/inventory-pos",
         videoUrl: "",
         gallery: []
@@ -112,6 +115,7 @@ export const projectsId = [
         results: "Memangkas beban kerja penerbitan SK manual lebih dari 70%, mengeliminasi duplikasi data guru, dan meraih 100% test pass rate dengan 36.000+ assertions.",
         demoUrl: "",
         demoNote: "Platform institusi internal LP Ma'arif NU Cilacap yang mengelola 270+ lembaga. Seluruh kode sumber, migrasi basis data, dan 1.800+ automated test cases dapat diakses di GitHub. Walkthrough sistem live dapat dipresentasikan saat sesi interview teknis.",
+        repoType: "public",
         repoUrl: "https://github.com/ayebe51/simmaci",
         videoUrl: "",
         gallery: [
@@ -141,7 +145,8 @@ export const projectsId = [
         tools: ["Next.js 14", "Flutter", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "Closed-Loop Wallet", "Docker"],
         results: "Mewujudkan 100% lingkungan kampus non-tunai dengan kontrol dompet digital bebas fraud, verifikasi penjemputan santri yang dapat diaudit, dan nol selisih buku besar keuangan.",
         demoUrl: "https://admin.koneksisantri.tech",
-        demoNote: "Demo showroom berjalan dengan reset otomatis harian pukul 02:00 WIB. Selektor role interaktif (Admin Pesantren, Bendahara, Ustadz, Wali Santri, Kasir) tersedia langsung di halaman login. Kredensial lengkap dapat diberikan sesuai permintaan.",
+        demoNote: "Demo showroom berjalan dengan reset otomatis harian pukul 02:00 WIB. Selektor role interaktif (Admin Pesantren, Bendahara, Ustadz, Wali Santri, Kasir) tersedia langsung di portal login. Seluruh basis kode dilindungi lisensi privat; walkthrough kode privat dapat dijadwalkan saat sesi wawancara teknis.",
+        repoType: "private",
         repoUrl: "https://github.com/ayebe51/koneksi-santri",
         videoUrl: "",
         gallery: [
@@ -190,6 +195,7 @@ export const projectsId = [
         results: "Menghasilkan ekosistem ritel yang dapat diaudit penuh dengan otomatisasi pengisian stok multi-gudang, valuasi stok real-time, dan rekonsiliasi kasir tanpa selisih.",
         demoUrl: "https://inventory-pos-hazel.vercel.app",
         demoNote: "Sistem ritel enterprise siap produksi. Akun operasional cabang dapat disediakan bagi recruiter teknis untuk evaluasi lebih mendalam.",
+        repoType: "public",
         repoUrl: "https://github.com/ayebe51/inventory-pos",
         videoUrl: "",
         gallery: []

@@ -12,14 +12,14 @@ import {
 } from 'react-icons/si';
 
 const TECH_STACKS = [
-    { id: 'react', name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend' },
-    { id: 'nextjs', name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', category: 'Framework' },
-    { id: 'ts', name: 'TypeScript', icon: SiTypescript, color: '#3178C6', category: 'Language' },
-    { id: 'flutter', name: 'Flutter', icon: SiFlutter, color: '#54C5F8', category: 'Mobile' },
-    { id: 'laravel', name: 'Laravel', icon: SiLaravel, color: '#FF2D20', category: 'Backend' },
-    { id: 'nestjs', name: 'NestJS', icon: SiNestjs, color: '#E0234E', category: 'Backend' },
-    { id: 'postgres', name: 'PostgreSQL', icon: SiPostgresql, color: '#699ECA', category: 'Database' },
-    { id: 'docker', name: 'Docker', icon: SiDocker, color: '#2496ED', category: 'DevOps' },
+    { id: 'react', name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend', angleDeg: -90 },
+    { id: 'nextjs', name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', category: 'Framework', angleDeg: -45 },
+    { id: 'ts', name: 'TypeScript', icon: SiTypescript, color: '#3178C6', category: 'Language', angleDeg: 0 },
+    { id: 'flutter', name: 'Flutter', icon: SiFlutter, color: '#54C5F8', category: 'Mobile', angleDeg: 42 },
+    { id: 'laravel', name: 'Laravel', icon: SiLaravel, color: '#FF2D20', category: 'Backend', angleDeg: 74 },
+    { id: 'nestjs', name: 'NestJS', icon: SiNestjs, color: '#E0234E', category: 'Backend', angleDeg: 106 },
+    { id: 'postgres', name: 'PostgreSQL', icon: SiPostgresql, color: '#699ECA', category: 'Database', angleDeg: 145 },
+    { id: 'docker', name: 'Docker', icon: SiDocker, color: '#2496ED', category: 'DevOps', angleDeg: 220 },
 ];
 
 const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
@@ -43,12 +43,12 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
                     ry: Math.round(safeRx * 1.05),
                 });
             } else {
-                // Desktop: generously halo outside the head & shoulders
+                // Desktop: generously halo outside the head & shoulders, fully visible above fold
                 const baseW = rect.width > 50 ? rect.width : 500;
                 const baseH = rect.height > 50 ? rect.height : 600;
                 setDims({
-                    rx: Math.round(Math.max(baseW * 0.56 + 35, 275)),
-                    ry: Math.round(Math.max(baseH * 0.48 + 30, 270)),
+                    rx: Math.round(Math.max(baseW * 0.54 + 25, 265)),
+                    ry: Math.round(Math.max(baseH * 0.40 + 10, 235)),
                 });
             }
         };
@@ -74,8 +74,8 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
             onMouseLeave={onMouseLeave}
             className="absolute inset-0 pointer-events-none flex items-center justify-center"
             style={{
-                zIndex: 35,
-                top: '-5%',
+                zIndex: 40,
+                top: '-10%',
             }}
         >
             {/* Subtle decorative glowing orbit ring when active */}
@@ -94,11 +94,24 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
                 }}
             />
 
+            {/* Seamless hover zone: keeps orbit open when mouse travels between photo and orbiting badges */}
+            {isOpen && (
+                <div
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                    className="absolute rounded-full pointer-events-auto"
+                    style={{
+                        width: (dims.rx + 45) * 2,
+                        height: (dims.ry + 45) * 2,
+                        zIndex: 35,
+                    }}
+                />
+            )}
+
             {/* Orbiting Badges */}
             {TECH_STACKS.map((tech, index) => {
-                const total = TECH_STACKS.length;
-                // Angle distribution: start from -90 deg (12 o'clock)
-                const angleDeg = -90 + (index * (360 / total));
+                // Calibrated angular layout with bottom gap to prevent button/text collision
+                const angleDeg = tech.angleDeg !== undefined ? tech.angleDeg : -90 + (index * 45);
                 const angleRad = (angleDeg * Math.PI) / 180;
                 
                 const targetX = Math.round(Math.cos(angleRad) * dims.rx);
@@ -137,9 +150,8 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
                         }}
                         onMouseLeave={() => {
                             setActiveBadge(null);
-                            if (onMouseLeave) onMouseLeave();
                         }}
-                        className="absolute pointer-events-auto cursor-pointer"
+                        className={`absolute cursor-pointer ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
                     >
                         {/* Interactive Badge Container */}
                         <div

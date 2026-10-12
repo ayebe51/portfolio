@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FiX, FiExternalLink, FiGithub, FiLock } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
@@ -221,16 +221,21 @@ const ProjectModal = ({ project, onClose }) => {
                                         {t.viewLive} <FiExternalLink className="text-lg" />
                                     </a>
                                 )}
-                                {project.repoUrl && (
+                                {project.repoType === 'private' ? (
+                                    <div className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-neutral-dark border border-amber-500/40 text-amber-300/90 shadow-lg flex-1 text-center select-none cursor-default">
+                                        <FiLock className="text-base text-amber-400" />
+                                        <span>{t.proprietaryCode || 'Private Enterprise Codebase'}</span>
+                                    </div>
+                                ) : project.repoUrl ? (
                                     <a
                                         href={project.repoUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-neutral-dark border border-neutral-border hover:border-white text-white hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
                                     >
-                                        {t.sourceCode} <FiGithub className="text-lg" />
+                                        {project.repoType === 'showcase' ? (t.showcaseSpecs || 'Showcase Specs') : t.sourceCode} <FiGithub className="text-lg" />
                                     </a>
-                                )}
+                                ) : null}
                             </div>
                         </div>
                     </motion.div>

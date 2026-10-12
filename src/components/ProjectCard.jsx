@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiArrowUpRight, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FiArrowUpRight, FiExternalLink, FiGithub, FiLock } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
@@ -92,7 +92,16 @@ const ProjectCard = ({ project, onClick }) => {
                                     <FiExternalLink className="text-xs" />
                                 </a>
                             )}
-                            {project.repoUrl && (
+                            {project.repoType === 'private' ? (
+                                <span
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-dark/80 text-amber-300/90 border border-amber-500/30 rounded-full text-xs font-bold uppercase tracking-wider select-none cursor-default"
+                                    title={language === 'id' ? "Basis kode enterprise berlisensi tertutup — demo showroom aktif" : "Private enterprise codebase — interactive showroom demo active"}
+                                >
+                                    <FiLock className="text-xs text-amber-400" />
+                                    <span>{t.proprietary || 'Private'}</span>
+                                </span>
+                            ) : project.repoUrl ? (
                                 <a
                                     href={project.repoUrl}
                                     target="_blank"
@@ -101,10 +110,10 @@ const ProjectCard = ({ project, onClick }) => {
                                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-dark/80 hover:bg-white text-gray-300 hover:text-neutral-dark border border-neutral-border rounded-full text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-1 focus-visible:ring-offset-neutral-dark"
                                     title={language === 'id' ? "Lihat Kode Sumber di GitHub" : "View Source Code on GitHub"}
                                 >
-                                    <span>{t.github}</span>
+                                    <span>{project.repoType === 'showcase' ? (t.showcase || 'Showcase') : t.github}</span>
                                     <FiGithub className="text-xs" />
                                 </a>
-                            )}
+                            ) : null}
                         </div>
 
                         <button

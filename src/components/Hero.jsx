@@ -15,6 +15,7 @@ const Hero = ({ onOpenCV }) => {
     const imageScale = useTransform(scrollY, [0, 500], [1, 1.1]);
 
     const [isPhotoHovered, setIsPhotoHovered] = useState(false);
+    const [isPinned, setIsPinned] = useState(false);
     const [isMobileView, setIsMobileView] = useState(false);
     const hoverTimeoutRef = useRef(null);
 
@@ -33,16 +34,21 @@ const Hero = ({ onOpenCV }) => {
     };
 
     const handleMouseLeave = () => {
-        // 350ms grace period to allow mouse to travel smoothly to orbiting badges without collapsing
+        if (isPinned) return; // Keep orbit open if pinned by user click
+        // 450ms grace period to allow mouse to travel smoothly to orbiting badges
         hoverTimeoutRef.current = setTimeout(() => {
             setIsPhotoHovered(false);
-        }, 350);
+        }, 450);
     };
 
     const handleToggleClick = (e) => {
         e.stopPropagation();
         if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-        setIsPhotoHovered(prev => !prev);
+        setIsPinned(prev => {
+            const nextPinned = !prev;
+            setIsPhotoHovered(nextPinned);
+            return nextPinned;
+        });
     };
 
     const mouseX = useMotionValue(0);
@@ -110,10 +116,10 @@ const Hero = ({ onOpenCV }) => {
                 {/* LAYERED LAYOUT WRAPPER - Golden Ratio Vertical Spacing */}
                 <div className="relative w-full flex flex-col items-center justify-center pt-[calc(10vw*1.618)] mt-20 md:mt-0">
 
-                    {/* Layer 0: Background Text "AHMAD AYUB" (Moved to Z-30 to overlay the image) */}
+                    {/* Layer 0: Background Text "AHMAD AYUB" (Opsi 1: Depth Sandwich - z-10 behind z-20 profile photo) */}
                     {/* Size Relationship: The Foundation (Largest) */}
-                    <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[50%] w-screen z-30 pointer-events-none overflow-hidden flex justify-center">
-                        <motion.h1 style={{ y: y1 }} className="text-[18vw] md:text-[13vw] leading-[0.8] font-heading font-black text-transparent text-stroke opacity-60 uppercase tracking-widest whitespace-nowrap text-center mix-blend-screen">
+                    <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[50%] w-screen z-10 pointer-events-none overflow-hidden flex justify-center">
+                        <motion.h1 style={{ y: y1 }} className="text-[14vw] sm:text-[15vw] md:text-[13vw] leading-[0.8] font-heading font-black text-transparent text-stroke opacity-50 md:opacity-60 uppercase tracking-wider md:tracking-widest whitespace-nowrap text-center select-none mix-blend-screen">
                             AHMAD AYUB
                         </motion.h1>
                     </div>
@@ -127,7 +133,7 @@ const Hero = ({ onOpenCV }) => {
                     </div>
                     {/* Layer 2: Interactive Profile & Tech Orbit Wrapper */}
                     <div 
-                        className="group/profile relative z-20 w-[85vw] md:w-[38.2vw] mx-auto flex items-center justify-center cursor-pointer"
+                        className="group/profile relative z-30 w-[85vw] md:w-[38.2vw] mx-auto flex items-center justify-center cursor-pointer"
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                         onClick={handleToggleClick}
@@ -161,8 +167,8 @@ const Hero = ({ onOpenCV }) => {
                         </motion.div>
                     </div>
 
-                    {/* Layer 3: Foreground Buttons (On Top of Image Gradient) */}
-                    <div className="relative z-30 -mt-[12vw] flex flex-col items-center justify-center gap-6 pb-12 pointer-events-none">
+                    {/* Layer 3: Foreground Subtitle & Actions */}
+                    <div className="relative z-20 -mt-[12vw] flex flex-col items-center justify-center gap-6 pb-12 pointer-events-none">
                         <motion.p 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -172,7 +178,7 @@ const Hero = ({ onOpenCV }) => {
                             {t.subtitle}
                         </motion.p>
 
-                        <div className="flex flex-wrap items-center justify-center gap-4 pointer-events-auto">
+                        <div className="flex flex-wrap items-center justify-center gap-4 pointer-events-auto relative z-40">
                             <MagneticButton href="#portfolio">
                                 <span className="inline-block px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
                                     {t.exploreWork}

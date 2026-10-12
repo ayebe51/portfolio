@@ -65,6 +65,8 @@ export const translations = {
             viewAllArchives: "View All Archives",
             liveDemo: "Live Demo",
             github: "GitHub",
+            showcase: "Showcase Specs",
+            proprietary: "Proprietary",
             viewCaseStudy: "Explore Architecture",
             caseStudyBtn: "Case Study"
         },
@@ -80,6 +82,9 @@ export const translations = {
             defaultGalleryTitle: "Project Gallery & Feature Views",
             viewLive: "View Live Project",
             sourceCode: "Source Code",
+            showcaseSpecs: "Showcase Specs",
+            proprietaryCode: "Proprietary Codebase",
+            requestWalkthrough: "Request Code Walkthrough",
             close: "Close modal"
         },
         testimonials: {
@@ -213,6 +218,8 @@ export const translations = {
             viewAllArchives: "Lihat Semua Repositori",
             liveDemo: "Live Demo",
             github: "GitHub",
+            showcase: "Spesifikasi Arsitektur",
+            proprietary: "Proprietary",
             viewCaseStudy: "Detail Arsitektur",
             caseStudyBtn: "Detail Kasus"
         },
@@ -228,6 +235,9 @@ export const translations = {
             defaultGalleryTitle: "Galeri Proyek & Tampilan Fitur",
             viewLive: "Buka Live Project",
             sourceCode: "Kode Sumber",
+            showcaseSpecs: "Spesifikasi Arsitektur",
+            proprietaryCode: "Basis Kode Tertutup",
+            requestWalkthrough: "Minta Presentasi Kode",
             close: "Tutup modal"
         },
         testimonials: {
