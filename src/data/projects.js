@@ -29,6 +29,12 @@ export const projectsEn = [
                 caption: "Centralized Decree Services & Archive Portal — multi-channel application forms, revision requests, and digital document repositories.",
                 alt: "SIMMACI Centralized Decree Services and Archive Portal",
                 isMobile: false
+            },
+            {
+                src: "/images/projects/simmaci/dashboard-admin-overview.webp",
+                caption: "Executive Command Center & Regional Analytics — central monitoring for 270+ institutions, 2,000+ staff, and 17,000+ students.",
+                alt: "SIMMACI Executive Command Center and Regional Analytics Dashboard",
+                isMobile: false
             }
         ]
     },
@@ -129,6 +135,12 @@ export const projectsId = [
                 src: "/images/projects/simmaci/supporting-view.webp",
                 caption: "Portal Layanan & Arsip SK Terpusat — formulir permohonan multi-kanal, revisi berkas, dan repositori arsip digital.",
                 alt: "SIMMACI Portal Layanan dan Arsip Dokumen Terpusat",
+                isMobile: false
+            },
+            {
+                src: "/images/projects/simmaci/dashboard-admin-overview.webp",
+                caption: "Dashboard Eksekutif & Pemetaan Wilayah — monitoring terpusat untuk 270+ madrasah/sekolah, 2.000+ guru, dan 17.000+ siswa.",
+                alt: "SIMMACI Dashboard Eksekutif dan Pemetaan Wilayah",
                 isMobile: false
             }
         ]

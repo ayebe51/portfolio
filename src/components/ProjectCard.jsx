@@ -30,7 +30,7 @@ const ProjectCard = ({ project, onClick }) => {
                     alt={project.title}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                    className="w-full h-full object-cover object-top transform scale-100 group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
 
                 {/* Category Tag */}

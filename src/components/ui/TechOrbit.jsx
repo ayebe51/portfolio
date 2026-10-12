@@ -94,23 +94,8 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
                 }}
             />
 
-            {/* Seamless hover zone: keeps orbit open when mouse travels between photo and orbiting badges */}
-            {isOpen && (
-                <div
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
-                    className="absolute rounded-full pointer-events-auto"
-                    style={{
-                        width: (dims.rx + 45) * 2,
-                        height: (dims.ry + 45) * 2,
-                        zIndex: 35,
-                    }}
-                />
-            )}
-
             {/* Orbiting Badges */}
             {TECH_STACKS.map((tech, index) => {
-                // Calibrated angular layout with bottom gap to prevent button/text collision
                 const angleDeg = tech.angleDeg !== undefined ? tech.angleDeg : -90 + (index * 45);
                 const angleRad = (angleDeg * Math.PI) / 180;
                 
@@ -151,11 +136,26 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
                         onMouseLeave={() => {
                             setActiveBadge(null);
                         }}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (onMouseEnter) onMouseEnter();
+                            setActiveBadge(prev => prev === tech.id ? null : tech.id);
+                        }}
                         className={`absolute cursor-pointer ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                        style={{
+                            zIndex: isItemActive ? 60 : 45,
+                        }}
                     >
                         {/* Interactive Badge Container */}
                         <div
-                            className={`relative group flex items-center justify-center rounded-2xl p-2.5 sm:p-3 transition-all duration-300 backdrop-blur-xl border ${
+                            onMouseEnter={() => {
+                                if (onMouseEnter) onMouseEnter();
+                                setActiveBadge(tech.id);
+                            }}
+                            onMouseLeave={() => {
+                                setActiveBadge(null);
+                            }}
+                            className={`relative group/badge flex items-center justify-center rounded-2xl p-2.5 sm:p-3 transition-all duration-300 backdrop-blur-xl border ${
                                 isItemActive 
                                     ? 'bg-neutral-surface/95 border-primary shadow-xl ring-2 ring-primary/40' 
                                     : 'bg-neutral-surface/85 border-neutral-border hover:border-primary/60 shadow-lg'
@@ -167,33 +167,32 @@ const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
                             }}
                         >
                             <IconComponent
-                                className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300"
+                                className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover/badge:scale-110"
                                 style={{ color: tech.color }}
                             />
 
-                            {/* Floating Tooltip */}
-                            <AnimatePresence>
-                                {isItemActive && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 8, scale: 0.9 }}
-                                        animate={{ opacity: 1, y: -42, scale: 1 }}
-                                        exit={{ opacity: 0, y: 4, scale: 0.9 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="absolute -top-1 left-1/2 -translate-x-1/2 whitespace-nowrap px-3 py-1.5 rounded-full bg-neutral-dark/95 border border-primary/40 shadow-2xl backdrop-blur-md pointer-events-none z-50 flex items-center gap-1.5"
-                                    >
-                                        <span 
-                                            className="w-1.5 h-1.5 rounded-full animate-pulse"
-                                            style={{ backgroundColor: tech.color }}
-                                        />
-                                        <span className="text-xs font-bold text-white tracking-wider font-sans">
-                                            {tech.name}
-                                        </span>
-                                        <span className="text-[10px] text-gray-400 uppercase tracking-widest font-mono">
-                                            • {tech.category}
-                                        </span>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            {/* Floating Tooltip (Instant CSS group-hover & reactive state) */}
+                            <div
+                                className={`absolute -top-3 left-1/2 -translate-x-1/2 -translate-y-full whitespace-nowrap px-3.5 py-1.5 rounded-full bg-neutral-dark/95 border border-primary/50 shadow-2xl backdrop-blur-md pointer-events-none z-50 flex items-center gap-2 transition-all duration-200 ease-out ${
+                                    isItemActive
+                                        ? 'opacity-100 scale-100'
+                                        : 'opacity-0 scale-90 group-hover/badge:opacity-100 group-hover/badge:scale-100'
+                                }`}
+                                style={{
+                                    boxShadow: `0 0 20px ${tech.color}40, 0 8px 24px rgba(0,0,0,0.8)`,
+                                }}
+                            >
+                                <span 
+                                    className="w-2 h-2 rounded-full animate-pulse"
+                                    style={{ backgroundColor: tech.color }}
+                                />
+                                <span className="text-xs font-bold text-white tracking-wider font-sans">
+                                    {tech.name}
+                                </span>
+                                <span className="text-[10px] text-gray-300 uppercase tracking-widest font-mono">
+                                    • {tech.category}
+                                </span>
+                            </div>
                         </div>
                     </motion.div>
                 );

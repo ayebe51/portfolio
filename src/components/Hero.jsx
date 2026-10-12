@@ -162,7 +162,11 @@ const Hero = ({ onOpenCV }) => {
                                 src="/assets/profile.png" 
                                 alt="Ahmad Ayub Nu'man" 
                                 onMouseEnter={handleMouseEnter}
-                                className="w-full h-auto object-cover object-center grayscale contrast-110 hover:grayscale-0 transition-all duration-[1.618s] ease-out" 
+                                className={`w-full h-auto object-cover object-center transition-all duration-[1.2s] ease-out ${
+                                    (isPhotoHovered || isPinned)
+                                        ? 'grayscale-0 contrast-100' 
+                                        : 'grayscale contrast-110 group-hover/profile:grayscale-0 group-hover/profile:contrast-100'
+                                }`} 
                             />
                         </motion.div>
                     </div>
