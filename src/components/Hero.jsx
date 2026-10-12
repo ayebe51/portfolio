@@ -113,8 +113,8 @@ const Hero = ({ onOpenCV }) => {
                     <span className="font-heading uppercase tracking-widest text-sm text-gray-400">{t.status}</span>
                 </motion.div>
 
-                {/* LAYERED LAYOUT WRAPPER - Golden Ratio Vertical Spacing */}
-                <div className="relative w-full flex flex-col items-center justify-center pt-[calc(10vw*1.618)] mt-20 md:mt-0">
+                {/* LAYERED LAYOUT WRAPPER - Refined Vertical Balance */}
+                <div className="relative w-full flex flex-col items-center justify-center pt-[6vw] md:pt-[4vw] mt-16 md:mt-0">
 
                     {/* Layer 0: Background Text "AHMAD AYUB" (Opsi 1: Depth Sandwich - z-10 behind z-20 profile photo) */}
                     {/* Size Relationship: The Foundation (Largest) */}
@@ -168,12 +168,12 @@ const Hero = ({ onOpenCV }) => {
                     </div>
 
                     {/* Layer 3: Foreground Subtitle & Actions */}
-                    <div className="relative z-20 -mt-[12vw] flex flex-col items-center justify-center gap-6 pb-12 pointer-events-none">
+                    <div className="relative z-30 mt-4 md:mt-6 flex flex-col items-center justify-center gap-6 pb-12 pointer-events-none">
                         <motion.p 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1 }}
-                            className="text-white/90 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl mix-blend-difference leading-relaxed px-4 pointer-events-auto"
+                            transition={{ delay: 0.8 }}
+                            className="text-gray-300 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl leading-relaxed px-4 pointer-events-auto"
                         >
                             {t.subtitle}
                         </motion.p>

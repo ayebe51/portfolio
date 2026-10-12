@@ -12,14 +12,14 @@ import {
 } from 'react-icons/si';
 
 const TECH_STACKS = [
-    { id: 'react', name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend', angleDeg: -90 },
-    { id: 'nextjs', name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', category: 'Framework', angleDeg: -45 },
-    { id: 'ts', name: 'TypeScript', icon: SiTypescript, color: '#3178C6', category: 'Language', angleDeg: 0 },
-    { id: 'flutter', name: 'Flutter', icon: SiFlutter, color: '#54C5F8', category: 'Mobile', angleDeg: 42 },
-    { id: 'laravel', name: 'Laravel', icon: SiLaravel, color: '#FF2D20', category: 'Backend', angleDeg: 74 },
-    { id: 'nestjs', name: 'NestJS', icon: SiNestjs, color: '#E0234E', category: 'Backend', angleDeg: 106 },
-    { id: 'postgres', name: 'PostgreSQL', icon: SiPostgresql, color: '#699ECA', category: 'Database', angleDeg: 145 },
-    { id: 'docker', name: 'Docker', icon: SiDocker, color: '#2496ED', category: 'DevOps', angleDeg: 220 },
+    { id: 'react', name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend' },
+    { id: 'nextjs', name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', category: 'Framework' },
+    { id: 'ts', name: 'TypeScript', icon: SiTypescript, color: '#3178C6', category: 'Language' },
+    { id: 'flutter', name: 'Flutter', icon: SiFlutter, color: '#54C5F8', category: 'Mobile' },
+    { id: 'laravel', name: 'Laravel', icon: SiLaravel, color: '#FF2D20', category: 'Backend' },
+    { id: 'nestjs', name: 'NestJS', icon: SiNestjs, color: '#E0234E', category: 'Backend' },
+    { id: 'postgres', name: 'PostgreSQL', icon: SiPostgresql, color: '#699ECA', category: 'Database' },
+    { id: 'docker', name: 'Docker', icon: SiDocker, color: '#2496ED', category: 'DevOps' },
 ];
 
 const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {
