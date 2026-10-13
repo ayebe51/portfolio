@@ -23,7 +23,7 @@ if (!fs.existsSync(cvOutputDir)) {
 
 // 1. Generate HTML for ATS PDF
 function generateHtmlCv(data) {
-    const { personal, summary, skills, labels, experience, projects, education, lang } = data;
+    const { personal, summary, skills, labels, experience, projects, education, certifications, lang } = data;
     const isId = lang === 'id';
 
     const skillCategories = isId ? [
@@ -305,6 +305,24 @@ function generateHtmlCv(data) {
     `).join('')}
   </div>
 
+  <!-- CERTIFICATIONS & CREDENTIALS -->
+  ${certifications && certifications.length > 0 ? `
+  <div class="section">
+    <div class="section-title">${labels.certifications || (isId ? "Sertifikasi & Kredensial" : "Certifications & Credentials")}</div>
+    ${certifications.map(cert => `
+      <div class="item-block" style="margin-bottom:0;">
+        <div class="item-header">
+          <span class="item-title">${cert.name}</span>
+          <span class="item-meta">${cert.issueDate} – ${cert.expiryDate}</span>
+        </div>
+        <div class="item-submeta">
+          ${cert.issuer} • ${isId ? 'ID Kredensial:' : 'Credential ID:'} <strong>${cert.credentialId}</strong>
+          ${cert.credentialUrl ? ` • <a href="${cert.credentialUrl}" target="_blank" style="color:#2b6cb0; text-decoration:underline;">${isId ? 'Tautan Verifikasi Resmi' : 'Official Verification Link'}</a>` : ''}
+        </div>
+      </div>
+    `).join('')}
+  </div>` : ''}
+
 </body>
 </html>`;
 }
@@ -364,7 +382,7 @@ function buildPdf(htmlPath, pdfPath) {
 
 // 3. Generate DOCX via 'docx' package
 async function buildDocx(data, docxPath) {
-    const { personal, summary, skills, labels, experience, projects, education, lang } = data;
+    const { personal, summary, skills, labels, experience, projects, education, certifications, lang } = data;
     const isId = lang === 'id';
 
     const docChildren = [];
@@ -619,6 +637,33 @@ async function buildDocx(data, docxPath) {
             })
         );
     });
+
+    // Certifications & Credentials
+    if (certifications && certifications.length > 0) {
+        docChildren.push(createSectionHeading(labels.certifications || (isId ? "Sertifikasi & Kredensial" : "Certifications & Credentials")));
+        certifications.forEach(cert => {
+            docChildren.push(
+                new Paragraph({
+                    spacing: { before: 70, after: 15 },
+                    children: [
+                        new TextRun({ text: cert.name, bold: true, size: 19, color: "1A202C" }),
+                        new TextRun({ text: `\t${cert.issueDate} – ${cert.expiryDate}`, size: 17, color: "4A5568" })
+                    ]
+                })
+            );
+            docChildren.push(
+                new Paragraph({
+                    spacing: { after: 35 },
+                    children: [
+                        new TextRun({ text: `${cert.issuer} • ${isId ? 'ID Kredensial:' : 'Credential ID:'} ${cert.credentialId}`, italics: true, size: 17, color: "4A5568" }),
+                        ...(cert.credentialUrl ? [
+                            new TextRun({ text: ` • ${cert.credentialUrl}`, size: 16, color: "2B6CB0", underline: {} })
+                        ] : [])
+                    ]
+                })
+            );
+        });
+    }
 
     const doc = new Document({
         sections: [

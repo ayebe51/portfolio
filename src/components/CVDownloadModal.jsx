@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiDownload, FiExternalLink, FiFileText, FiCheck, FiBriefcase, FiBookOpen } from 'react-icons/fi';
+import { FiX, FiDownload, FiExternalLink, FiFileText, FiCheck, FiBriefcase, FiBookOpen, FiAward } from 'react-icons/fi';
 import { cvDataEn, cvDataId } from '../data/cvData';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
@@ -150,6 +150,34 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                 <span className="text-gray-400">{activeData.education[0].institution} • {activeData.education[0].graduationYear}</span>
                             </div>
                         </div>
+
+                        {activeData.certifications && activeData.certifications.length > 0 && (
+                            <div className="flex items-start gap-3 pt-2 border-t border-gray-800/60">
+                                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0 mt-0.5">
+                                    <FiAward className="text-base" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                                        <span className="font-bold text-white block">
+                                            {activeData.certifications[0].name}
+                                        </span>
+                                        <a 
+                                            href={activeData.certifications[0].credentialUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[11px] font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1 hover:underline"
+                                            title={isEn ? "Verify Official Credential" : "Verifikasi Kredensial Resmi"}
+                                        >
+                                            <span>{isEn ? 'Verify' : 'Verifikasi'}</span>
+                                            <FiExternalLink className="text-[10px]" />
+                                        </a>
+                                    </div>
+                                    <span className="text-gray-400 text-xs block">
+                                        {activeData.certifications[0].issuer} • {activeData.certifications[0].issueDate} – {activeData.certifications[0].expiryDate}
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* Download Actions */}

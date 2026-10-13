@@ -23,14 +23,15 @@ export const cvDataEn = {
         backend: ["Laravel 11/12", "NestJS", "Node.js", "Express", "RESTful APIs", "Microservices", "Role-Based Access Control (RBAC)"],
         databases: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Schema Design", "Composite Indexing", "Database Constraints"],
         devops: ["Docker & Docker Compose", "Coolify", "Vercel", "Git / GitHub", "Linux/VPS Administration", "Nginx (HSTS/CSP)", "S3 / MinIO"],
-        architecture: ["Domain-Driven Design (DDD)", "Segregation of Duties (Maker-Checker)", "Closed-Loop Wallets", "State Machines", "Automated Testing (PHPUnit, Pest, Jest)", "DevSecOps"]
+        architecture: ["Spec-Driven Development (SDD)", "Domain-Driven Design (DDD)", "Segregation of Duties (Maker-Checker)", "Closed-Loop Wallets", "State Machines", "Automated Testing (PHPUnit, Pest, Jest)", "DevSecOps"]
     },
     labels: {
         professionalSummary: "Professional Summary",
         technicalSkills: "Technical Skills",
         professionalExperience: "Professional Experience",
         selectedProjects: "Selected Software Engineering Projects",
-        education: "Education"
+        education: "Education",
+        certifications: "Certifications & Credentials"
     },
     experience: [
         {
@@ -95,6 +96,18 @@ export const cvDataEn = {
             location: "Jombang, East Java, Indonesia",
             graduationYear: "Graduated 2019"
         }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Certified competence in Spec-Driven Development (SDD) using Kiro: comprehensive technical specification design, contract-first APIs, automated test coverage, and end-to-end requirement traceability."
+        }
     ]
 };
 
@@ -123,14 +136,15 @@ export const cvDataId = {
         backend: ["Laravel 11/12", "NestJS", "Node.js", "Express", "RESTful APIs", "Microservices", "Role-Based Access Control (RBAC)"],
         databases: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Perancangan Skema", "Composite Indexing", "Database Constraints"],
         devops: ["Docker & Docker Compose", "Coolify", "Vercel", "Git / GitHub", "Administrasi Linux/VPS", "Nginx (HSTS/CSP)", "S3 / MinIO"],
-        architecture: ["Domain-Driven Design (DDD)", "Segregation of Duties (Maker-Checker)", "Closed-Loop Wallets", "State Machines", "Pengujian Otomatis (PHPUnit, Pest, Jest)", "DevSecOps"]
+        architecture: ["Spec-Driven Development (SDD)", "Domain-Driven Design (DDD)", "Segregation of Duties (Maker-Checker)", "Closed-Loop Wallets", "State Machines", "Pengujian Otomatis (PHPUnit, Pest, Jest)", "DevSecOps"]
     },
     labels: {
         professionalSummary: "Ringkasan Profesional",
         technicalSkills: "Keahlian Teknis",
         professionalExperience: "Pengalaman Kerja Profesional",
         selectedProjects: "Proyek Rekayasa Perangkat Lunak Unggulan",
-        education: "Pendidikan Formal"
+        education: "Pendidikan Formal",
+        certifications: "Sertifikasi & Kredensial"
     },
     experience: [
         {
@@ -194,6 +208,18 @@ export const cvDataId = {
             institution: "STAI At-Tahdzib Jombang",
             location: "Jombang, Jawa Timur, Indonesia",
             graduationYear: "Lulus 2019"
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Kompetensi terverifikasi dalam metodologi Spec-Driven Development (SDD) menggunakan Kiro: perumusan spesifikasi teknis terstruktur, desain berbasis kontrak, validasi pengujian otomatis, dan ketertelusuran kebutuhan sistem."
         }
     ]
 };

@@ -7,7 +7,7 @@ const skills = [
     // Backend & Databases
     "Laravel", "NestJS", "PHP", "Node.js", "Express", "PostgreSQL", "MySQL", "Prisma",
     // Libraries & Tools
-    "Framer Motion", "Recharts", "Vite", "Git", "REST API",
+    "Framer Motion", "Recharts", "Vite", "Git", "REST API", "Spec-Driven Dev",
     // Deployment & DevOps
     "Docker", "Coolify", "Vercel"
 ];
