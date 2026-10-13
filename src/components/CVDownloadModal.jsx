@@ -134,9 +134,9 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                 <FiBriefcase className="text-base" />
                             </div>
                             <div>
-                                <span className="font-bold text-white block">{activeData.personal.title}</span>
+                                <span className="font-bold text-white block">{activeData.experience[0].role}</span>
                                 <span className="text-gray-400">
-                                    {activeData.experience[0].role} ({activeData.experience[0].subtitle}) — {activeData.experience[0].company} ({activeData.experience[0].period})
+                                    {activeData.experience[0].subtitle} — {activeData.experience[0].company} ({activeData.experience[0].period})
                                 </span>
                             </div>
                         </div>

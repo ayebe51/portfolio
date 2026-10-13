@@ -57,8 +57,8 @@ const tailoredCvDataId = {
     },
     experience: [
         {
-            role: "Staff IT & Sistem Informasi",
-            subtitle: "Web & Application Developer • Lead Full-Stack Engineer",
+            role: "Full-Stack Software Engineer",
+            subtitle: "Lead Systems Architect & Product Lead",
             company: "LP Ma'arif NU Cilacap",
             location: "Cilacap, Jawa Tengah, Indonesia",
             period: "2024 – Sekarang",
@@ -157,8 +157,8 @@ const tailoredCvDataEn = {
     },
     experience: [
         {
-            role: "Staff IT & Sistem Informasi",
-            subtitle: "Web & Application Developer • Lead Full-Stack Engineer",
+            role: "Full-Stack Software Engineer",
+            subtitle: "Lead Systems Architect & Product Lead",
             company: "LP Ma'arif NU Cilacap",
             location: "Cilacap, Central Java, Indonesia",
             period: "2024 – Present",

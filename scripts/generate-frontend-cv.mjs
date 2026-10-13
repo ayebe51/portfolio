@@ -55,8 +55,8 @@ const frontendCvData = {
     },
     experience: [
         {
-            role: "Staff IT & Sistem Informasi",
-            subtitle: "Front-End & Web Systems Engineer",
+            role: "Front-End & Web Systems Engineer",
+            subtitle: "Lead UI Architect & Web Systems Developer",
             company: "LP Ma'arif NU Cilacap",
             location: "Cilacap, Central Java, Indonesia",
             period: "2024 – Present",
