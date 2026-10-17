@@ -6,7 +6,11 @@ import { FiDownload } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
-const ROLES = ['FRONT END', 'FULL STACK', 'WEB DEVELOPER'];
+const ROLES = [
+    { text: 'FRONT END', size: 'text-[13vw] sm:text-[14vw] md:text-[11vw]' },
+    { text: 'FULL STACK', size: 'text-[13vw] sm:text-[14vw] md:text-[11vw]' },
+    { text: 'WEB DEVELOPER', size: 'text-[9.2vw] sm:text-[10vw] md:text-[7.8vw]' },
+];
 
 const Hero = ({ onOpenCV }) => {
     const { language } = useLanguage();
@@ -138,21 +142,21 @@ const Hero = ({ onOpenCV }) => {
 
                     {/* Layer 1: Middle Text - Dynamic Role Rotator */}
                     {/* Size Relationship: The Subject (Phi * Image) */}
-                    <div className="relative z-10 w-full flex justify-center items-center -mb-[8vw] pointer-events-none mix-blend-screen overflow-hidden py-1">
+                    <div className="relative z-10 w-full flex justify-center items-center -mb-[8vw] pointer-events-none mix-blend-screen py-1">
                         <motion.h2 
                             style={{ y: y2 }} 
-                            className="text-[13.5vw] sm:text-[14.5vw] md:text-[11.5vw] leading-[0.8] font-heading font-black text-white/90 uppercase tracking-tighter whitespace-nowrap drop-shadow-2xl flex justify-center items-center min-h-[1em]"
+                            className="leading-[0.8] font-heading font-black text-white/90 uppercase tracking-tighter whitespace-nowrap drop-shadow-2xl flex justify-center items-center min-h-[1.1em] text-center"
                         >
                             <AnimatePresence mode="wait">
                                 <motion.span
-                                    key={ROLES[roleIndex]}
+                                    key={ROLES[roleIndex].text}
                                     initial={{ opacity: 0, y: 25, filter: 'blur(8px)' }}
                                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                                     exit={{ opacity: 0, y: -25, filter: 'blur(8px)' }}
                                     transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                                    className="inline-block"
+                                    className={`inline-block ${ROLES[roleIndex].size}`}
                                 >
-                                    {ROLES[roleIndex]}
+                                    {ROLES[roleIndex].text}
                                 </motion.span>
                             </AnimatePresence>
                         </motion.h2>
