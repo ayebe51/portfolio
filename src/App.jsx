@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ReactLenis } from '@studio-freight/react-lenis';
 import { LanguageProvider } from './context/LanguageContext';
 import Header from './components/Header';

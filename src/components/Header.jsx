@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
 import MagneticButton from './ui/MagneticButton';
@@ -28,7 +28,7 @@ const Header = ({ onOpenCV }) => {
     return (
         <>
             <header
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-4 md:px-0 py-6 mix-blend-difference`}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-4 md:px-0 mix-blend-difference ${isScrolled ? 'py-4' : 'py-6'}`}
             >
                 <div className="container mx-auto px-6 flex justify-between items-center">
                     <a 

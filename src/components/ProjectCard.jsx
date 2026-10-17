@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight, FiExternalLink, FiGithub, FiLock } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
@@ -69,7 +68,7 @@ const ProjectCard = ({ project, onClick }) => {
                 <div>
                     {/* Tech stack tags */}
                     <div className="flex flex-wrap items-center gap-2 mb-6">
-                        {project.tools.slice(0, 4).map((tool, i) => (
+                        {project.tools.slice(0, 5).map((tool, i) => (
                             <span key={i} className="text-xs font-medium text-gray-400 bg-neutral-dark/80 px-2.5 py-1 rounded-md border border-neutral-border">
                                 {tool}
                             </span>

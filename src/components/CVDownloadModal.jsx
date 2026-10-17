@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiDownload, FiExternalLink, FiFileText, FiCheck, FiBriefcase, FiBookOpen, FiAward } from 'react-icons/fi';
-import { cvDataEn, cvDataId } from '../data/cvData';
+import { cvDataEn, cvDataId, frontendCvDataEn, frontendCvDataId } from '../data/cvData';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
 const CVDownloadModal = ({ isOpen, onClose }) => {
     const { language: currentLang } = useLanguage();
     const [selectedLang, setSelectedLang] = useState(currentLang || 'en');
+    const [selectedRole, setSelectedRole] = useState('frontend'); // 'frontend' | 'fullstack'
 
     useEffect(() => {
         if (isOpen) {
@@ -31,24 +32,21 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     const isEn = selectedLang === 'en';
-    const activeData = isEn ? cvDataEn : cvDataId;
+    const isFrontend = selectedRole === 'frontend';
+
+    const activeData = isFrontend
+        ? (isEn ? frontendCvDataEn : frontendCvDataId)
+        : (isEn ? cvDataEn : cvDataId);
+
     const t = translations[selectedLang].cvModal;
 
-    const pdfPath = isEn 
-        ? '/cv/Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-EN.pdf' 
-        : '/cv/Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-ID.pdf';
-    
-    const docxPath = isEn 
-        ? '/cv/Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-EN.docx' 
-        : '/cv/Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-ID.docx';
+    const roleSlug = isFrontend ? 'Frontend-Developer' : 'Full-Stack-Software-Engineer';
+    const langSuffix = isEn ? 'EN' : 'ID';
 
-    const pdfDownloadName = isEn 
-        ? 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-EN.pdf' 
-        : 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-ID.pdf';
-
-    const docxDownloadName = isEn 
-        ? 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-EN.docx' 
-        : 'Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-CV-ID.docx';
+    const pdfPath = `/cv/Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.pdf`;
+    const docxPath = `/cv/Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.docx`;
+    const pdfDownloadName = `Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.pdf`;
+    const docxDownloadName = `Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.docx`;
 
     return (
         <AnimatePresence>
@@ -68,7 +66,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 20 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative w-full max-w-2xl bg-neutral-dark border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 my-8 overflow-hidden"
+                    className="relative w-full max-w-2xl bg-neutral-dark border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto"
                     role="dialog"
                     aria-modal="true"
                     aria-labelledby="cv-modal-title"
@@ -99,32 +97,89 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         </p>
                     </div>
 
+                    {/* Target Specialization Selector */}
+                    <div className="mb-5">
+                        <label className="text-[11px] font-bold uppercase tracking-widest text-gray-400 block mb-2">
+                            {t.selectRoleLabel || (isEn ? "Target Specialization:" : "Pilih Spesialisasi Target:")}
+                        </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button
+                                type="button"
+                                onClick={() => setSelectedRole('frontend')}
+                                className={`p-3.5 rounded-2xl border text-left transition-all duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                    isFrontend
+                                        ? 'border-primary bg-primary/15 shadow-md shadow-primary/10'
+                                        : 'border-neutral-border bg-neutral-surface hover:border-gray-600'
+                                }`}
+                            >
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className={`text-xs sm:text-sm font-bold ${isFrontend ? 'text-primary' : 'text-white'}`}>
+                                        {t.roleFrontend || "Front-End Developer"}
+                                    </span>
+                                    {isFrontend && (
+                                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    )}
+                                </div>
+                                <p className="text-[11px] text-gray-400 line-clamp-1">
+                                    {t.roleFrontendDesc || "React 19 • Next.js • TypeScript • UI Architecture"}
+                                </p>
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => setSelectedRole('fullstack')}
+                                className={`p-3.5 rounded-2xl border text-left transition-all duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                    !isFrontend
+                                        ? 'border-primary bg-primary/15 shadow-md shadow-primary/10'
+                                        : 'border-neutral-border bg-neutral-surface hover:border-gray-600'
+                                }`}
+                            >
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className={`text-xs sm:text-sm font-bold ${!isFrontend ? 'text-primary' : 'text-white'}`}>
+                                        {t.roleFullstack || "Full-Stack Web Developer"}
+                                    </span>
+                                    {!isFrontend && (
+                                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                    )}
+                                </div>
+                                <p className="text-[11px] text-gray-400 line-clamp-1">
+                                    {t.roleFullstackDesc || "React 19 • Laravel 12 • NestJS • PostgreSQL"}
+                                </p>
+                            </button>
+                        </div>
+                    </div>
+
                     {/* Language Selector Tabs */}
-                    <div className="flex items-center gap-2 bg-neutral-surface p-1.5 rounded-2xl border border-neutral-border w-fit mb-6">
-                        <button
-                            type="button"
-                            onClick={() => setSelectedLang('en')}
-                            aria-pressed={isEn}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
-                                isEn 
-                                    ? 'bg-primary text-white shadow-lg font-black' 
-                                    : 'text-gray-400 hover:text-white'
-                            }`}
-                        >
-                            {translations[selectedLang].cvModal.tabEn}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setSelectedLang('id')}
-                            aria-pressed={!isEn}
-                            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
-                                !isEn 
-                                    ? 'bg-primary text-white shadow-lg font-black' 
-                                    : 'text-gray-400 hover:text-white'
-                            }`}
-                        >
-                            {translations[selectedLang].cvModal.tabId}
-                        </button>
+                    <div className="flex items-center justify-between gap-2 flex-wrap mb-5">
+                        <div className="flex items-center gap-2 bg-neutral-surface p-1.5 rounded-2xl border border-neutral-border w-fit">
+                            <button
+                                type="button"
+                                onClick={() => setSelectedLang('en')}
+                                aria-pressed={isEn}
+                                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
+                                    isEn 
+                                        ? 'bg-primary text-white shadow-lg font-black' 
+                                        : 'text-gray-400 hover:text-white'
+                                }`}
+                            >
+                                {translations[selectedLang].cvModal.tabEn}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setSelectedLang('id')}
+                                aria-pressed={!isEn}
+                                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
+                                    !isEn 
+                                        ? 'bg-primary text-white shadow-lg font-black' 
+                                        : 'text-gray-400 hover:text-white'
+                                }`}
+                            >
+                                {translations[selectedLang].cvModal.tabId}
+                            </button>
+                        </div>
+                        <span className="text-xs text-gray-400 font-mono">
+                            {isFrontend ? 'Front-End Focus' : 'Full-Stack Focus'} • {isEn ? 'English' : 'Indonesia'}
+                        </span>
                     </div>
 
                     {/* Candidate Quick Overview */}
@@ -244,7 +299,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                     {/* Preview Online Button */}
                     <div className="pt-4 border-t border-gray-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
                         <span className="text-xs text-gray-400 font-body">
-                            {isEn ? 'Language:' : 'Bahasa:'} <strong className="text-white">{isEn ? 'English (EN)' : 'Bahasa Indonesia (ID)'}</strong> • {t.verified}
+                            <strong className="text-primary">{isFrontend ? 'Front-End' : 'Full-Stack'}</strong> • <strong className="text-white">{isEn ? 'English (EN)' : 'Bahasa Indonesia (ID)'}</strong> • {t.verified}
                         </span>
                         <a
                             href={pdfPath}

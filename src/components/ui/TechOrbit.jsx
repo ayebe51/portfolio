@@ -1,25 +1,25 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
     SiReact,
     SiNextdotjs,
     SiTypescript,
+    SiTailwindcss,
     SiFlutter,
     SiLaravel,
     SiNestjs,
     SiPostgresql,
-    SiDocker,
 } from 'react-icons/si';
 
 const TECH_STACKS = [
-    { id: 'react', name: 'React', icon: SiReact, color: '#61DAFB', category: 'Frontend' },
-    { id: 'nextjs', name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF', category: 'Framework' },
+    { id: 'react', name: 'React 19', icon: SiReact, color: '#61DAFB', category: 'Frontend' },
+    { id: 'nextjs', name: 'Next.js 14', icon: SiNextdotjs, color: '#FFFFFF', category: 'Framework' },
     { id: 'ts', name: 'TypeScript', icon: SiTypescript, color: '#3178C6', category: 'Language' },
+    { id: 'tailwind', name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8', category: 'Styling' },
     { id: 'flutter', name: 'Flutter', icon: SiFlutter, color: '#54C5F8', category: 'Mobile' },
-    { id: 'laravel', name: 'Laravel', icon: SiLaravel, color: '#FF2D20', category: 'Backend' },
+    { id: 'laravel', name: 'Laravel 12', icon: SiLaravel, color: '#FF2D20', category: 'Backend' },
     { id: 'nestjs', name: 'NestJS', icon: SiNestjs, color: '#E0234E', category: 'Backend' },
     { id: 'postgres', name: 'PostgreSQL', icon: SiPostgresql, color: '#699ECA', category: 'Database' },
-    { id: 'docker', name: 'Docker', icon: SiDocker, color: '#2496ED', category: 'DevOps' },
 ];
 
 const TechOrbit = ({ isHovered, isMobileView, onMouseEnter, onMouseLeave }) => {

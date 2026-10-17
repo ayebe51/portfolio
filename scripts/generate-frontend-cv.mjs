@@ -10,131 +10,33 @@ import {
     AlignmentType,
     BorderStyle
 } from 'docx';
+import { frontendCvDataEn, frontendCvDataId } from '../src/data/cvData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const outputDir = path.join(rootDir, 'tailored-cv');
+const publicCvDir = path.join(rootDir, 'public', 'cv');
 
 if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
 }
-
-const frontendCvData = {
-    lang: "en",
-    personal: {
-        name: "Ahmad Ayub Nu'man",
-        title: "Front-End Developer",
-        subtitle: "Responsive Web Design (RWD) • Reusable Component Architecture • Web Performance & SEO Optimization",
-        location: "Cilacap, Central Java, Indonesia",
-        email: "ayb.n1994@gmail.com",
-        phone: "+62 895 3491 77555",
-        whatsappUrl: "https://wa.me/62895349177555",
-        github: "https://github.com/ayebe51",
-        githubDisplay: "github.com/ayebe51",
-        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
-        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
-        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
-        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
-    },
-    summary: "Detail-oriented Front-End Developer with 1+ years of production experience translating UI/UX mockups into pixel-perfect, accessible, and high-performance web applications. Highly proficient in HTML5, modern CSS3, SASS/SCSS, JavaScript (ES6+), and TypeScript, with strong expertise in React 18/19, Next.js, and Tailwind CSS. Proven track record architecting modular, reusable component libraries for complex enterprise dashboards and creative interactive web applications. Skilled in Responsive Web Design (RWD), cross-browser compatibility testing, Core Web Vitals optimization, and SEO best practices (semantic HTML, Open Graph, structured JSON-LD). Experienced using Git version control, command line tools, and Agile workflows (JIRA, Slack, Backlog). Driven by craftsmanship, clean code structure, and continuous learning.",
-    skills: {
-        coreWeb: ["HTML5 (Semantic)", "CSS3", "SASS / SCSS", "LESS", "JavaScript (ES6+)", "TypeScript", "Responsive Web Design (RWD)"],
-        frameworks: ["React 18/19", "Next.js (App Router)", "Flutter", "Tailwind CSS", "Framer Motion", "Vite PWA", "Zustand", "Blade"],
-        uiArchitecture: ["Reusable Component Architecture", "Design Mockup Implementation (Figma to Code)", "Mobile-First Design", "Design Systems"],
-        optimizationAndSeo: ["SEO Principles (Meta Tags, Open Graph, JSON-LD Schema)", "Core Web Vitals", "Website Optimization", "Code Splitting"],
-        testingAndTools: ["Cross-Browser Testing & Compatibility", "Responsive UI Testing", "Git & GitHub (1,940+ Commits)", "Command Line (CLI)"],
-        workflowAndCollab: ["JIRA", "Slack", "Backlog", "Technical Team Documentation", "RESTful API Integration", "Information Security Basics (OWASP, RBAC)"]
-    },
-    labels: {
-        professionalSummary: "Professional Summary",
-        technicalSkills: "Technical Skills",
-        professionalExperience: "Professional Experience",
-        selectedProjects: "Featured Front-End Projects",
-        education: "Education & Qualifications"
-    },
-    experience: [
-        {
-            role: "Front-End & Web Systems Engineer",
-            subtitle: "Lead UI Architect & Web Systems Developer",
-            company: "LP Ma'arif NU Cilacap",
-            location: "Cilacap, Central Java, Indonesia",
-            period: "2024 – Present",
-            responsibilities: [
-                "Translated high-fidelity UI design mockups into responsive, accessible, and performant web interfaces using React 19, TypeScript, and Tailwind CSS, adhering strictly to mobile-first RWD standards.",
-                "Architected modular and reusable UI component hierarchies for enterprise dashboard applications (SIMMACI), ensuring consistent design tokens, styling cohesion, and maintainability across 270+ institutional modules.",
-                "Conducted rigorous cross-browser testing across Chrome, Microsoft Edge, Safari, Firefox, and mobile viewports, resolving layout regressions, CSS flexbox/grid edge cases, and rendering inconsistencies.",
-                "Optimized website load times and Core Web Vitals through asset minification, modern image formats (WebP/SVG), tree-shaking, and Vite PWA client-side caching.",
-                "Maintained and modified existing frontend codebases, refactoring monolithic views into clean, reusable components with clear prop interfaces and TypeScript typings.",
-                "Integrated RESTful API endpoints with error boundaries, optimistic UI feedback, and asynchronous state management, delivering smooth data-driven dashboards.",
-                "Maintained rigorous version control practices via Git and command line, documenting frontend component APIs, styling conventions, and deployment procedures for the engineering team."
-            ]
-        }
-    ],
-    projects: [
-        {
-            name: "SIMMACI — Enterprise Education Governance Dashboard & Web App",
-            techStack: "React 19, TypeScript, Tailwind CSS, Vite PWA, Reusable Component Architecture, REST API",
-            demoUrl: "",
-            demoDisplay: "",
-            repoUrl: "https://github.com/ayebe51/simmaci",
-            repoDisplay: "github.com/ayebe51/simmaci",
-            highlights: [
-                "Engineered a responsive single-page dashboard application (SPA) administering 270+ institutions, 2,000+ staff, and 17,000+ student data records with interactive data tables and batch document generation interfaces.",
-                "Developed a reusable component library (custom modals, filterable data tables, form validation controls, and summary metric cards) verified across all modern desktop and mobile browsers."
-            ]
-        },
-        {
-            name: "Creative Developer Portfolio (Ayub.dev) — Interactive Web Experience",
-            techStack: "React, Tailwind CSS, Framer Motion, Lenis Smooth Scroll, Semantic SEO, Vite",
-            demoUrl: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
-            demoDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app",
-            repoUrl: "https://github.com/ayebe51/portfolio",
-            repoDisplay: "github.com/ayebe51/portfolio",
-            highlights: [
-                "Designed and engineered a creative, dark-mode portfolio featuring fluid typography, magnetic buttons, micro-animations, and smooth inertia scrolling.",
-                "Applied modern SEO best practices including semantic HTML5 structure, descriptive meta tags, Open Graph card protocols, and JSON-LD schema markup."
-            ]
-        },
-        {
-            name: "Koneksi Santri — Campus ERP Dashboard & Flutter Mobile Portal",
-            techStack: "Next.js 14, Flutter (Dart), TypeScript, Tailwind CSS, REST API Integration",
-            demoUrl: "https://admin.koneksisantri.tech",
-            demoDisplay: "admin.koneksisantri.tech",
-            repoUrl: "https://github.com/ayebe51/koneksi-santri",
-            repoDisplay: "github.com/ayebe51/koneksi-santri",
-            highlights: [
-                "Developed clean, responsive dashboard interfaces and Flutter mobile views for student admissions, tuition billing, and guardian balance monitoring.",
-                "Ensured full cross-platform responsiveness with adaptive layouts, accessible touch targets, and instant UI state updates."
-            ]
-        },
-        {
-            name: "Enterprise Retail POS & Inventory (Kiro ERP) — High-Speed Cashier UI",
-            techStack: "React 19, TypeScript, Tailwind CSS, Apache ECharts, Responsive UI",
-            demoUrl: "https://inventory-pos-hazel.vercel.app",
-            demoDisplay: "inventory-pos-hazel.vercel.app",
-            repoUrl: "https://github.com/ayebe51/inventory-pos",
-            repoDisplay: "github.com/ayebe51/inventory-pos",
-            highlights: [
-                "Created an ergonomic, keyboard-friendly point-of-sale cashier interface and multi-warehouse inventory visualization dashboards with responsive chart breakdowns."
-            ]
-        }
-    ],
-    education: [
-        {
-            degree: "Bachelor of Islamic Economic Law (S.H.)",
-            institution: "STAI At-Tahdzib Jombang",
-            location: "Jombang, East Java, Indonesia",
-            graduationYear: "Graduated 2019",
-            notes: "Developed strong analytical thinking, ethical integrity, and attention to detail. Complemented by dedicated independent study and practical software engineering (Autodidact & Continuous Learning) with active production web applications."
-        }
-    ]
-};
+if (!fs.existsSync(publicCvDir)) {
+    fs.mkdirSync(publicCvDir, { recursive: true });
+}
 
 function generateHtmlCv(data) {
     const { personal, summary, skills, labels, experience, projects, education, lang } = data;
+    const isId = lang === 'id';
 
-    const skillCategories = [
+    const skillCategories = isId ? [
+        { label: "Core Web & Bahasa:", val: skills.coreWeb.join(', ') },
+        { label: "Framework & Pustaka:", val: skills.frameworks.join(', ') },
+        { label: "Arsitektur Komponen & UI:", val: skills.uiArchitecture.join(', ') },
+        { label: "Performa & SEO:", val: skills.optimizationAndSeo.join(', ') },
+        { label: "Pengujian & Tools:", val: skills.testingAndTools.join(', ') },
+        { label: "Kolaborasi & Workflow:", val: skills.workflowAndCollab.join(', ') }
+    ] : [
         { label: "Core Web & Languages:", val: skills.coreWeb.join(', ') },
         { label: "Frameworks & Libraries:", val: skills.frameworks.join(', ') },
         { label: "UI & Component Architecture:", val: skills.uiArchitecture.join(', ') },
@@ -384,10 +286,12 @@ function generateHtmlCv(data) {
           <span class="item-title">${proj.name}</span>
           <span class="item-meta" style="font-style:italic;">${proj.techStack}</span>
         </div>
+        ${(proj.demoDisplay || proj.repoDisplay) ? `
         <div class="project-links">
-          Live Demo: <a href="${proj.demoUrl}">${proj.demoDisplay}</a>
-          | Repository: <a href="${proj.repoUrl}">${proj.repoDisplay}</a>
-        </div>
+          ${proj.demoDisplay ? `${isId ? 'Demo Langsung:' : 'Live Demo:'} <a href="${proj.demoUrl}">${proj.demoDisplay}</a>` : ''}
+          ${proj.demoDisplay && proj.repoDisplay ? ' | ' : ''}
+          ${proj.repoDisplay ? `${isId ? 'Repositori:' : 'Repository:'} <a href="${proj.repoUrl}">${proj.repoDisplay}</a>` : ''}
+        </div>` : ''}
         <ul class="bullets">
           ${proj.highlights.map(h => `<li>${h}</li>`).join('')}
         </ul>
@@ -459,7 +363,8 @@ function buildPdf(htmlPath, pdfPath) {
 }
 
 async function buildDocx(data, docxPath) {
-    const { personal, summary, skills, labels, experience, projects, education } = data;
+    const { personal, summary, skills, labels, experience, projects, education, lang } = data;
+    const isId = lang === 'id';
 
     const docChildren = [];
 
@@ -573,7 +478,14 @@ async function buildDocx(data, docxPath) {
 
     // Technical Skills
     docChildren.push(createSectionHeading(labels.technicalSkills));
-    const skillCategories = [
+    const skillCategories = isId ? [
+        { label: "Core Web & Bahasa", val: skills.coreWeb.join(", ") },
+        { label: "Framework & Pustaka", val: skills.frameworks.join(", ") },
+        { label: "Arsitektur Komponen & UI", val: skills.uiArchitecture.join(", ") },
+        { label: "Performa & SEO", val: skills.optimizationAndSeo.join(", ") },
+        { label: "Pengujian & Tools", val: skills.testingAndTools.join(", ") },
+        { label: "Kolaborasi & Workflow", val: skills.workflowAndCollab.join(", ") }
+    ] : [
         { label: "Core Web & Languages", val: skills.coreWeb.join(", ") },
         { label: "Frameworks & Libraries", val: skills.frameworks.join(", ") },
         { label: "UI & Component Architecture", val: skills.uiArchitecture.join(", ") },
@@ -650,14 +562,16 @@ async function buildDocx(data, docxPath) {
             })
         );
         const linkRuns = [];
+        const demoPrefix = isId ? "Demo Langsung: " : "Live Demo: ";
+        const repoPrefix = isId ? "Repositori: " : "Repository: ";
         if (proj.demoDisplay) {
-            linkRuns.push(new TextRun({ text: `Live Demo: ${proj.demoDisplay}`, size: 15, color: "2B6CB0" }));
+            linkRuns.push(new TextRun({ text: `${demoPrefix}${proj.demoDisplay}`, size: 15, color: "2B6CB0" }));
         }
         if (proj.demoDisplay && proj.repoDisplay) {
             linkRuns.push(new TextRun({ text: "  |  ", size: 15, color: "718096" }));
         }
         if (proj.repoDisplay) {
-            linkRuns.push(new TextRun({ text: `Repository: ${proj.repoDisplay}`, size: 15, color: "2B6CB0" }));
+            linkRuns.push(new TextRun({ text: `${repoPrefix}${proj.repoDisplay}`, size: 15, color: "2B6CB0" }));
         }
         if (linkRuns.length > 0) {
             docChildren.push(
@@ -739,28 +653,45 @@ async function buildDocx(data, docxPath) {
 }
 
 async function main() {
-    console.log('=== Front-End Developer ATS CV Generator (transcosmos / TCID Tailored) ===');
-    console.log(`Output folder: ${outputDir}`);
+    console.log('=== Front-End Developer ATS CV Generator ===');
+    console.log(`Public CV folder: ${publicCvDir}`);
+    console.log(`Tailored CV folder: ${outputDir}`);
 
     const tempHtmlPath = path.join(rootDir, 'scripts', 'temp_frontend_cv.html');
-    const pdfPath = path.join(outputDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV.pdf');
-    const docxPath = path.join(outputDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV.docx');
 
-    // 1. HTML
-    const html = generateHtmlCv(frontendCvData);
-    fs.writeFileSync(tempHtmlPath, html, 'utf-8');
+    // 1. English Front-End CV
+    console.log('\n--- Generating Front-End CV (EN) ---');
+    const htmlEn = generateHtmlCv(frontendCvDataEn);
+    fs.writeFileSync(tempHtmlPath, htmlEn, 'utf-8');
+    
+    const pdfPublicEn = path.join(publicCvDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV-EN.pdf');
+    const docxPublicEn = path.join(publicCvDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV-EN.docx');
+    const pdfTailored = path.join(outputDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV.pdf');
+    const docxTailored = path.join(outputDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV.docx');
 
-    // 2. PDF
-    buildPdf(tempHtmlPath, pdfPath);
+    buildPdf(tempHtmlPath, pdfPublicEn);
+    await buildDocx(frontendCvDataEn, docxPublicEn);
 
-    // 3. DOCX
-    await buildDocx(frontendCvData, docxPath);
+    // Keep tailored-cv updated
+    if (fs.existsSync(pdfPublicEn)) fs.copyFileSync(pdfPublicEn, pdfTailored);
+    if (fs.existsSync(docxPublicEn)) fs.copyFileSync(docxPublicEn, docxTailored);
+
+    // 2. Indonesian Front-End CV
+    console.log('\n--- Generating Front-End CV (ID) ---');
+    const htmlId = generateHtmlCv(frontendCvDataId);
+    fs.writeFileSync(tempHtmlPath, htmlId, 'utf-8');
+
+    const pdfPublicId = path.join(publicCvDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV-ID.pdf');
+    const docxPublicId = path.join(publicCvDir, 'Ahmad-Ayub-Numan-Frontend-Developer-CV-ID.docx');
+
+    buildPdf(tempHtmlPath, pdfPublicId);
+    await buildDocx(frontendCvDataId, docxPublicId);
 
     if (fs.existsSync(tempHtmlPath)) {
         fs.unlinkSync(tempHtmlPath);
     }
 
-    console.log('\n=== Success! Front-End Developer CVs ready in tailored-cv/ ===');
+    console.log('\n=== Success! Front-End Developer CVs ready in public/cv/ and tailored-cv/ ===');
 }
 
 main().catch(err => {

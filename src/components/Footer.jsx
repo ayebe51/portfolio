@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiGithub, FiMail, FiLinkedin, FiDownload } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';

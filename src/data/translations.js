@@ -10,8 +10,8 @@ export const translations = {
             fullCvBtn: "Download CV (ATS-Ready)"
         },
         hero: {
-            status: "Available for Software Engineering Roles",
-            subtitle: "Engineering scalable enterprise web systems & robust distributed architectures.",
+            status: "Available for Frontend & Web Engineering Roles",
+            subtitle: "Crafting responsive, high-performance web interfaces & scalable full-stack applications with React 19, Next.js, TypeScript, and modern architectures.",
             exploreWork: "Explore Work",
             downloadCv: "Download CV",
             letsTalk: "Let's Talk",
@@ -23,39 +23,39 @@ export const translations = {
             items: [
                 {
                     id: "01",
-                    title: "Full Stack Development",
+                    title: "Frontend Engineering & UI/UX Architecture",
+                    description: "Crafting responsive, pixel-perfect, and accessible user interfaces with smooth animations and optimal Web Vitals. Specializing in React 19, Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, and reusable component systems.",
+                    tags: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Shadcn UI", "Responsive Design"]
+                },
+                {
+                    id: "02",
+                    title: "Full Stack Web Development",
                     description: "Building complete enterprise web applications from database to UI using React 19, Next.js, Flutter, Laravel 12, NestJS, TypeScript, and PostgreSQL/MySQL. Expertise in authentication (RBAC), REST APIs, state management, and containerized deployment.",
                     tags: ["React 19", "Next.js", "Flutter", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL"]
                 },
                 {
-                    id: "02",
-                    title: "SaaS Development",
-                    description: "Creating subscription-based platforms with multi-tier pricing, user management, payment integration, and analytics. From MVP to production-ready SaaS products.",
-                    tags: ["Subscriptions", "Stripe", "Multi-tenancy", "Analytics"]
+                    id: "03",
+                    title: "Dashboard & Data Visualization",
+                    description: "Building data-rich admin panels with real-time updates, interactive charts (Apache ECharts, Recharts), role-based access control, and comprehensive reporting systems.",
+                    tags: ["Apache ECharts", "Recharts", "Real-time", "RBAC", "Data Viz"]
                 },
                 {
-                    id: "03",
+                    id: "04",
+                    title: "API & Backend Integration",
+                    description: "Designing and implementing RESTful APIs with proper authentication, validation, error handling, and documentation. Seamlessly connecting frontends with secure backend endpoints.",
+                    tags: ["REST", "JWT", "Validation", "Documentation", "NestJS", "Laravel"]
+                },
+                {
+                    id: "05",
                     title: "Database Architecture",
                     description: "Designing normalized schemas, optimizing queries, and implementing data migration strategies for PostgreSQL and MySQL. Focus on scalability and data integrity.",
                     tags: ["PostgreSQL", "MySQL", "Prisma", "Supabase", "Migrations"]
                 },
                 {
-                    id: "04",
-                    title: "Dashboard & Analytics",
-                    description: "Building data-rich admin panels with real-time updates, interactive charts, role-based access control, and comprehensive reporting systems.",
-                    tags: ["Recharts", "Real-time", "RBAC", "Data Viz"]
-                },
-                {
-                    id: "05",
-                    title: "API Development",
-                    description: "Designing and implementing RESTful APIs with proper authentication, validation, error handling, and documentation. Focus on performance and security.",
-                    tags: ["REST", "JWT", "Validation", "Documentation"]
-                },
-                {
                     id: "06",
-                    title: "Frontend Engineering",
-                    description: "Crafting responsive, accessible interfaces with smooth animations and optimal performance. Expert in Tailwind CSS, Shadcn UI, and Framer Motion.",
-                    tags: ["Tailwind CSS", "Shadcn UI", "Framer Motion", "Responsive"]
+                    title: "SaaS & Enterprise Systems",
+                    description: "Creating subscription-based platforms with multi-tier pricing, user management, payment integration, and analytics. From MVP to production-ready enterprise products.",
+                    tags: ["Subscriptions", "Multi-tenancy", "Closed-Loop Wallet", "Analytics"]
                 }
             ]
         },
@@ -68,7 +68,13 @@ export const translations = {
             showcase: "Showcase Specs",
             proprietary: "Proprietary",
             viewCaseStudy: "Explore Architecture",
-            caseStudyBtn: "Case Study"
+            caseStudyBtn: "Case Study",
+            filters: {
+                all: "All Works",
+                frontend: "Frontend & UI/UX",
+                fullstack: "Full-Stack Web",
+                mobile: "Mobile Ecosystem"
+            }
         },
         modal: {
             challenge: "Challenge",
@@ -113,7 +119,7 @@ export const translations = {
         },
         contact: {
             title: "Let's Connect",
-            subtitle: "Available for Full-Stack Developer and Software Engineer opportunities. Reach out directly via WhatsApp, Email, or through the message form.",
+            subtitle: "Available for Front-End Developer, Full-Stack Developer, and Web Engineering opportunities. Reach out directly via WhatsApp, Email, or through the message form.",
             whatsappLabel: "WhatsApp (Direct Chat)",
             emailLabel: "Official Email",
             statusBadge: "Available Immediately",
@@ -130,7 +136,7 @@ export const translations = {
             errorMsg: "✗ Something went wrong. Please try again or email me directly."
         },
         footer: {
-            tagline: "Engineering reliable, scalable web applications with precision.",
+            tagline: "Crafting high-performance web interfaces & scalable web applications with precision.",
             downloadCv: "Download ATS CV (PDF / DOCX)",
             rights: "All rights reserved.",
             builtWith: "Built with React, Vite & Tailwind CSS"
@@ -139,9 +145,14 @@ export const translations = {
             badge: "ATS-Friendly Curriculum Vitae",
             title: "Download Professional CV",
             subtitle: "Formatted for Applicant Tracking Systems (ATS) and technical hiring managers.",
+            selectRoleLabel: "Target Specialization:",
+            roleFrontend: "Front-End Developer",
+            roleFrontendDesc: "React 19 • Next.js • TypeScript • UI Architecture",
+            roleFullstack: "Full-Stack Web Developer",
+            roleFullstackDesc: "React 19 • Laravel 12 • NestJS • PostgreSQL",
             tabEn: "English (EN)",
             tabId: "Bahasa Indonesia (ID)",
-            pdfTitle: "Download PDF Format (EN)",
+            pdfTitle: "Download PDF Format",
             pdfDesc: "Submission-ready vector PDF • 100% ATS searchable text",
             docxTitle: "Download Editable Word (DOCX)",
             docxDesc: "Microsoft Word format for recruiters requiring .docx",
@@ -163,8 +174,8 @@ export const translations = {
             fullCvBtn: "Unduh CV (ATS-Friendly)"
         },
         hero: {
-            status: "Terbuka untuk Peluang Rekayasa Perangkat Lunak",
-            subtitle: "Merekayasa sistem web enterprise terukur & arsitektur terdistribusi yang tangguh.",
+            status: "Terbuka untuk Peluang Front-End & Web Developer",
+            subtitle: "Membangun antarmuka web modern berkinerja tinggi, responsif, dan sistem aplikasi web terukur menggunakan React 19, Next.js, TypeScript, dan arsitektur modern.",
             exploreWork: "Lihat Proyek",
             downloadCv: "Unduh CV",
             letsTalk: "Hubungi Saya",
@@ -176,39 +187,39 @@ export const translations = {
             items: [
                 {
                     id: "01",
-                    title: "Full Stack Development",
+                    title: "Frontend Engineering & Arsitektur UI/UX",
+                    description: "Merancang antarmuka pengguna yang responsif, pixel-perfect, dan aksesibel dengan animasi halus serta skor Web Vitals optimal. Menguasai React 19, Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, dan sistem komponen modular.",
+                    tags: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Shadcn UI", "Desain Responsif"]
+                },
+                {
+                    id: "02",
+                    title: "Pengembangan Sistem Full Stack",
                     description: "Membangun aplikasi web enterprise lengkap dari basis data hingga UI menggunakan React 19, Next.js, Flutter, Laravel 12, NestJS, TypeScript, dan PostgreSQL/MySQL. Berpengalaman dalam autentikasi (RBAC), REST API, state management, dan deployment berbasis kontainer.",
                     tags: ["React 19", "Next.js", "Flutter", "Laravel 12", "NestJS", "TypeScript", "PostgreSQL"]
                 },
                 {
-                    id: "02",
-                    title: "SaaS Development",
-                    description: "Membangun platform berbasis langganan dengan penetapan harga multi-tier, manajemen pengguna, integrasi pembayaran, dan analitik operasional dari tahap MVP hingga produk siap produksi.",
-                    tags: ["Langganan", "Multi-tenancy", "Analitik", "Gateway Pembayaran"]
+                    id: "03",
+                    title: "Dashboard & Visualisasi Data",
+                    description: "Membangun panel admin kaya data dengan pembaruan real-time, grafik interaktif (Apache ECharts, Recharts), kontrol akses berbasis peran (RBAC), dan sistem pelaporan berkala yang komprehensif.",
+                    tags: ["Apache ECharts", "Recharts", "Real-time", "RBAC", "Visualisasi Data"]
                 },
                 {
-                    id: "03",
+                    id: "04",
+                    title: "Integrasi API & Backend",
+                    description: "Merancang dan mengintegrasikan RESTful API dengan standar autentikasi ketat, validasi input, penanganan galat terstruktur, dan dokumentasi kontrak endpoint yang jelas.",
+                    tags: ["REST", "JWT", "Validasi", "Dokumentasi API", "NestJS", "Laravel"]
+                },
+                {
+                    id: "05",
                     title: "Arsitektur Basis Data",
                     description: "Merancang skema ternormalisasi, optimasi query berkinerja tinggi, dan strategi migrasi data untuk PostgreSQL dan MySQL dengan fokus utama pada skalabilitas dan integritas data.",
                     tags: ["PostgreSQL", "MySQL", "Prisma", "Supabase", "Migrasi Data"]
                 },
                 {
-                    id: "04",
-                    title: "Dashboard & Analitik",
-                    description: "Membangun panel admin kaya data dengan pembaruan real-time, grafik interaktif, kontrol akses berbasis peran (RBAC), dan sistem pelaporan berkala yang komprehensif.",
-                    tags: ["Recharts", "Real-time", "RBAC", "Visualisasi Data"]
-                },
-                {
-                    id: "05",
-                    title: "Pengembangan REST API",
-                    description: "Merancang dan membangun RESTful API dengan standar autentikasi ketat, validasi input, penanganan galat terstruktur, dan dokumentasi kontrak endpoint yang jelas.",
-                    tags: ["REST", "JWT", "Validasi", "Dokumentasi API"]
-                },
-                {
                     id: "06",
-                    title: "Frontend Engineering",
-                    description: "Merancang antarmuka yang responsif, aksesibel, dengan animasi halus dan performa optimal mengutamakan prinsip Tailwind CSS, Shadcn UI, dan Framer Motion.",
-                    tags: ["Tailwind CSS", "Shadcn UI", "Framer Motion", "Responsif"]
+                    title: "Solusi SaaS & Enterprise",
+                    description: "Membangun platform berbasis langganan dengan penetapan harga multi-tier, manajemen pengguna, integrasi pembayaran, dan analitik operasional dari tahap MVP hingga produk enterprise siap produksi.",
+                    tags: ["Langganan", "Multi-tenancy", "Closed-Loop Wallet", "Analitik"]
                 }
             ]
         },
@@ -221,7 +232,13 @@ export const translations = {
             showcase: "Spesifikasi Arsitektur",
             proprietary: "Proprietary",
             viewCaseStudy: "Detail Arsitektur",
-            caseStudyBtn: "Detail Kasus"
+            caseStudyBtn: "Detail Kasus",
+            filters: {
+                all: "Semua Proyek",
+                frontend: "Frontend & UI/UX",
+                fullstack: "Full-Stack Web",
+                mobile: "Ekosistem Mobile"
+            }
         },
         modal: {
             challenge: "Tantangan",
@@ -266,7 +283,7 @@ export const translations = {
         },
         contact: {
             title: "Mari Terhubung",
-            subtitle: "Terbuka untuk peluang kerja Full-Stack Developer dan Software Engineer. Hubungi langsung melalui WhatsApp, Email, atau kirimkan pesan formulir di bawah.",
+            subtitle: "Terbuka untuk peluang kerja Front-End Developer, Full-Stack Developer, dan Web Engineer. Hubungi langsung melalui WhatsApp, Email, atau kirimkan pesan formulir di bawah.",
             whatsappLabel: "WhatsApp (Chat Langsung)",
             emailLabel: "Email Resmi",
             statusBadge: "Siap Bekerja Segera",
@@ -283,7 +300,7 @@ export const translations = {
             errorMsg: "✗ Gagal membuka aplikasi email. Silakan kirim email langsung ke ayb.n1994@gmail.com"
         },
         footer: {
-            tagline: "Membangun aplikasi web yang andal, aman, dan terukur dengan presisi tinggi.",
+            tagline: "Membangun antarmuka web modern yang responsif, andal, dan terukur dengan presisi tinggi.",
             downloadCv: "Unduh CV ATS (PDF / DOCX)",
             rights: "Hak cipta dilindungi undang-undang.",
             builtWith: "Dibangun dengan React, Vite & Tailwind CSS"
@@ -292,9 +309,14 @@ export const translations = {
             badge: "Curriculum Vitae Siap ATS",
             title: "Unduh CV Profesional",
             subtitle: "Diformat khusus untuk Applicant Tracking Systems (ATS) dan technical hiring manager.",
+            selectRoleLabel: "Pilih Spesialisasi Target:",
+            roleFrontend: "Front-End Developer",
+            roleFrontendDesc: "React 19 • Next.js • TypeScript • Arsitektur UI",
+            roleFullstack: "Full-Stack Web Developer",
+            roleFullstackDesc: "React 19 • Laravel 12 • NestJS • PostgreSQL",
             tabEn: "English (EN)",
             tabId: "Bahasa Indonesia (ID)",
-            pdfTitle: "Unduh Format PDF (ID)",
+            pdfTitle: "Unduh Format PDF",
             pdfDesc: "PDF vektor siap kirim • 100% teks terbaca oleh ATS",
             docxTitle: "Unduh Word Dapat Diedit (DOCX)",
             docxDesc: "Format Microsoft Word untuk rekruter yang mensyaratkan .docx",

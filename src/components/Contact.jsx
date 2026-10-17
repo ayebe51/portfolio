@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import MagneticButton from './ui/MagneticButton';
 import { FiArrowUpRight, FiMail } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
