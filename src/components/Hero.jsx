@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
 import MagneticButton from './ui/MagneticButton';
 import TechOrbit from './ui/TechOrbit';
 import { FiDownload } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
+
+const ROLES = ['FRONT END', 'FULL STACK', 'WEB DEVELOPER'];
 
 const Hero = ({ onOpenCV }) => {
     const { language } = useLanguage();
@@ -17,7 +19,15 @@ const Hero = ({ onOpenCV }) => {
     const [isPhotoHovered, setIsPhotoHovered] = useState(false);
     const [isPinned, setIsPinned] = useState(false);
     const [isMobileView, setIsMobileView] = useState(false);
+    const [roleIndex, setRoleIndex] = useState(0);
     const hoverTimeoutRef = useRef(null);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setRoleIndex((prev) => (prev + 1) % ROLES.length);
+        }, 3500);
+        return () => clearInterval(timer);
+    }, []);
 
     useEffect(() => {
         const checkMobile = () => {
@@ -126,11 +136,25 @@ const Hero = ({ onOpenCV }) => {
                         </motion.h1>
                     </div>
 
-                    {/* Layer 1: Middle Text "FULL STACK" */}
+                    {/* Layer 1: Middle Text - Dynamic Role Rotator */}
                     {/* Size Relationship: The Subject (Phi * Image) */}
-                    <div className="relative z-10 w-full flex justify-center items-center -mb-[8vw] pointer-events-none mix-blend-screen">
-                        <motion.h2 style={{ y: y2 }} className="text-[17vw] md:text-[12vw] leading-[0.8] font-heading font-black text-white/90 uppercase tracking-tighter whitespace-nowrap drop-shadow-2xl">
-                            FULL STACK
+                    <div className="relative z-10 w-full flex justify-center items-center -mb-[8vw] pointer-events-none mix-blend-screen overflow-hidden py-1">
+                        <motion.h2 
+                            style={{ y: y2 }} 
+                            className="text-[13.5vw] sm:text-[14.5vw] md:text-[11.5vw] leading-[0.8] font-heading font-black text-white/90 uppercase tracking-tighter whitespace-nowrap drop-shadow-2xl flex justify-center items-center min-h-[1em]"
+                        >
+                            <AnimatePresence mode="wait">
+                                <motion.span
+                                    key={ROLES[roleIndex]}
+                                    initial={{ opacity: 0, y: 25, filter: 'blur(8px)' }}
+                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                    exit={{ opacity: 0, y: -25, filter: 'blur(8px)' }}
+                                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                    className="inline-block"
+                                >
+                                    {ROLES[roleIndex]}
+                                </motion.span>
+                            </AnimatePresence>
                         </motion.h2>
                     </div>
                     {/* Layer 2: Interactive Profile & Tech Orbit Wrapper */}
