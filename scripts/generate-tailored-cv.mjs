@@ -10,6 +10,7 @@ import {
     AlignmentType,
     BorderStyle
 } from 'docx';
+import { aiAutomationCvDataEn, aiAutomationCvDataId } from '../src/data/cvData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -222,26 +223,45 @@ const tailoredCvDataEn = {
 };
 
 function generateHtmlCv(data) {
-    const { personal, summary, skills, labels, experience, projects, education, lang } = data;
+    const { personal, summary, skills, labels, experience, projects, education, certifications, lang } = data;
     const isId = lang === 'id';
 
-    const skillCategories = isId ? [
-        { label: "Bahasa Pemrograman:", val: skills.languages.join(', ') },
-        { label: "Frontend & UI/UX:", val: skills.frontend.join(', ') },
-        { label: "Backend & Integrasi API:", val: skills.backend.join(', ') },
-        { label: "Basis Data & ORM:", val: skills.databases.join(', ') },
-        { label: "Testing & Troubleshooting:", val: skills.testingAndTroubleshooting.join(', ') },
-        { label: "Agentic AI & AI IDEs:", val: skills.aiAndProductivity.join(', ') },
-        { label: "DevOps, Git & Keamanan:", val: skills.devopsAndSecurity.join(', ') }
-    ] : [
-        { label: "Programming Languages:", val: skills.languages.join(', ') },
-        { label: "Frontend & UI/UX:", val: skills.frontend.join(', ') },
-        { label: "Backend & API Integration:", val: skills.backend.join(', ') },
-        { label: "Databases & ORM:", val: skills.databases.join(', ') },
-        { label: "Testing & Troubleshooting:", val: skills.testingAndTroubleshooting.join(', ') },
-        { label: "Agentic AI & Workflows:", val: skills.aiAndProductivity.join(', ') },
-        { label: "DevOps, Git & Security:", val: skills.devopsAndSecurity.join(', ') }
-    ];
+    let skillCategories;
+    if (skills.aiAndAgents) {
+        skillCategories = isId ? [
+            { label: "AI Agents & LLM:", val: skills.aiAndAgents.join(', ') },
+            { label: "Bahasa Pemrograman:", val: skills.languages.join(', ') },
+            { label: "Backend & Integrasi API:", val: skills.backendAndIntegration.join(', ') },
+            { label: "Basis Data & Data Pipeline:", val: skills.databasesAndData.join(', ') },
+            { label: "Reliability & Testing:", val: skills.testingAndReliability.join(', ') },
+            { label: "DevOps, Git & Keamanan:", val: skills.devopsAndSecurity.join(', ') }
+        ] : [
+            { label: "AI Agents & LLMs:", val: skills.aiAndAgents.join(', ') },
+            { label: "Programming Languages:", val: skills.languages.join(', ') },
+            { label: "Backend & API Integration:", val: skills.backendAndIntegration.join(', ') },
+            { label: "Databases & Data Pipelines:", val: skills.databasesAndData.join(', ') },
+            { label: "Reliability & Testing:", val: skills.testingAndReliability.join(', ') },
+            { label: "DevOps, Git & Security:", val: skills.devopsAndSecurity.join(', ') }
+        ];
+    } else {
+        skillCategories = isId ? [
+            { label: "Bahasa Pemrograman:", val: skills.languages.join(', ') },
+            { label: "Frontend & UI/UX:", val: skills.frontend.join(', ') },
+            { label: "Backend & Integrasi API:", val: skills.backend.join(', ') },
+            { label: "Basis Data & ORM:", val: skills.databases.join(', ') },
+            { label: "Testing & Troubleshooting:", val: skills.testingAndTroubleshooting.join(', ') },
+            { label: "Agentic AI & AI IDEs:", val: skills.aiAndProductivity.join(', ') },
+            { label: "DevOps, Git & Keamanan:", val: skills.devopsAndSecurity.join(', ') }
+        ] : [
+            { label: "Programming Languages:", val: skills.languages.join(', ') },
+            { label: "Frontend & UI/UX:", val: skills.frontend.join(', ') },
+            { label: "Backend & API Integration:", val: skills.backend.join(', ') },
+            { label: "Databases & ORM:", val: skills.databases.join(', ') },
+            { label: "Testing & Troubleshooting:", val: skills.testingAndTroubleshooting.join(', ') },
+            { label: "Agentic AI & Workflows:", val: skills.aiAndProductivity.join(', ') },
+            { label: "DevOps, Git & Security:", val: skills.devopsAndSecurity.join(', ') }
+        ];
+    }
 
     const demoLabel = isId ? "Demo Langsung:" : "Live Demo:";
     const repoLabel = isId ? "Repositori:" : "Repository:";
@@ -514,6 +534,23 @@ function generateHtmlCv(data) {
     `).join('')}
   </div>
 
+  <!-- CERTIFICATIONS -->
+  ${certifications && certifications.length > 0 ? `
+  <div class="section" style="margin-top:6px;">
+    <div class="section-title">${labels.certifications || (isId ? "Sertifikasi & Kredensial" : "Certifications & Credentials")}</div>
+    ${certifications.map(cert => `
+      <div class="item-block" style="margin-bottom:0;">
+        <div class="item-header">
+          <span class="item-title">${cert.name}</span>
+          <span class="item-meta">${cert.issueDate || ''}</span>
+        </div>
+        <div class="item-submeta">${cert.issuer}${cert.credentialId ? ` • ID: ${cert.credentialId}` : ''}</div>
+        ${cert.description ? `<p class="edu-notes">${cert.description}</p>` : ''}
+      </div>
+    `).join('')}
+  </div>
+  ` : ''}
+
 </body>
 </html>`;
 }
@@ -563,7 +600,7 @@ function buildPdf(htmlPath, pdfPath) {
 }
 
 async function buildDocx(data, docxPath) {
-    const { personal, summary, skills, labels, experience, projects, education, lang } = data;
+    const { personal, summary, skills, labels, experience, projects, education, certifications, lang } = data;
     const isId = lang === 'id';
 
     const docChildren = [];
@@ -678,23 +715,42 @@ async function buildDocx(data, docxPath) {
 
     // Technical Skills
     docChildren.push(createSectionHeading(labels.technicalSkills));
-    const skillCategories = isId ? [
-        { label: "Bahasa Pemrograman", val: skills.languages.join(", ") },
-        { label: "Frontend & UI/UX", val: skills.frontend.join(", ") },
-        { label: "Backend & Integrasi API", val: skills.backend.join(", ") },
-        { label: "Basis Data & ORM", val: skills.databases.join(", ") },
-        { label: "Testing & Troubleshooting", val: skills.testingAndTroubleshooting.join(", ") },
-        { label: "Agentic AI & AI IDEs", val: skills.aiAndProductivity.join(", ") },
-        { label: "DevOps, Git & Keamanan", val: skills.devopsAndSecurity.join(", ") }
-    ] : [
-        { label: "Programming Languages", val: skills.languages.join(", ") },
-        { label: "Frontend & UI/UX", val: skills.frontend.join(", ") },
-        { label: "Backend & API Integration", val: skills.backend.join(", ") },
-        { label: "Databases & ORM", val: skills.databases.join(", ") },
-        { label: "Testing & Troubleshooting", val: skills.testingAndTroubleshooting.join(", ") },
-        { label: "Agentic AI & Workflows", val: skills.aiAndProductivity.join(", ") },
-        { label: "DevOps, Git & Security", val: skills.devopsAndSecurity.join(", ") }
-    ];
+    let skillCategories;
+    if (skills.aiAndAgents) {
+        skillCategories = isId ? [
+            { label: "AI Agents & LLM", val: skills.aiAndAgents.join(", ") },
+            { label: "Bahasa Pemrograman", val: skills.languages.join(", ") },
+            { label: "Backend & Integrasi API", val: skills.backendAndIntegration.join(", ") },
+            { label: "Basis Data & Data Pipeline", val: skills.databasesAndData.join(", ") },
+            { label: "Reliability & Testing", val: skills.testingAndReliability.join(", ") },
+            { label: "DevOps, Git & Keamanan", val: skills.devopsAndSecurity.join(", ") }
+        ] : [
+            { label: "AI Agents & LLMs", val: skills.aiAndAgents.join(", ") },
+            { label: "Programming Languages", val: skills.languages.join(", ") },
+            { label: "Backend & API Integration", val: skills.backendAndIntegration.join(", ") },
+            { label: "Databases & Data Pipelines", val: skills.databasesAndData.join(", ") },
+            { label: "Reliability & Testing", val: skills.testingAndReliability.join(", ") },
+            { label: "DevOps, Git & Security", val: skills.devopsAndSecurity.join(", ") }
+        ];
+    } else {
+        skillCategories = isId ? [
+            { label: "Bahasa Pemrograman", val: skills.languages.join(", ") },
+            { label: "Frontend & UI/UX", val: skills.frontend.join(", ") },
+            { label: "Backend & Integrasi API", val: skills.backend.join(", ") },
+            { label: "Basis Data & ORM", val: skills.databases.join(", ") },
+            { label: "Testing & Troubleshooting", val: skills.testingAndTroubleshooting.join(", ") },
+            { label: "Agentic AI & AI IDEs", val: skills.aiAndProductivity.join(", ") },
+            { label: "DevOps, Git & Keamanan", val: skills.devopsAndSecurity.join(", ") }
+        ] : [
+            { label: "Programming Languages", val: skills.languages.join(", ") },
+            { label: "Frontend & UI/UX", val: skills.frontend.join(", ") },
+            { label: "Backend & API Integration", val: skills.backend.join(", ") },
+            { label: "Databases & ORM", val: skills.databases.join(", ") },
+            { label: "Testing & Troubleshooting", val: skills.testingAndTroubleshooting.join(", ") },
+            { label: "Agentic AI & Workflows", val: skills.aiAndProductivity.join(", ") },
+            { label: "DevOps, Git & Security", val: skills.devopsAndSecurity.join(", ") }
+        ];
+    }
 
     skillCategories.forEach(sc => {
         docChildren.push(
@@ -832,6 +888,41 @@ async function buildDocx(data, docxPath) {
         }
     });
 
+    // Certifications
+    if (certifications && certifications.length > 0) {
+        docChildren.push(createSectionHeading(labels.certifications || (isId ? "Sertifikasi & Kredensial" : "Certifications & Credentials")));
+        certifications.forEach(cert => {
+            docChildren.push(
+                new Paragraph({
+                    spacing: { before: 60, after: 15 },
+                    children: [
+                        new TextRun({ text: cert.name, bold: true, size: 18, color: "1A202C" }),
+                        new TextRun({ text: `\t${cert.issueDate || ''}`, size: 16, color: "4A5568" })
+                    ]
+                })
+            );
+            docChildren.push(
+                new Paragraph({
+                    spacing: { after: 20 },
+                    children: [
+                        new TextRun({ text: `${cert.issuer}${cert.credentialId ? ` • Credential ID: ${cert.credentialId}` : ''}`, italics: true, size: 16, color: "4A5568" })
+                    ]
+                })
+            );
+            if (cert.description) {
+                docChildren.push(
+                    new Paragraph({
+                        spacing: { after: 40 },
+                        alignment: AlignmentType.JUSTIFIED,
+                        children: [
+                            new TextRun({ text: cert.description, size: 15, color: "4A5568" })
+                        ]
+                    })
+                );
+            }
+        });
+    }
+
     const doc = new Document({
         sections: [
             {
@@ -855,10 +946,10 @@ async function buildDocx(data, docxPath) {
     console.log(`✓ Tailored DOCX generated: ${path.basename(docxPath)}`);
 }
 
-async function processTailoredVersion(data, suffix) {
-    const tempHtmlPath = path.join(rootDir, 'scripts', `temp_tailored_${suffix.toLowerCase()}.html`);
-    const pdfPath = path.join(outputDir, `Ahmad-Ayub-Numan-Web-Developer-CV-${suffix}.pdf`);
-    const docxPath = path.join(outputDir, `Ahmad-Ayub-Numan-Web-Developer-CV-${suffix}.docx`);
+async function processTailoredVersion(data, suffix, roleSlug = 'Web-Developer') {
+    const tempHtmlPath = path.join(rootDir, 'scripts', `temp_tailored_${roleSlug.toLowerCase()}_${suffix.toLowerCase()}.html`);
+    const pdfPath = path.join(outputDir, `Ahmad-Ayub-Numan-${roleSlug}-CV-${suffix}.pdf`);
+    const docxPath = path.join(outputDir, `Ahmad-Ayub-Numan-${roleSlug}-CV-${suffix}.docx`);
 
     // 1. HTML
     const html = generateHtmlCv(data);
@@ -873,28 +964,65 @@ async function processTailoredVersion(data, suffix) {
     if (fs.existsSync(tempHtmlPath)) {
         fs.unlinkSync(tempHtmlPath);
     }
+
+    // Also copy to public/cv/ for web access
+    const publicCvDir = path.join(rootDir, 'public', 'cv');
+    if (!fs.existsSync(publicCvDir)) {
+        fs.mkdirSync(publicCvDir, { recursive: true });
+    }
+    try {
+        fs.copyFileSync(pdfPath, path.join(publicCvDir, path.basename(pdfPath)));
+        fs.copyFileSync(docxPath, path.join(publicCvDir, path.basename(docxPath)));
+    } catch {}
 }
 
 async function main() {
-    console.log('=== Tailored ATS CV Generator (Web & Application Developer) ===');
+    console.log('=== Tailored ATS CV Generator ===');
     console.log(`Output folder: ${outputDir}`);
 
-    console.log('\n[1/2] Generating Tailored Indonesian Version (ID)...');
-    await processTailoredVersion(tailoredCvDataId, 'ID');
+    console.log('\n--- 1. AI & Automation Engineer CVs (Target: ARAH Coffee / AI Agent Roles) ---');
+    console.log('[1/2] Generating AI & Automation Indonesian Version (ID)...');
+    await processTailoredVersion(aiAutomationCvDataId, 'ID', 'AI-Automation-Engineer');
 
-    console.log('\n[2/2] Generating Tailored English Version (EN)...');
-    await processTailoredVersion(tailoredCvDataEn, 'EN');
+    console.log('[2/2] Generating AI & Automation English Version (EN)...');
+    await processTailoredVersion(aiAutomationCvDataEn, 'EN', 'AI-Automation-Engineer');
 
-    // Also create ready-to-send default alias in tailored-cv/
+    // Default alias for AI & Automation Engineer ready to send
+    const aiIdPdf = path.join(outputDir, 'Ahmad-Ayub-Numan-AI-Automation-Engineer-CV-ID.pdf');
+    const aiDefaultPdf = path.join(outputDir, 'Ahmad-Ayub-Numan-AI-Automation-Engineer-CV.pdf');
+    if (fs.existsSync(aiIdPdf)) {
+        try {
+            fs.copyFileSync(aiIdPdf, aiDefaultPdf);
+            console.log(`✓ Ready-to-send alias PDF updated: ${path.basename(aiDefaultPdf)}`);
+        } catch (e) {
+            console.warn(`ℹ Note: ${path.basename(aiDefaultPdf)} is open.`);
+        }
+    }
+    const aiIdDocx = path.join(outputDir, 'Ahmad-Ayub-Numan-AI-Automation-Engineer-CV-ID.docx');
+    const aiDefaultDocx = path.join(outputDir, 'Ahmad-Ayub-Numan-AI-Automation-Engineer-CV.docx');
+    if (fs.existsSync(aiIdDocx)) {
+        try {
+            fs.copyFileSync(aiIdDocx, aiDefaultDocx);
+            console.log(`✓ Ready-to-send alias DOCX updated: ${path.basename(aiDefaultDocx)}`);
+        } catch (e) {
+            console.warn(`ℹ Note: ${path.basename(aiDefaultDocx)} is open.`);
+        }
+    }
+
+    console.log('\n--- 2. Web & Application Developer CVs ---');
+    console.log('[1/2] Generating Web Developer Indonesian Version (ID)...');
+    await processTailoredVersion(tailoredCvDataId, 'ID', 'Web-Developer');
+
+    console.log('[2/2] Generating Web Developer English Version (EN)...');
+    await processTailoredVersion(tailoredCvDataEn, 'EN', 'Web-Developer');
+
     const idPdf = path.join(outputDir, 'Ahmad-Ayub-Numan-Web-Developer-CV-ID.pdf');
     const defaultPdf = path.join(outputDir, 'Ahmad-Ayub-Numan-Web-Application-Developer-CV.pdf');
     if (fs.existsSync(idPdf)) {
         try {
             fs.copyFileSync(idPdf, defaultPdf);
             console.log(`✓ Default alias PDF updated: ${path.basename(defaultPdf)}`);
-        } catch (e) {
-            console.warn(`ℹ Note: ${path.basename(defaultPdf)} is currently open in a PDF viewer. Please close it if you want it overwritten directly.`);
-        }
+        } catch (e) {}
     }
 
     const idDocx = path.join(outputDir, 'Ahmad-Ayub-Numan-Web-Developer-CV-ID.docx');
@@ -903,12 +1031,10 @@ async function main() {
         try {
             fs.copyFileSync(idDocx, defaultDocx);
             console.log(`✓ Default alias DOCX updated: ${path.basename(defaultDocx)}`);
-        } catch (e) {
-            console.warn(`ℹ Note: ${path.basename(defaultDocx)} is currently open in Word.`);
-        }
+        } catch (e) {}
     }
 
-    console.log('\n=== Success! Tailored CVs saved to tailored-cv/ ===');
+    console.log('\n=== Success! All Tailored CVs saved to tailored-cv/ and public/cv/ ===');
 }
 
 main().catch(err => {

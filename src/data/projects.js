@@ -3,38 +3,26 @@
 export const projectsEn = [
     {
         id: 1,
-        title: "SIMMACI — Enterprise Education Governance Platform",
-        category: "Enterprise Web SPA & PWA",
+        title: "Enterprise Inventory + POS (Kiro ERP) — Retail Management",
+        category: "React 19 & Data Visualization",
         filterCategories: ["all", "frontend", "fullstack"],
-        image: "/images/projects/simmaci/dashboard.webp",
-        shortDesc: "Centralized administrative decree issuance and institutional governance platform for 270+ educational institutions, 2,000+ staff, and 17,000+ students.",
-        description: "A centralized institutional governance platform built for LP Ma'arif NU Cilacap. Streamlines and automates periodic operational decree issuance, teacher credentialing, and multi-school administrative reviews across 270+ madrasahs and schools. Delivers real-time data synchronization with dedicated tenant isolation.",
-        challenge: "Decentralized administration across 270+ educational institutions causing manual certificate issuance bottlenecks, duplicate teacher records, and high latency.",
-        approach: "Architected a decoupled solution with a high-performance React 19 SPA (Vite PWA) featuring dynamic form generation, client-side batch templating previews (Docxtemplater), and responsive data tables, paired with a robust Laravel 12 REST API on PostgreSQL 16 with 1,800+ automated test cases.",
-        tools: ["React 19", "TypeScript", "Tailwind CSS", "Vite PWA", "Laravel 12", "PostgreSQL 16", "PHPUnit / Pest"],
-        results: "Decreased manual decree issuance overhead by over 70%, eliminated record duplication across 270+ institutions, and achieved 100% test pass rate with 36,000+ assertions.",
-        demoUrl: "",
-        demoNote: "Internal institutional platform for LP Ma'arif NU Cilacap administering 270+ institutions. Full codebase, database migrations, and 1,800+ automated test cases are accessible on GitHub. Live system walkthrough available upon interview request.",
+        image: "/images/projects/pos-inventory/dashboard.webp",
+        shortDesc: "Omnichannel inventory, retail POS, and double-entry accounting platform for retail and wholesale distribution.",
+        description: "A comprehensive enterprise web management platform built for Indonesian retail and wholesale distribution. Features multi-warehouse inventory tracking with an append-only transaction ledger (WAC/FIFO), fast cashier POS with shift balancing and cash drawer control, B2B sales orders, automated 3-way matching procurement (PR/PO/Goods Receipt), and PSAK-compliant financial accounting with live operational analytics.",
+        challenge: "Maintaining strict inventory ledger integrity and sub-second cashier checkout performance under concurrent multi-warehouse and multi-branch retail operations.",
+        approach: "Engineered a high-performance frontend using React 19, TypeScript, Ant Design, and Apache ECharts analytics dashboards with optimistic UI feedback and sub-second cashier operations, connected to a DDD backend with NestJS and Prisma on PostgreSQL.",
+        tools: ["React 19", "TypeScript", "Apache ECharts", "Ant Design", "NestJS", "Prisma", "PostgreSQL"],
+        results: "Delivered an auditable retail ecosystem supporting multi-warehouse replenishment, real-time inventory valuations, and zero discrepancy cashier reconciliations.",
+        demoUrl: "https://inventory-pos-hazel.vercel.app",
+        demoNote: "Production-ready enterprise retail system. Access to multi-branch operational accounts available upon inquiry for technical recruiter review.",
         repoType: "public",
-        repoUrl: "https://github.com/ayebe51/simmaci",
+        repoUrl: "https://github.com/ayebe51/inventory-pos",
         videoUrl: "",
         gallery: [
             {
-                src: "/images/projects/simmaci/key-feature.webp",
-                caption: "Batch Decree Generator — automated template configuration, custom numbering formats, and bulk issuance workflow.",
-                alt: "SIMMACI Batch Decree Generator and Approval Workflow",
-                isMobile: false
-            },
-            {
-                src: "/images/projects/simmaci/supporting-view.webp",
-                caption: "Centralized Decree Services & Archive Portal — multi-channel application forms, revision requests, and digital document repositories.",
-                alt: "SIMMACI Centralized Decree Services and Archive Portal",
-                isMobile: false
-            },
-            {
-                src: "/images/projects/simmaci/dashboard-admin-overview.webp",
-                caption: "Executive Command Center & Regional Analytics — central monitoring for 270+ institutions, 2,000+ staff, and 17,000+ students.",
-                alt: "SIMMACI Executive Command Center and Regional Analytics Dashboard",
+                src: "/images/projects/pos-inventory/dashboard.webp",
+                caption: "Omnichannel Analytics & Inventory Dashboard — sub-second multi-warehouse stock replenishment, cashier balancing, and ECharts live metrics.",
+                alt: "Enterprise Inventory POS Dashboard and Real-Time Analytics",
                 isMobile: false
             }
         ]
@@ -91,28 +79,123 @@ export const projectsEn = [
     },
     {
         id: 3,
-        title: "Enterprise Inventory + POS (Kiro ERP) — Retail Management",
-        category: "React 19 & Data Visualization",
+        title: "SIMMACI — Enterprise Education Governance Platform",
+        category: "Enterprise Web SPA & PWA",
         filterCategories: ["all", "frontend", "fullstack"],
-        image: "/images/projects/pos-inventory/dashboard.webp",
-        shortDesc: "Omnichannel inventory, retail POS, and double-entry accounting platform for retail and wholesale distribution.",
-        description: "A comprehensive enterprise web management platform built for Indonesian retail and wholesale distribution. Features multi-warehouse inventory tracking with an append-only transaction ledger (WAC/FIFO), fast cashier POS with shift balancing and cash drawer control, B2B sales orders, automated 3-way matching procurement (PR/PO/Goods Receipt), and PSAK-compliant financial accounting with live operational analytics.",
-        challenge: "Maintaining strict inventory ledger integrity and sub-second cashier checkout performance under concurrent multi-warehouse and multi-branch retail operations.",
-        approach: "Engineered a high-performance frontend using React 19, TypeScript, Ant Design, and Apache ECharts analytics dashboards with optimistic UI feedback and sub-second cashier operations, connected to a DDD backend with NestJS and Prisma on PostgreSQL.",
-        tools: ["React 19", "TypeScript", "Apache ECharts", "Ant Design", "NestJS", "Prisma", "PostgreSQL"],
-        results: "Delivered an auditable retail ecosystem supporting multi-warehouse replenishment, real-time inventory valuations, and zero discrepancy cashier reconciliations.",
-        demoUrl: "https://inventory-pos-hazel.vercel.app",
-        demoNote: "Production-ready enterprise retail system. Access to multi-branch operational accounts available upon inquiry for technical recruiter review.",
+        image: "/images/projects/simmaci/dashboard.webp",
+        shortDesc: "Centralized administrative decree issuance and institutional governance platform for 270+ educational institutions, 2,000+ staff, and 17,000+ students.",
+        description: "A centralized institutional governance platform built for LP Ma'arif NU Cilacap. Streamlines and automates periodic operational decree issuance, teacher credentialing, and multi-school administrative reviews across 270+ madrasahs and schools. Delivers real-time data synchronization with dedicated tenant isolation.",
+        challenge: "Decentralized administration across 270+ educational institutions causing manual certificate issuance bottlenecks, duplicate teacher records, and high latency.",
+        approach: "Architected a decoupled solution with a high-performance React 19 SPA (Vite PWA) featuring dynamic form generation, client-side batch templating previews (Docxtemplater), and responsive data tables, paired with a robust Laravel 12 REST API on PostgreSQL 16 with 1,800+ automated test cases.",
+        tools: ["React 19", "TypeScript", "Tailwind CSS", "Vite PWA", "Laravel 12", "PostgreSQL 16", "PHPUnit / Pest"],
+        results: "Decreased manual decree issuance overhead by over 70%, eliminated record duplication across 270+ institutions, and achieved 100% test pass rate with 36,000+ assertions.",
+        demoUrl: "",
+        demoNote: "Internal institutional platform for LP Ma'arif NU Cilacap administering 270+ institutions. Full codebase, database migrations, and 1,800+ automated test cases are accessible on GitHub. Live system walkthrough available upon interview request.",
         repoType: "public",
-        repoUrl: "https://github.com/ayebe51/inventory-pos",
+        repoUrl: "https://github.com/ayebe51/simmaci",
         videoUrl: "",
-        gallery: []
+        gallery: [
+            {
+                src: "/images/projects/simmaci/key-feature.webp",
+                caption: "Batch Decree Generator — automated template configuration, custom numbering formats, and bulk issuance workflow.",
+                alt: "SIMMACI Batch Decree Generator and Approval Workflow",
+                isMobile: false
+            },
+            {
+                src: "/images/projects/simmaci/supporting-view.webp",
+                caption: "Centralized Decree Services & Archive Portal — multi-channel application forms, revision requests, and digital document repositories.",
+                alt: "SIMMACI Centralized Decree Services and Archive Portal",
+                isMobile: false
+            },
+            {
+                src: "/images/projects/simmaci/dashboard-admin-overview.webp",
+                caption: "Executive Command Center & Regional Analytics — central monitoring for 270+ institutions, 2,000+ staff, and 17,000+ students.",
+                alt: "SIMMACI Executive Command Center and Regional Analytics Dashboard",
+                isMobile: false
+            }
+        ]
     }
 ];
 
 export const projectsId = [
     {
         id: 1,
+        title: "Enterprise Inventory + POS (Kiro ERP) — Kasir & Ritel",
+        category: "React 19 & Visualisasi Data",
+        filterCategories: ["all", "frontend", "fullstack"],
+        image: "/images/projects/pos-inventory/dashboard.webp",
+        shortDesc: "Platform persediaan ritel omnichannel, kasir POS cepat, dan akuntansi double-entry untuk distribusi ritel dan grosir.",
+        description: "Platform manajemen ritel komprehensif yang dirancang untuk rantai distribusi ritel dan grosir. Dilengkapi pencatatan mutasi stok multi-gudang berbasis append-only ledger (valuasi WAC/FIFO), terminal kasir POS cepat dengan kontrol shift kas, pesanan penjualan B2B, pengadaan 3-way matching otomatis (PR/PO/Penerimaan Barang), dan akuntansi keuangan standar PSAK dengan analitik operasional real-time.",
+        challenge: "Menjaga integritas data stok inventaris dan kecepatan transaksi kasir sub-detik di tengah tingginya transaksi konkuren multi-gudang dan cabang ritel.",
+        approach: "Membangun antarmuka enterprise interaktif menggunakan React 19, TypeScript, Ant Design, dan visualisasi data Apache ECharts dengan antarmuka kasir sub-detik, umpan balik UI optimistik, dan dashboard analitik inventaris responsif, terhubung ke backend DDD dengan NestJS dan Prisma pada PostgreSQL.",
+        tools: ["React 19", "TypeScript", "Apache ECharts", "Ant Design", "NestJS", "Prisma", "PostgreSQL"],
+        results: "Menghasilkan ekosistem ritel yang dapat diaudit penuh dengan otomatisasi pengisian stok multi-gudang, valuasi stok real-time, dan rekonsiliasi kasir tanpa selisih.",
+        demoUrl: "https://inventory-pos-hazel.vercel.app",
+        demoNote: "Sistem ritel enterprise siap produksi. Akun operasional cabang dapat disediakan bagi recruiter teknis untuk evaluasi lebih mendalam.",
+        repoType: "public",
+        repoUrl: "https://github.com/ayebe51/inventory-pos",
+        videoUrl: "",
+        gallery: [
+            {
+                src: "/images/projects/pos-inventory/dashboard.webp",
+                caption: "Dashboard Analitik & Inventaris Omnichannel — pengisian stok multi-gudang sub-detik, rekonsiliasi kasir, dan metrik live ECharts.",
+                alt: "Dashboard Enterprise Inventory POS dan Analitik Real-Time",
+                isMobile: false
+            }
+        ]
+    },
+    {
+        id: 2,
+        title: "Koneksi Santri — Sistem ERP Pesantren & Ekosistem Mobile",
+        category: "Next.js 14 Portal & Ekosistem Mobile",
+        filterCategories: ["all", "frontend", "fullstack", "mobile"],
+        image: "/images/projects/koneksi-santri/dashboard.webp",
+        shortDesc: "Platform terpadu ERP & mobile pesantren dengan aplikasi wali santri berbasis Flutter, dompet digital tertutup (closed-loop), gerbang pintar, dan buku besar akuntansi.",
+        description: "Ekosistem enterprise yang dikembangkan untuk institusi pesantren modern. Menghadirkan aplikasi mobile Flutter untuk wali santri (Portal Wali Santri) guna memantau uang saku digital secara realtime, membatasi limit belanja harian di kantin, mengesahkan izin penjemputan via Smart Gate QR, dan memantau status tagihan SPP. Didukung web superadmin Next.js 14 dan microservices NestJS pada PostgreSQL dengan pembukuan akuntansi double-entry multi-cabang.",
+        challenge: "Mengeliminasi kebocoran uang saku tunai dan memastikan keamanan penjemputan santri, sembari mengelola keuangan kompleks multi-yayasan dengan konsistensi data mutlak.",
+        approach: "Merancang ekosistem full-stack dan mobile terpadu: aplikasi Flutter untuk wali santri, portal web responsif Next.js 14 App Router, serta microservices NestJS pada PostgreSQL dengan Prisma ORM, memadukan buku besar dompet tertutup dan verifikasi pos keamanan QR.",
+        tools: ["Next.js 14", "Flutter", "TypeScript", "Tailwind CSS", "NestJS", "PostgreSQL", "Prisma", "Docker"],
+        results: "Menciptakan lingkungan kampus 100% nontunai dengan kontrol dompet tertutup bebas fraud, verifikasi penjemputan yang dapat diaudit, dan nol selisih buku besar keuangan.",
+        demoUrl: "https://admin.koneksisantri.tech",
+        demoNote: "Demo operasional live dengan reset otomatis setiap pukul 02:00 WIB. Pemilih peran interaktif (Admin Pesantren, Bendahara, Ustadz, Wali Santri, Kasir) tersedia langsung di portal login. Walkthrough arsitektur tersedia berdasarkan permintaan interview teknis.",
+        repoType: "private",
+        repoUrl: "https://github.com/ayebe51/koneksi-santri",
+        videoUrl: "",
+        gallery: [
+            {
+                src: "/images/projects/koneksi-santri/mobile-1-beranda.webp",
+                caption: "Portal Wali Santri (Flutter Mobile) — Beranda & Dompet Digital: Monitoring uang jajan santri real-time, top-up instan, QR santri, dan kontrol limit belanja kantin.",
+                alt: "Portal Wali Santri Beranda dan Dompet Digital Santri",
+                isMobile: true
+            },
+            {
+                src: "/images/projects/koneksi-santri/mobile-2-tagihan.webp",
+                caption: "Portal Wali Santri (Flutter Mobile) — Tagihan Bulanan: Rincian SPP dan iuran pesantren (makan, asrama, laundry, kegiatan) dengan riwayat pembayaran terperinci.",
+                alt: "Portal Wali Santri Rincian Tagihan Bulanan Santri",
+                isMobile: true
+            },
+            {
+                src: "/images/projects/koneksi-santri/mobile-3-hafalan.webp",
+                caption: "Portal Wali Santri (Flutter Mobile) — Pemantauan Hafalan: Laporan capaian tahfidz Al-Qur'an (target juz dan evaluasi setoran berkala).",
+                alt: "Portal Wali Santri Pemantauan Tahfidz dan Hafalan Santri",
+                isMobile: true
+            },
+            {
+                src: "/images/projects/koneksi-santri/key-feature.webp",
+                caption: "Web Superadmin — Smart Gate & Student Pickup Dispatch: Otorisasi izin penjemputan santri via QR kode dengan verifikasi pos keamanan dan log real-time.",
+                alt: "Koneksi Santri Smart Gate QR Security dan Student Pickup Dispatch",
+                isMobile: false
+            },
+            {
+                src: "/images/projects/koneksi-santri/supporting-view.webp",
+                caption: "Web Superadmin — Multi-Entity General Ledger: Pembukuan buku besar akuntansi double-entry dengan neraca saldo konsolidasi multi-cabang yayasan.",
+                alt: "Koneksi Santri Multi-Entity General Ledger dan Consolidated Trial Balance",
+                isMobile: false
+            }
+        ]
+    },
+    {
+        id: 3,
         title: "SIMMACI — Platform Tata Kelola Pendidikan Enterprise",
         category: "Web SPA & PWA Enterprise",
         filterCategories: ["all", "frontend", "fullstack"],
@@ -148,75 +231,6 @@ export const projectsId = [
                 isMobile: false
             }
         ]
-    },
-    {
-        id: 2,
-        title: "Koneksi Santri — Sistem Informasi Manajemen Pesantren & Ekosistem Mobile",
-        category: "Portal Web Next.js 14 & Flutter Mobile",
-        filterCategories: ["all", "frontend", "fullstack", "mobile"],
-        image: "/images/projects/koneksi-santri/dashboard.webp",
-        shortDesc: "Platform ERP & aplikasi mobile terpadu pesantren dengan aplikasi wali santri (Flutter), dompet digital non-tunai, pos jaga smart gate, dan buku besar akuntansi.",
-        description: "Platform manajemen enterprise terpadu yang dirancang khusus untuk pondok pesantren. Dilengkapi aplikasi mobile Flutter khusus wali santri (Portal Wali Santri) untuk memantau transaksi uang saku non-tunai di kantin/koperasi secara real-time, mengatur limit belanja harian, otorisasi izin keluar santri via Smart Gate QR, dan tagihan SPP digital. Didukung web superadmin Next.js 14 dan microservices NestJS pada PostgreSQL dengan akuntansi buku besar konsolidasi multi-cabang yayasan.",
-        challenge: "Mengeliminasi kebocoran uang saku santri dan menjamin keamanan santri saat keluar kampus sembari mengelola keuangan kompleks multi-cabang yayasan dengan konsistensi data yang ketat.",
-        approach: "Membangun ekosistem antarmuka modern memadukan portal admin Next.js 14 App Router responsif dengan dashboard visual interaktif dan aplikasi mobile Flutter wali santri, terintegrasi dengan microservices NestJS dan Prisma ORM.",
-        tools: ["Next.js 14", "Flutter", "TypeScript", "Tailwind CSS", "NestJS", "PostgreSQL", "Prisma", "Docker"],
-        results: "Mewujudkan 100% lingkungan kampus non-tunai dengan kontrol dompet digital bebas fraud, verifikasi penjemputan santri yang dapat diaudit, dan nol selisih buku besar keuangan.",
-        demoUrl: "https://admin.koneksisantri.tech",
-        demoNote: "Demo showroom berjalan dengan reset otomatis harian pukul 02:00 WIB. Selektor role interaktif (Admin Pesantren, Bendahara, Ustadz, Wali Santri, Kasir) tersedia langsung di portal login. Seluruh basis kode dilindungi lisensi privat; walkthrough kode privat dapat dijadwalkan saat sesi wawancara teknis.",
-        repoType: "private",
-        repoUrl: "https://github.com/ayebe51/koneksi-santri",
-        videoUrl: "",
-        gallery: [
-            {
-                src: "/images/projects/koneksi-santri/mobile-1-beranda.webp",
-                caption: "Portal Wali Santri (Flutter Mobile) — Beranda & Saldo Dompet Digital: Monitoring saldo uang saku real-time, top-up cepat, QR santri, dan kontrol limit belanja kantin.",
-                alt: "Portal Wali Santri Beranda dan Saldo Dompet Digital Santri",
-                isMobile: true
-            },
-            {
-                src: "/images/projects/koneksi-santri/mobile-2-tagihan.webp",
-                caption: "Portal Wali Santri (Flutter Mobile) — Manajemen Tagihan SPP: Rincian pos biaya bulanan santri (makan, asrama, laundry, maulid) dengan pelacakan status pembayaran.",
-                alt: "Portal Wali Santri Tagihan dan Rincian Biaya Bulanan",
-                isMobile: true
-            },
-            {
-                src: "/images/projects/koneksi-santri/mobile-3-hafalan.webp",
-                caption: "Portal Wali Santri (Flutter Mobile) — Monitoring Progres Hafalan: Pelaporan berkala capaian tahfidz Al-Qur'an (target juz dan histori nilai setoran santri).",
-                alt: "Portal Wali Santri Monitoring Progres Hafalan Al-Quran",
-                isMobile: true
-            },
-            {
-                src: "/images/projects/koneksi-santri/key-feature.webp",
-                caption: "Web Superadmin — Smart Gate & Student Pickup Dispatch: Otorisasi izin penjemputan santri via QR kode dengan verifikasi pos keamanan dan log real-time.",
-                alt: "Koneksi Santri Smart Gate QR Security dan Student Pickup Dispatch",
-                isMobile: false
-            },
-            {
-                src: "/images/projects/koneksi-santri/supporting-view.webp",
-                caption: "Web Superadmin — Multi-Entity General Ledger: Pembukuan buku besar akuntansi double-entry dengan neraca saldo konsolidasi multi-cabang yayasan.",
-                alt: "Koneksi Santri Multi-Entity General Ledger dan Consolidated Trial Balance",
-                isMobile: false
-            }
-        ]
-    },
-    {
-        id: 3,
-        title: "Enterprise Inventory + POS (Kiro ERP) — Kasir & Ritel",
-        category: "React 19 & Visualisasi Data",
-        filterCategories: ["all", "frontend", "fullstack"],
-        image: "/images/projects/pos-inventory/dashboard.webp",
-        shortDesc: "Platform persediaan ritel omnichannel, kasir POS cepat, dan akuntansi double-entry untuk distribusi ritel dan grosir.",
-        description: "Platform manajemen ritel komprehensif yang dirancang untuk rantai distribusi ritel dan grosir. Dilengkapi pencatatan mutasi stok multi-gudang berbasis append-only ledger (valuasi WAC/FIFO), terminal kasir POS cepat dengan kontrol shift kas, pesanan penjualan B2B, pengadaan 3-way matching otomatis (PR/PO/Penerimaan Barang), dan akuntansi keuangan standar PSAK dengan analitik operasional real-time.",
-        challenge: "Menjaga integritas data stok inventaris dan kecepatan transaksi kasir sub-detik di tengah tingginya transaksi konkuren multi-gudang dan cabang ritel.",
-        approach: "Membangun antarmuka enterprise interaktif menggunakan React 19, TypeScript, Ant Design, dan visualisasi data Apache ECharts dengan antarmuka kasir sub-detik, umpan balik UI optimistik, dan dashboard analitik inventaris responsif, terhubung ke backend DDD dengan NestJS dan Prisma pada PostgreSQL.",
-        tools: ["React 19", "TypeScript", "Apache ECharts", "Ant Design", "NestJS", "Prisma", "PostgreSQL"],
-        results: "Menghasilkan ekosistem ritel yang dapat diaudit penuh dengan otomatisasi pengisian stok multi-gudang, valuasi stok real-time, dan rekonsiliasi kasir tanpa selisih.",
-        demoUrl: "https://inventory-pos-hazel.vercel.app",
-        demoNote: "Sistem ritel enterprise siap produksi. Akun operasional cabang dapat disediakan bagi recruiter teknis untuk evaluasi lebih mendalam.",
-        repoType: "public",
-        repoUrl: "https://github.com/ayebe51/inventory-pos",
-        videoUrl: "",
-        gallery: []
     }
 ];
 

@@ -472,4 +472,344 @@ export const frontendCvDataId = {
     ]
 };
 
+export const aiAutomationCvDataEn = {
+    lang: "en",
+    personal: {
+        name: "Ahmad Ayub Nu'man",
+        title: "AI & Automation Engineer",
+        subtitle: "AI Agents Architecture • LLM Integrations • Business Workflow Automation • End-to-End Reliability",
+        location: "Cilacap, Central Java, Indonesia",
+        email: "ayb.n1994@gmail.com",
+        phone: "+62 895 3491 77555",
+        whatsappUrl: "https://wa.me/62895349177555",
+        github: "https://github.com/ayebe51",
+        githubDisplay: "github.com/ayebe51",
+        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
+        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioUrl: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
+    },
+    summary: "AI & Automation Engineer with a rigorous full-stack software engineering foundation (2+ years) specializing in autonomous AI Agent design, Large Language Model (LLM API) integrations, and business process workflow automation. Proven expertise connecting backend services (JavaScript/TypeScript, Node.js, NestJS, Python) with relational databases (PostgreSQL, MySQL) and third-party systems via robust RESTful APIs and real-time webhooks. Track record includes architecting large-scale operational automation: automated batch document synthesis for SIMMACI (reducing 70% manual bottleneck across 270+ institutions), multi-branch retail POS & inventory management (Kiro ERP), and event-driven WhatsApp alert dispatching in Koneksi Santri. Certified in Spec-Driven Development (Kiro / Dicoding Academy), emphasizing rigorous error guardrails, deterministic failure handling, and comprehensive automated test suites (1,800+ test cases) to ensure AI Agents operate accurately, stably, and securely in production.",
+    skills: {
+        languages: ["JavaScript (ES6+)", "TypeScript", "Python", "SQL", "PHP 8+", "HTML5/CSS3"],
+        aiAndAgents: ["AI Agent Architecture", "LLM APIs (OpenAI, Anthropic, Gemini, Grok)", "Function / Tool Calling", "n8n Workflow Automation", "LangChain / LangGraph Concepts", "Prompt Engineering", "Agentic AI IDEs (Antigravity, Kiro, Codex)"],
+        backendAndIntegration: ["Node.js", "NestJS", "Express", "RESTful API Integration", "Webhook Processing", "Inter-System Gateways (WhatsApp API, S3/MinIO)", "Microservices Architecture"],
+        databasesAndData: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Relational Schema Design", "Query Optimization", "ETL & Data Pipelines", "Automated Reporting"],
+        testingAndReliability: ["Spec-Driven Development (SDD)", "Automated Testing (PHPUnit, Pest, Jest - 1,800+ Test Cases)", "Agent Error Handling & Guardrails", "Log Analysis & Debugging", "Performance Monitoring"],
+        devopsAndSecurity: ["Docker & Docker Compose", "Linux/VPS Administration", "Git / GitHub (1,940+ Commits)", "API Security Fundamentals (RBAC, Rate Limiting, OWASP, Token Sanitization)"]
+    },
+    labels: {
+        professionalSummary: "Professional Summary",
+        technicalSkills: "Technical Skills",
+        professionalExperience: "Professional Experience",
+        selectedProjects: "Selected AI Agent, Automation & Engineering Projects",
+        education: "Education & Qualifications",
+        certifications: "Certifications & Credentials"
+    },
+    experience: [
+        {
+            role: "Software & Automation Engineer",
+            subtitle: "Lead Systems Architect & Product Lead",
+            company: "LP Ma'arif NU Cilacap",
+            location: "Cilacap, Central Java, Indonesia",
+            period: "2024 – Present",
+            responsibilities: [
+                "Architected and deployed operational workflow automation solutions and centralized data pipelines for 270+ schools, 2,000+ staff members, and 17,000+ students, cutting manual operational overhead by over 70%.",
+                "Engineered secure RESTful APIs and webhook integration pipelines connecting external services: automated bulk document generation engines, isolated S3/MinIO cloud storage, and automated notification gateways.",
+                "Engineered an automated institutional financial processing and reporting pipeline (Core Financial ERP) utilizing Domain-Driven Design (DDD) and state machines to ensure transaction ledger consistency and zero-discrepancy reconciliation.",
+                "Integrated Agentic AI workflows (Antigravity, Kiro, Codex, Claude) into daily development for rapid business logic synthesis, automated test scenario formulation, and architectural refactoring.",
+                "Enforced end-to-end system reliability and stability via 1,822 automated test cases (PHPUnit/Pest, 100% pass rate, 36,983 assertions), continuous debugging, and security guardrail audits (RBAC, API guard enforcement).",
+                "Collaborated with cross-functional stakeholders to capture operational business requirements and translate them into scalable, high-efficiency technical solutions."
+            ]
+        }
+    ],
+    projects: [
+        {
+            name: "Enterprise POS & Multi-Warehouse Inventory (Kiro ERP) — Retail Automation Platform",
+            techStack: "React 19, NestJS, TypeScript, Prisma ORM, PostgreSQL, REST API, Apache ECharts",
+            demoUrl: "https://inventory-pos-hazel.vercel.app",
+            demoDisplay: "inventory-pos-hazel.vercel.app",
+            repoUrl: "https://github.com/ayebe51/inventory-pos",
+            repoDisplay: "github.com/ayebe51/inventory-pos",
+            highlights: [
+                "Engineered retail operational automation and multi-branch POS cashier systems with append-only inventory movement ledgers (WAC/FIFO) and live sales analytics reporting.",
+                "Designed automated 3-way matching procurement workflows (PR/PO/Goods Receipt) and cashier reconciliations with sub-second transactional consistency."
+            ]
+        },
+        {
+            name: "SIMMACI — Large-Scale Process Automation & Batch Document Synthesis Platform",
+            techStack: "TypeScript, React 19, Laravel 12, PostgreSQL 16, REST API, Webhooks, PHPUnit/Pest",
+            demoUrl: "",
+            demoDisplay: "",
+            repoUrl: "https://github.com/ayebe51/simmaci",
+            repoDisplay: "github.com/ayebe51/simmaci",
+            highlights: [
+                "Engineered an automated bulk document synthesis engine administering 270+ educational institutions, eliminating duplicate records and administrative turnaround latency.",
+                "Implemented isolated cloud object storage integrations (S3/MinIO), webhook alert pipelines, and 1,822 automated test cases (100% pass rate, 36,983 assertions)."
+            ]
+        },
+        {
+            name: "Koneksi Santri — Automated Ecosystem, WhatsApp Notification Gateway & Smart Gate",
+            techStack: "Next.js 14, Flutter (Dart), NestJS, PostgreSQL, Prisma, Webhook Gateway, Docker",
+            demoUrl: "https://admin.koneksisantri.tech",
+            demoDisplay: "admin.koneksisantri.tech",
+            repoUrl: "https://github.com/ayebe51/koneksi-santri",
+            repoDisplay: "github.com/ayebe51/koneksi-santri",
+            highlights: [
+                "Integrated real-time WhatsApp webhook notification dispatches for guardian mobile monitoring of cashless student wallets and QR Smart Gate checkpoint authorisations.",
+                "Developed periodic recurring tuition billing automations and multi-branch double-entry ledger balance reconciliations."
+            ]
+        }
+    ],
+    education: [
+        {
+            degree: "Bachelor of Islamic Economic Law (S.H.)",
+            institution: "STAI At-Tahdzib Jombang",
+            location: "Jombang, East Java, Indonesia",
+            graduationYear: "Graduated 2019",
+            notes: "Strong logical reasoning, ethical integrity, and dedication to independent, continuous software engineering with active production systems."
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Certified competence in Spec-Driven Development (SDD) using Kiro: comprehensive technical specification design, contract-first APIs, automated test coverage, and end-to-end requirement traceability."
+        }
+    ]
+};
+
+export const aiAutomationCvDataId = {
+    lang: "id",
+    personal: {
+        name: "Ahmad Ayub Nu'man",
+        title: "AI & Automation Engineer",
+        subtitle: "AI Agents Architecture • LLM Integrations • Business Workflow Automation • End-to-End Reliability",
+        location: "Cilacap, Jawa Tengah, Indonesia",
+        email: "ayb.n1994@gmail.com",
+        phone: "+62 895 3491 77555",
+        whatsappUrl: "https://wa.me/62895349177555",
+        github: "https://github.com/ayebe51",
+        githubDisplay: "github.com/ayebe51",
+        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
+        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioUrl: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
+    },
+    summary: "AI & Automation Engineer dengan fondasi rekayasa perangkat lunak full-stack (2+ tahun) dan spesialisasi dalam perancangan AI Agent, integrasi model bahasa besar (LLM API), serta otomasi alur kerja proses bisnis (workflow automation). Terbukti berpengalaman menghubungkan sistem backend (JavaScript/TypeScript, Node.js, NestJS, Python) dengan basis data relasional (PostgreSQL, MySQL) dan aplikasi pihak ketiga melalui RESTful API serta webhook real-time. Memiliki rekam jejak nyata membangun solusi otomasi berskala besar: sistem batch generator dokumen massal di SIMMACI (memangkas 70% beban operasional 270+ lembaga) serta sistem ERP ritel POS & Inventaris (Kiro ERP) dan notifikasi gateway otomatis di Koneksi Santri. Tersertifikasi dalam Spec-Driven Development (Kiro / Dicoding Academy) dengan pendekatan ketat pada keandalan sistem, penanganan eror deterministik, dan pengujian mutu komprehensif (1.800+ automated test cases) guna menjamin AI Agent beroperasi secara akurat, stabil, dan aman.",
+    skills: {
+        languages: ["JavaScript (ES6+)", "TypeScript", "Python", "SQL", "PHP 8+", "HTML5/CSS3"],
+        aiAndAgents: ["AI Agent Architecture", "LLM APIs (OpenAI, Anthropic, Gemini, Grok)", "Function / Tool Calling", "n8n Workflow Automation", "LangChain / LangGraph Concepts", "Prompt Engineering", "Agentic AI IDEs (Antigravity, Kiro, Codex)"],
+        backendAndIntegration: ["Node.js", "NestJS", "Express", "RESTful API Integration", "Webhook Processing", "Inter-System Gateways (WhatsApp API, S3/MinIO)", "Microservices Architecture"],
+        databasesAndData: ["PostgreSQL 16", "MySQL", "Prisma ORM", "Skema Relasional", "Query Optimization", "ETL & Pipeline Data", "Automated Reporting"],
+        testingAndReliability: ["Spec-Driven Development (SDD)", "Automated Testing (PHPUnit, Pest, Jest - 1.800+ Test Cases)", "Agent Error Handling & Guardrails", "Log Analysis & Debugging", "Performance Monitoring"],
+        devopsAndSecurity: ["Docker & Docker Compose", "Linux/VPS Administration", "Git / GitHub (1.940+ Commits)", "Dasar Keamanan API (RBAC, Rate Limiting, OWASP, Token Sanitization)"]
+    },
+    labels: {
+        professionalSummary: "Ringkasan Profesional",
+        technicalSkills: "Keahlian Teknis (Technical Skills)",
+        professionalExperience: "Pengalaman Kerja Profesional",
+        selectedProjects: "Proyek Rekayasa AI Agent, Otomasi & Sistem Unggulan",
+        education: "Pendidikan & Kualifikasi",
+        certifications: "Sertifikasi & Kredensial"
+    },
+    experience: [
+        {
+            role: "Software & Automation Engineer",
+            subtitle: "Lead Systems Architect & Product Lead",
+            company: "LP Ma'arif NU Cilacap",
+            location: "Cilacap, Jawa Tengah, Indonesia",
+            period: "2024 – Sekarang",
+            responsibilities: [
+                "Merancang dan mengembangkan solusi workflow automation serta sistem data terpusat untuk 270+ sekolah/madrasah, 2.000+ staf PTK, dan 17.000+ peserta didik, memangkas beban kerja operasional manual hingga lebih dari 70%.",
+                "Mengintegrasikan arsitektur backend berbasis RESTful API dan webhook dengan berbagai layanan eksternal: generator dokumen massal otomatis (Docxtemplater & PHPWord), penyimpanan cloud terisolasi S3/MinIO, dan gateway notifikasi pesan.",
+                "Membangun pipeline pengolahan data dan pelaporan keuangan terotomasi (Institutional Core Financial ERP) menggunakan Domain-Driven Design (DDD) dan State Machine untuk menjamin konsistensi mutasi dan integritas neraca saldo.",
+                "Mengadopsi dan menerapkan alur kerja Agentic AI (Antigravity, Kiro, Codex, Claude) dalam rekayasa sistem sehari-hari untuk akselerasi perancangan logika bisnis, formulasi skenario pengujian otomatis, dan refaktorisasi arsitektur kode.",
+                "Menegakkan reliabilitas dan stabilitas sistem secara end-to-end melalui implementasi 1.822 skenario pengujian otomatis (PHPUnit/Pest, 100% pass rate, 36.983 assertions), continuous debugging, dan mitigasi keamanan (RBAC, audit API guard).",
+                "Berkolaborasi lintas pemangku kepentingan untuk menggali kebutuhan operasional bisnis dan menerjemahkannya menjadi arsitektur perangkat lunak yang scalable dan efisien."
+            ]
+        }
+    ],
+    projects: [
+        {
+            name: "Enterprise POS & Multi-Warehouse Inventory (Kiro ERP) — Solusi Otomasi Operasional Ritel",
+            techStack: "React 19, NestJS, TypeScript, Prisma ORM, PostgreSQL, REST API, Apache ECharts",
+            demoUrl: "https://inventory-pos-hazel.vercel.app",
+            demoDisplay: "inventory-pos-hazel.vercel.app",
+            repoUrl: "https://github.com/ayebe51/inventory-pos",
+            repoDisplay: "github.com/ayebe51/inventory-pos",
+            highlights: [
+                "Membangun sistem automasi operasional ritel & kasir POS multi-cabang dengan kalkulasi mutasi persediaan append-only (WAC/FIFO) dan pelaporan analitik penjualan real-time.",
+                "Merancang integrasi alur procurement otomatis (3-way matching PR/PO/Goods Receipt) dan rekonsiliasi kasir kas harian dengan konsistensi data transaksi sub-detik."
+            ]
+        },
+        {
+            name: "SIMMACI — Otomasi Alur Kerja Tata Kelola & Batch Document Synthesis Skala Besar",
+            techStack: "TypeScript, React 19, Laravel 12, PostgreSQL 16, REST API, Webhooks, PHPUnit/Pest",
+            demoUrl: "",
+            demoDisplay: "",
+            repoUrl: "https://github.com/ayebe51/simmaci",
+            repoDisplay: "github.com/ayebe51/simmaci",
+            highlights: [
+                "Mengembangkan mesin otomasi penerbitan dokumen massal berkala berbasis template dinamis untuk administrasi 270+ lembaga, mengeliminasi duplikasi data dan latensi birokrasi.",
+                "Menerapkan integrasi penyimpanan cloud terisolasi S3/MinIO, penanganan webhook notifikasi, serta validasi mutu 1.822 automated test cases (100% PASS, 36.983 assertions)."
+            ]
+        },
+        {
+            name: "Koneksi Santri — Ekosistem Terpadu, Otomasi Notifikasi WhatsApp & IoT Smart Gate",
+            techStack: "Next.js 14, Flutter (Dart), NestJS, PostgreSQL, Prisma, Webhook Gateway, Docker",
+            demoUrl: "https://admin.koneksisantri.tech",
+            demoDisplay: "admin.koneksisantri.tech",
+            repoUrl: "https://github.com/ayebe51/koneksi-santri",
+            repoDisplay: "github.com/ayebe51/koneksi-santri",
+            highlights: [
+                "Mengintegrasikan webhook gateway notifikasi otomatis ke WhatsApp wali santri untuk pemantauan mutasi dompet digital, batas limit jajan kantin, dan otorisasi izin keluar via QR Smart Gate.",
+                "Mengembangkan alur otomasi tagihan SPP berkala dan pembukuan buku besar akuntansi konsolidasi multi-cabang yayasan tanpa selisih data."
+            ]
+        }
+    ],
+    education: [
+        {
+            degree: "Sarjana Hukum (S.H.) — Hukum Ekonomi Syariah",
+            institution: "STAI At-Tahdzib Jombang",
+            location: "Jombang, Jawa Timur, Indonesia",
+            graduationYear: "Lulus 2019",
+            notes: "Memiliki fondasi penalaran logis-analitis yang kuat, etika kerja amanah (Muslim), dan dedikasi rekayasa perangkat lunak mandiri (Autodidact & Continuous Learning)."
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Kompetensi terverifikasi dalam metodologi Spec-Driven Development (SDD) menggunakan Kiro: perumusan spesifikasi teknis terstruktur, perancangan kontrak API yang presisi, dan mitigasi eror pengujian otomatis untuk arsitektur sistem otonom."
+        }
+    ]
+};
+
+export const nghFullStackCvDataEn = {
+    lang: "en",
+    personal: {
+        name: "Ahmad Ayub Nu'man",
+        title: "Full-Stack Developer",
+        subtitle: "Next.js (App Router) • Node.js / TypeScript • PostgreSQL & Relational Architecture • AI-Assisted Workflows",
+        location: "Based in Indonesia (100% Ready & Committed to Relocate On-Site to Uluwatu, Bali)",
+        email: "ayb.n1994@gmail.com",
+        phone: "+62 895 3491 77555",
+        whatsappUrl: "https://wa.me/62895349177555",
+        github: "https://github.com/ayebe51",
+        githubDisplay: "github.com/ayebe51",
+        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
+        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
+    },
+    summary: "High-ownership Full-Stack Developer with 2 years of hands-on production experience architecting end-to-end web applications, internal tools, real-time analytics dashboards, and operational automations without hand-holding. Highly proficient across the modern TypeScript ecosystem (React 19, Next.js App Router, Node.js, NestJS, Tailwind CSS) and relational database architecture (PostgreSQL 16, Prisma ORM). Passionate practitioner of modern AI-assisted engineering and Spec-Driven Development (SDD), collaborating seamlessly with AI agents to rapidly ship robust, resilient business tools. Experienced in cross-platform mobile development (Flutter targeting iOS/Android) and enterprise quality assurance (1,800+ automated test cases). Fully committed and ready to relocate on-site to Uluwatu, Bali to build next-generation real estate operating systems with professional working English.",
+    skills: {
+        languages: ["TypeScript", "JavaScript (ES6+)", "SQL", "Dart", "HTML5", "Modern CSS3", "PHP 8+"],
+        frontend: ["Next.js (App Router)", "React 18/19", "Tailwind CSS", "Shadcn UI", "Framer Motion", "Responsive Web Design", "Zustand", "Apache ECharts"],
+        backend: ["Node.js", "NestJS", "Express", "RESTful APIs", "Operational Automation Services", "Webhooks", "Role-Based Access Control (RBAC)"],
+        databases: ["PostgreSQL 16", "Prisma ORM", "MySQL", "Relational Schema Modeling", "Composite Indexing", "Transactional Data Integrity"],
+        aiAndWorkflow: ["AI-Assisted Development (LLM Agents, Prompt Engineering)", "Spec-Driven Development (SDD)", "Automated Scaffolding & Refactoring", "Autonomous Problem-Solving"],
+        testingAndQuality: ["Automated Testing (PHPUnit, Pest, Jest - 1,800+ Test Cases)", "Code Contract Enforcement", "Zero-Regression QA", "Git & GitHub (1,940+ Commits)"],
+        mobileAndDevops: ["Cross-Platform Mobile (Flutter / Dart targeting iOS & Android)", "Docker & Docker Compose", "Linux/VPS Administration", "Vercel", "Nginx (HSTS/CSP)"]
+    },
+    labels: {
+        professionalSummary: "Professional Summary",
+        technicalSkills: "Technical Skills",
+        professionalExperience: "Professional Experience",
+        selectedProjects: "Selected Engineering Projects (Dashboards & Internal Tools)",
+        education: "Education & Foundation",
+        certifications: "Certifications & Credentials"
+    },
+    experience: [
+        {
+            role: "Full-Stack Software Engineer",
+            subtitle: "Lead Systems Architect & Product Lead",
+            company: "LP Ma'arif NU Cilacap",
+            location: "Cilacap, Central Java, Indonesia",
+            period: "2024 – Present",
+            responsibilities: [
+                "Directed the end-to-end software development lifecycle (SDLC) for high-concurrency web platforms and operational internal tools without hand-holding, translating complex stakeholder workflows into intuitive, resilient software.",
+                "Architected and engineered high-performance web dashboards and internal tools with React 19, Next.js, and TypeScript, featuring real-time data filtering, analytical chart integrations (Apache ECharts), and responsive mobile-first Tailwind UI.",
+                "Developed Node.js and RESTful backend microservices for operational workflow automation, automated batch document generation, and webhook triggers with S3 cloud storage.",
+                "Designed relational PostgreSQL database schemas with multi-tenant isolation, composite indexing, and transactional integrity constraints (enforcing financial balance invariants and append-only ledgers).",
+                "Integrated rigorous AI-assisted development workflows and Spec-Driven Development (SDD) to accelerate feature delivery, architect complex business logic, and maintain clean code contracts.",
+                "Maintained exceptional code quality through 1,822 automated test cases (100% pass rate, 36,983 assertions), continuous debugging, and system security hardening (RBAC, API guards, Nginx HSTS)."
+            ]
+        }
+    ],
+    projects: [
+        {
+            name: "Enterprise POS & Multi-Branch Inventory (Kiro ERP) — Retail Management & Analytics Dashboard",
+            techStack: "React 19, Next.js, TypeScript, Node.js / NestJS, Prisma ORM, PostgreSQL, Tailwind CSS, Apache ECharts",
+            demoUrl: "https://inventory-pos-hazel.vercel.app",
+            demoDisplay: "inventory-pos-hazel.vercel.app",
+            repoUrl: "https://github.com/ayebe51/inventory-pos",
+            repoDisplay: "github.com/ayebe51/inventory-pos",
+            highlights: [
+                "Engineered an end-to-end internal management dashboard and POS system featuring multi-branch inventory tracking, fast cashier checkout, and real-time sales analytics.",
+                "Designed an append-only inventory movement ledger with sub-second transactional consistency on PostgreSQL, and automated 3-way procurement matching (PR/PO/Goods Receipt)."
+            ]
+        },
+        {
+            name: "Koneksi Santri — Integrated Management Web Portal & Mobile Ecosystem",
+            techStack: "Next.js 14, Flutter (Dart), TypeScript, Node.js / NestJS, PostgreSQL, Prisma, Docker",
+            demoUrl: "https://admin.koneksisantri.tech",
+            demoDisplay: "admin.koneksisantri.tech",
+            repoUrl: "https://github.com/ayebe51/koneksi-santri",
+            repoDisplay: "github.com/ayebe51/koneksi-santri",
+            highlights: [
+                "Built an integrated web management superadmin portal paired with a cross-platform Flutter mobile app (Portal Wali Santri) with real-time digital wallet tracking and QR security checkouts.",
+                "Developed automated operational services for periodic billing dispatch, automated WhatsApp webhook notifications, and multi-entity consolidated balance accounting."
+            ]
+        },
+        {
+            name: "SIMMACI — High-Scale Institutional Governance Platform & Document Automation",
+            techStack: "React 19, TypeScript, Tailwind CSS, REST APIs, PostgreSQL 16, Vite PWA, Automated Testing",
+            demoUrl: "",
+            demoDisplay: "",
+            repoUrl: "https://github.com/ayebe51/simmaci",
+            repoDisplay: "github.com/ayebe51/simmaci",
+            highlights: [
+                "Architected a decoupled enterprise platform centralizing governance for 270+ institutions, 2,000+ staff, and 17,000+ student records with automated batch document templating.",
+                "Backed by 1,822 automated test cases (100% PASS, 36,983 assertions), ensuring rock-solid stability and zero regressions under production load."
+            ]
+        }
+    ],
+    education: [
+        {
+            degree: "Sarjana Hukum (S.H.) — Islamic Economic Law",
+            institution: "STAI At-Tahdzib Jombang",
+            location: "Jombang, East Java, Indonesia",
+            graduationYear: "Graduated 2019",
+            notes: "Strong foundation in analytical reasoning, regulatory compliance, and business domain logic, seamlessly transitioning into autonomous full-stack software architecture."
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Verified competency in Spec-Driven Development (SDD) using Kiro: structured technical specifications, contract-based API design, and AI-assisted autonomous system architecture."
+        }
+    ]
+};
+
 export const cvData = cvDataEn;
+
