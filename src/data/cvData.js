@@ -1035,6 +1035,126 @@ export const cretivoxSoftwareEngineerCvDataId = {
     ]
 };
 
+export const keuanganSyariahCvDataId = {
+    lang: "id",
+    personal: {
+        name: "Ahmad Ayub Nu'man, S.H.",
+        title: "Spesialis Keuangan & Akuntansi Syariah",
+        subtitle: "Tata Kelola Keuangan Yayasan & Koperasi Syariah • Penjurnalan & Bagi Hasil • Rekonsiliasi Bank • Audit Compliance",
+        location: "Cilacap, Jawa Tengah, Indonesia (Terbuka untuk On-Site / Hybrid / Relokasi)",
+        email: "ayb.n1994@gmail.com",
+        phone: "+62 895 3491 77555",
+        whatsappUrl: "https://wa.me/62895349177555",
+        github: "https://github.com/ayebe51",
+        githubDisplay: "github.com/ayebe51",
+        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
+        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
+    },
+    summary: "Sarjana Hukum Ekonomi Syariah (S.H. - Muamalah) dengan pengalaman lebih dari 2 tahun dalam tata kelola administrasi keuangan, pencatatan transaksi berpasangan (double-entry), dan perancangan sistem akuntansi di lingkungan yayasan/organisasi nirlaba Islam. Memiliki pemahaman mendalam tentang fikih muamalah dan akad-akad syariah (Mudharabah, Musyarakah, Murabahah, Ijarah, Qardh) untuk pencatatan simpanan, pembiayaan, pengakuan pendapatan, serta kalkulasi bagi hasil koperasi. Terbukti andal dalam penyusunan laporan keuangan yayasan/koperasi (Laporan Arus Kas/Cashflow, Laporan Realisasi Anggaran/LRA, Neraca Saldo, Laporan Operasional), rekonsiliasi berkala rekening bank, pengarsipan bukti transaksi tertib, dan pemenuhan compliance audit lembaga. Mahir mengoperasikan Microsoft Excel / Google Sheets tingkat lanjut (Pivot Table, VLOOKUP/XLOOKUP, rekonsiliasi otomatis) serta aplikasi software akuntansi. Berintegritas tinggi, teliti (detail-oriented), amanah, dan berkomitmen penuh menjaga kerahasiaan keuangan lembaga.",
+    skills: {
+        akuntansiDanSyariah: [
+            "Pencatatan & Penjurnalan Transaksi Syariah",
+            "Akad-Akad Muamalah (Mudharabah, Musyarakah, Murabahah, Wadiah, Qardh)",
+            "Pencatatan Simpanan Anggota & Pembiayaan Koperasi",
+            "Kalkulasi Pengakuan Pendapatan & Bagi Hasil (Nisbah)",
+            "Penyusunan Laporan Keuangan (Cashflow, LRA, Neraca, Laporan Operasional)",
+            "Prinsip Akuntansi Berpasangan (Double-Entry Bookkeeping)"
+        ],
+        rekonsiliasiDanAudit: [
+            "Rekonsiliasi Rekening Bank Berkala",
+            "Pemeriksaan Silang (3-Way Matching Bukti Kas/Invoice/Kwitansi)",
+            "Audit Compliance & Penyiapan Kertas Kerja Audit Yayasan/NGO",
+            "Pencegahan Selisih & Deteksi Dini Anomali Transaksi",
+            "Pengendalian Internal (Segregation of Duties / Maker-Checker)"
+        ],
+        softwareDanSpreadsheet: [
+            "Microsoft Excel & Google Sheets Mahir (Pivot Table, VLOOKUP/XLOOKUP, SUMIFS, Data Validation)",
+            "Pembuatan Template Rekonsiliasi Otomatis & Cashflow Modeling",
+            "Penguasaan Aplikasi Akuntansi & Sistem Core Financial ERP",
+            "Manajemen & Pengarsipan Digital Dokumen Keuangan Terorganisir"
+        ],
+        karakterDanTataKelola: [
+            "Amanah, Integritas Tinggi & Komitmen Menjaga Kerahasiaan Keuangan",
+            "Sangat Teliti & Detail-Oriented terhadap Angka Transaksi",
+            "Komunikasi Kolaboratif Lintas Tim (FAT, Program, Pengurus Koperasi)",
+            "Terbiasa Bekerja dengan Target & Tenggat Waktu (Deadline Laporan)"
+        ]
+    },
+    labels: {
+        professionalSummary: "Ringkasan Profesional",
+        technicalSkills: "Kompetensi Utama Keuangan & Akuntansi Syariah",
+        professionalExperience: "Pengalaman Kerja Profesional di Lingkungan Yayasan/Organisasi",
+        selectedProjects: "Rekam Jejak Tata Kelola Keuangan & Sistem Akuntansi",
+        education: "Pendidikan Formal",
+        certifications: "Sertifikasi & Kredensial Pendukung"
+    },
+    experience: [
+        {
+            role: "Pengelola Sistem & Tata Kelola Keuangan Lembaga",
+            subtitle: "Lead Financial Systems & Administrative Governance",
+            company: "LP Ma'arif NU Cilacap (Yayasan / Badan Pengelola Pendidikan Islam)",
+            location: "Cilacap, Jawa Tengah, Indonesia",
+            period: "2024 – Sekarang",
+            responsibilities: [
+                "Mengelola administrasi dan pengawasan tata kelola keuangan untuk 270+ satuan pendidikan di bawah naungan yayasan, memastikan setiap pengeluaran dan pemasukan dana tercatat akuntabel dan transparan.",
+                "Merancang dan menerapkan Sistem Akuntansi Keuangan Lembaga (Core Financial ERP) berbasis kaidah pencatatan double-entry (Debit = Kredit) dengan prinsip pembagian tugas Maker-Checker (Segregation of Duties) guna mencegah kebocoran dana dan fraud.",
+                "Menyusun prosedur pencatatan jurnal transaksi, pengelompokan bagan akun (Chart of Accounts / COA), serta penyusunan neraca saldo percobaan (trial balance) secara tertib dan presisi.",
+                "Melakukan rekonsiliasi mutasi kas harian, rekonsiliasi bank, dan audit internal terhadap ribuan bukti setor/transaksi berkala dengan tingkat akurasi 100% tanpa selisih neraca.",
+                "Mengamankan dan menertibkan pengarsipan ribuan dokumen bukti transaksi, kuitansi, dan berkas pertanggungjawaban keuangan lembaga guna memastikan kesiapan audit berkala (audit readiness).",
+                "Membangun dashboard pelaporan arus kas (Cashflow) dan rekapitulasi realisasi anggaran berbasis spreadsheet dan web database untuk kebutuhan laporan rapat pengurus yayasan."
+            ]
+        }
+    ],
+    projects: [
+        {
+            name: "Sistem Keuangan Lembaga (Institutional Core Financial Ledger)",
+            techStack: "Prinsip Akuntansi Syariah, Double-Entry Bookkeeping, Money Value Object, Maker-Checker Verification",
+            highlights: [
+                "Merancang mesin pembukuan buku besar (general ledger) terpadu dengan validasi matematis mutlak bahwa total debit selalu sama dengan kredit pada setiap posting jurnal.",
+                "Menerapkan prinsip Money Value Object untuk mengeliminasi potensi galat pembulatan desimal nilai uang, serta mekanisme alur persetujuan transaksi berjenjang (Draft -> Verified -> Posted)."
+            ]
+        },
+        {
+            name: "Koneksi Santri — Tata Kelola Dompet Nontunai & Pembukuan Yayasan",
+            techStack: "Closed-Loop Wallet Ledger, Rekonsiliasi Kasir Harian, Manajemen SPP Berkala, Laporan Kas",
+            highlights: [
+                "Membangun tata kelola dompet simpanan digital tertutup (closed-loop) untuk transaksi nontunai santri dengan batas limit harian, mencegah kecurangan transaksi kas dan kebocoran dana.",
+                "Melakukan rekonsiliasi kasir kas harian kantin serta pelaporan penagihan iuran/SPP berkala yayasan dengan integrasi rekapitulasi data keuangan real-time."
+            ]
+        },
+        {
+            name: "Kiro Retail & Inventory Accounting — Rekonsiliasi Kas & Pengadaan",
+            techStack: "3-Way Matching (PR/PO/Penerimaan), Valuasi Persediaan WAC/FIFO, Rekonsiliasi Kas Harian",
+            highlights: [
+                "Menerapkan sistem verifikasi pengadaan 3-way matching (Purchase Request, Purchase Order, dan Bukti Penerimaan Barang) untuk mencegah pembayaran ganda atau fiktif.",
+                "Mengelola rekonsiliasi uang kas fisik terhadap buku kas register kasir pada pergantian shift kerja tanpa selisih catatan."
+            ]
+        }
+    ],
+    education: [
+        {
+            degree: "Sarjana Hukum (S.H.) — Hukum Ekonomi Syariah (Muamalah)",
+            institution: "STAI At-Tahdzib Jombang",
+            location: "Jombang, Jawa Timur, Indonesia",
+            graduationYear: "Lulus 2019",
+            notes: "Fokus studi mendalam pada Fiqh Muamalah, Hukum Perbankan & Koperasi Syariah, Akad-Akad Transaksi Syariah, Akuntansi Syariah, dan Manajemen Keuangan Islam. Lulus dengan predikat sangat baik dan integritas moral yang teruji."
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development & Structured Financial Logic",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            credentialId: "EYX4Q03J6PDL",
+            description: "Kompetensi terverifikasi dalam perumusan logika terstruktur, spesifikasi kontrak data keuangan yang presisi, dan mitigasi risiko galat perhitungan secara komprehensif."
+        }
+    ]
+};
+
 export const cvData = cvDataEn;
+
 
 
