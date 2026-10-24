@@ -811,5 +811,230 @@ export const nghFullStackCvDataEn = {
     ]
 };
 
+export const cretivoxSoftwareEngineerCvDataEn = {
+    lang: "en",
+    personal: {
+        name: "Ahmad Ayub Nu'man",
+        title: "Software Engineer",
+        subtitle: "Full-Stack Web Systems • REST APIs & Microservices • PostgreSQL / MySQL • GCP & Docker • Redis Caching",
+        location: "Indonesia (Open to Hybrid / On-Site in Jakarta / Remote)",
+        email: "ayb.n1994@gmail.com",
+        phone: "+62 895 3491 77555",
+        whatsappUrl: "https://wa.me/62895349177555",
+        github: "https://github.com/ayebe51",
+        githubDisplay: "github.com/ayebe51",
+        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
+        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
+    },
+    summary: "Software Engineer with 2 years of hands-on production experience architecting, developing, and maintaining high-performance web applications, internal systems, and digital platforms. Highly proficient in JavaScript/TypeScript (React, Next.js, Node.js, NestJS) and backend RESTful API architecture paired with relational databases (PostgreSQL, MySQL). Experienced integrating third-party services, implementing Redis for in-memory caching and session performance, and containerizing microservices for cloud deployment (Docker, Google Cloud Platform / GCP Cloud Run & Cloud Storage). Strong problem solver who writes clean, maintainable code backed by rigorous automated testing (1,800+ test cases) and thrives collaborating with cross-functional teams in fast-paced environments.",
+    skills: {
+        languages: ["JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3 / Tailwind CSS", "PHP 8+"],
+        backend: ["Node.js", "NestJS", "Express", "RESTful APIs", "Third-Party Service Integration", "Microservices", "Role-Based Access Control (RBAC)"],
+        databasesAndCaching: ["PostgreSQL 16", "MySQL", "Redis (Caching, Session Management, Latency Optimization)", "Prisma ORM", "Schema Design", "Composite Indexing"],
+        frontendAndCms: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "CMS & Internal Admin Portals", "Responsive Web Design", "Reusable UI Components"],
+        cloudAndDevops: ["Google Cloud Platform (GCP Cloud Run, Cloud Storage, Cloud SQL)", "Docker & Docker Compose", "Git / GitHub (1,940+ Commits)", "Linux/VPS", "Nginx (HSTS/CSP)"],
+        testingAndQuality: ["Automated Testing (Jest, PHPUnit, Pest - 1,800+ Test Cases)", "System Troubleshooting & Debugging", "Application Performance Tuning", "Code Review"]
+    },
+    labels: {
+        professionalSummary: "Professional Summary",
+        technicalSkills: "Technical Skills",
+        professionalExperience: "Professional Experience",
+        selectedProjects: "Selected Software Engineering Projects",
+        education: "Education & Qualifications",
+        certifications: "Certifications & Credentials"
+    },
+    experience: [
+        {
+            role: "Software Engineer",
+            subtitle: "Full-Stack & Systems Architect",
+            company: "LP Ma'arif NU Cilacap",
+            location: "Central Java, Indonesia",
+            period: "2024 – Present",
+            responsibilities: [
+                "Architect, develop, and maintain high-traffic web applications, digital administrative platforms, and internal business systems for 270+ institutions, 2,000+ staff, and 17,000+ users.",
+                "Design and deploy secure RESTful API endpoints and third-party integrations (isolated cloud file storage S3/GCP, batch document generators, and automated webhook notification dispatchers).",
+                "Model normalized relational database schemas in PostgreSQL and MySQL with composite indexes, foreign key constraints, and multi-tenant scoping; optimized query latency and transaction concurrency.",
+                "Implement Redis caching strategies for frequently accessed database reads, session management, and system response time optimization.",
+                "Troubleshoot complex technical issues, resolve production bottlenecks, remediate application security guards (SEC-001–004), and containerize services with Docker for scalable cloud deployment.",
+                "Enforce exceptional code maintainability and reliability by executing 1,822 automated test cases (100% pass rate, 36,983 assertions) and maintaining structured Git version control workflows."
+            ]
+        }
+    ],
+    projects: [
+        {
+            name: "SIMMACI — Enterprise Digital Platform & Governance System",
+            techStack: "React 19, TypeScript, Node/REST API, PostgreSQL 16, Tailwind CSS, Redis Caching, Automated Testing",
+            demoUrl: "",
+            demoDisplay: "",
+            repoUrl: "https://github.com/ayebe51/simmaci",
+            repoDisplay: "github.com/ayebe51/simmaci",
+            highlights: [
+                "Engineered a full-stack digital platform centralizing institutional data, document synthesis, and administrative workflows across 270+ organizations with dedicated multi-tenant isolation.",
+                "Integrated cloud storage (S3/Cloud Storage) for dynamic media/file archiving, batch document templating, and 1,822 automated test cases ensuring zero-regression releases."
+            ]
+        },
+        {
+            name: "Kiro ERP — Omnichannel Inventory & Real-Time Management Web App",
+            techStack: "React 19, NestJS, TypeScript, PostgreSQL, Prisma ORM, Redis, Apache ECharts",
+            demoUrl: "https://inventory-pos-hazel.vercel.app",
+            demoDisplay: "inventory-pos-hazel.vercel.app",
+            repoUrl: "https://github.com/ayebe51/inventory-pos",
+            repoDisplay: "github.com/ayebe51/inventory-pos",
+            highlights: [
+                "Built an internal retail management web app with sub-second POS cashier transactions, multi-warehouse stock replenishment, and live analytics dashboards using Apache ECharts.",
+                "Engineered an append-only transaction ledger on PostgreSQL enforcing WAC/FIFO stock valuations and automated 3-way procurement matching (PR/PO/Goods Receipt)."
+            ]
+        },
+        {
+            name: "Koneksi Santri — Integrated Digital Portal & Mobile Ecosystem",
+            techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma, Docker, Webhooks",
+            demoUrl: "https://admin.koneksisantri.tech",
+            demoDisplay: "admin.koneksisantri.tech",
+            repoUrl: "https://github.com/ayebe51/koneksi-santri",
+            repoDisplay: "github.com/ayebe51/koneksi-santri",
+            highlights: [
+                "Architected a responsive Next.js 14 web superadmin and mobile API ecosystem managing digital wallets, periodic automated tuition billing, and QR security checkouts.",
+                "Integrated third-party webhook notification gateways and containerized the backend services with Docker Compose for seamless cloud provisioning."
+            ]
+        }
+    ],
+    education: [
+        {
+            degree: "Bachelor's Degree (Sarjana Hukum - S.H.) — Islamic Economic Law",
+            institution: "STAI At-Tahdzib Jombang",
+            location: "East Java, Indonesia",
+            graduationYear: "Graduated 2019",
+            notes: "Strong foundation in analytical reasoning, problem solving, and contract/business logic, transitioning into autonomous software engineering through rigorous autodidactic mastery and continuous learning."
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Verified competence in Spec-Driven Development (SDD): structured technical specifications, contract-based API design, and automated test-driven system reliability."
+        }
+    ]
+};
+
+export const cretivoxSoftwareEngineerCvDataId = {
+    lang: "id",
+    personal: {
+        name: "Ahmad Ayub Nu'man",
+        title: "Software Engineer",
+        subtitle: "Full-Stack Web Systems • REST APIs & Microservices • PostgreSQL / MySQL • GCP & Docker • Redis Caching",
+        location: "Indonesia (Terbuka untuk Hybrid / On-Site di Jakarta / Remote)",
+        email: "ayb.n1994@gmail.com",
+        phone: "+62 895 3491 77555",
+        whatsappUrl: "https://wa.me/62895349177555",
+        github: "https://github.com/ayebe51",
+        githubDisplay: "github.com/ayebe51",
+        linkedin: "https://www.linkedin.com/in/ayub-numan-871406155",
+        linkedinDisplay: "linkedin.com/in/ayub-numan-871406155",
+        portfolio: "https://portfolio-seven-theta-bovx80a70x.vercel.app/",
+        portfolioDisplay: "portfolio-seven-theta-bovx80a70x.vercel.app"
+    },
+    summary: "Software Engineer dengan pengalaman 2 tahun memimpin siklus rekayasa perangkat lunak (SDLC) end-to-end dalam mengembangkan dan memelihara aplikasi web, sistem internal, dan platform digital berkinerja tinggi. Sangat menguasai JavaScript/TypeScript (React, Next.js, Node.js, NestJS), perancangan RESTful API scalable, serta arsitektur basis data relasional (PostgreSQL & MySQL). Berpengalaman mengintegrasikan layanan pihak ketiga, menerapkan Redis untuk in-memory caching dan optimalisasi latensi respon, serta mengorkestrasi kontainerisasi microservices untuk cloud deployment (Docker, Google Cloud Platform / GCP Cloud Run & Cloud Storage). Berorientasi pada kode yang bersih dan mudah dirawat (clean code) didukung pengujian otomatis komprehensif (1.800+ test cases), siap berkolaborasi lintas tim dalam lingkungan kerja yang dinamis dan serba cepat.",
+    skills: {
+        languages: ["JavaScript (ES6+)", "TypeScript", "SQL", "HTML5", "CSS3 / Tailwind CSS", "PHP 8+"],
+        backend: ["Node.js", "NestJS", "Express", "RESTful APIs", "Integrasi Layanan Pihak Ketiga (Third-Party)", "Microservices", "Role-Based Access Control (RBAC)"],
+        databasesAndCaching: ["PostgreSQL 16", "MySQL", "Redis (Caching, Session Management, Optimasi Performa)", "Prisma ORM", "Perancangan Skema", "Composite Indexing"],
+        frontendAndCms: ["React 18/19", "Next.js (App Router)", "Tailwind CSS", "CMS & Portal Admin Internal", "Responsive Web Design", "Arsitektur Komponen Reusable"],
+        cloudAndDevops: ["Google Cloud Platform (GCP Cloud Run, Cloud Storage, Cloud SQL)", "Docker & Docker Compose", "Git / GitHub (1.940+ Commits)", "Linux/VPS Administration", "Nginx (HSTS/CSP)"],
+        testingAndQuality: ["Automated Testing (Jest, PHPUnit, Pest - 1.800+ Test Cases)", "Troubleshooting Sistem & Debugging", "Tuning Performa Aplikasi", "Code Review"]
+    },
+    labels: {
+        professionalSummary: "Ringkasan Profesional",
+        technicalSkills: "Keahlian Teknis (Technical Skills)",
+        professionalExperience: "Pengalaman Kerja Profesional",
+        selectedProjects: "Proyek Rekayasa Perangkat Lunak Unggulan",
+        education: "Pendidikan Formal",
+        certifications: "Sertifikasi & Kredensial"
+    },
+    experience: [
+        {
+            role: "Software Engineer",
+            subtitle: "Full-Stack & Systems Architect",
+            company: "LP Ma'arif NU Cilacap",
+            location: "Jawa Tengah, Indonesia",
+            period: "2024 – Sekarang",
+            responsibilities: [
+                "Merancang, mengembangkan, dan memelihara aplikasi web berkinerja tinggi, sistem internal administrasi, dan platform digital yang melayani 270+ instansi, 2.000+ staf, dan 17.000+ pengguna.",
+                "Membangun endpoint RESTful API terstruktur dan mengintegrasikannya dengan berbagai layanan pihak ketiga: penyimpanan file cloud (S3/Cloud Storage), generator dokumen batch otomatis, dan webhook gateway pesan.",
+                "Merancang skema database relasional ternormalisasi pada PostgreSQL dan MySQL dengan composite indexing, foreign key constraints, dan isolasi multi-tenant guna menjaga integritas transaksi konkuren.",
+                "Mengimplementasikan strategi Redis caching untuk query database yang sering diakses, manajemen sesi, dan reduksi latensi respon aplikasi secara signifikan.",
+                "Melakukan troubleshooting masalah teknis kompleks, perbaikan bottleneck sistem, remediasi keamanan (SEC-001 s.d. SEC-004), serta kontainerisasi Docker untuk kemudahan deployment ke cloud.",
+                "Menegakkan standar kode yang bersih, terdokumentasi, dan andal melalui penerapan 1.822 skenario pengujian otomatis (100% pass rate, 36.983 assertions) dan alur kerja Git yang disiplin."
+            ]
+        }
+    ],
+    projects: [
+        {
+            name: "SIMMACI — Platform Digital Enterprise & Tata Kelola Dokumen",
+            techStack: "React 19, TypeScript, Node/REST API, PostgreSQL 16, Tailwind CSS, Redis Caching, Automated Testing",
+            demoUrl: "",
+            demoDisplay: "",
+            repoUrl: "https://github.com/ayebe51/simmaci",
+            repoDisplay: "github.com/ayebe51/simmaci",
+            highlights: [
+                "Membangun platform digital terpusat untuk tata kelola administrasi 270+ institusi dengan isolasi data multi-tenant yang aman dan antarmuka web responsif.",
+                "Mengintegrasikan penyimpanan cloud (S3/Cloud Storage) untuk arsip berkas dinamis, mesin sintesis dokumen batch otomatis, dan 1.822 test cases pengujian otomatis."
+            ]
+        },
+        {
+            name: "Kiro ERP — Aplikasi Web Manajemen Inventaris & Analitik Real-Time",
+            techStack: "React 19, NestJS, TypeScript, PostgreSQL, Prisma ORM, Redis, Apache ECharts",
+            demoUrl: "https://inventory-pos-hazel.vercel.app",
+            demoDisplay: "inventory-pos-hazel.vercel.app",
+            repoUrl: "https://github.com/ayebe51/inventory-pos",
+            repoDisplay: "github.com/ayebe51/inventory-pos",
+            highlights: [
+                "Mengembangkan aplikasi web manajemen ritel dan kasir POS dengan respons sub-detik, pengisian stok multi-gudang, dan dashboard visualisasi data analitik interaktif.",
+                "Merancang buku besar mutasi persediaan append-only pada PostgreSQL (valuasi WAC/FIFO) serta pengadaan otomatis 3-way matching (PR/PO/Penerimaan Barang)."
+            ]
+        },
+        {
+            name: "Koneksi Santri — Platform Digital Terpadu & Ekosistem Mobile",
+            techStack: "Next.js 14, TypeScript, NestJS, PostgreSQL, Prisma, Docker, Webhooks",
+            demoUrl: "https://admin.koneksisantri.tech",
+            demoDisplay: "admin.koneksisantri.tech",
+            repoUrl: "https://github.com/ayebe51/koneksi-santri",
+            repoDisplay: "github.com/ayebe51/koneksi-santri",
+            highlights: [
+                "Merancang portal web superadmin Next.js 14 dan microservices backend yang mengelola dompet digital, tagihan berkala otomatis, dan verifikasi izin keamanan QR.",
+                "Mengintegrasikan webhook notifikasi pihak ketiga dan mengorkestrasi layanan backend menggunakan Docker Compose untuk efisiensi cloud provisioning."
+            ]
+        }
+    ],
+    education: [
+        {
+            degree: "Sarjana Hukum (S.H.) — Hukum Ekonomi Syariah",
+            institution: "STAI At-Tahdzib Jombang",
+            location: "Jawa Timur, Indonesia",
+            graduationYear: "Lulus 2019",
+            notes: "Memiliki fondasi logika analitis yang kuat, ketelitian tinggi dalam pemecahan masalah (problem-solving), dan kemampuan beradaptasi tinggi dalam rekayasa perangkat lunak secara autodidak dan berkelanjutan."
+        }
+    ],
+    certifications: [
+        {
+            name: "Spec-Driven Development dengan Kiro",
+            issuer: "Dicoding Indonesia (Dicoding Academy)",
+            location: "Indonesia",
+            issueDate: "April 2026",
+            expiryDate: "April 2029",
+            credentialId: "EYX4Q03J6PDL",
+            credentialUrl: "https://www.dicoding.com/certificates/EYX4Q03J6PDL",
+            description: "Kompetensi terverifikasi dalam metodologi Spec-Driven Development (SDD): perumusan spesifikasi teknis terstruktur, perancangan kontrak API presisi, dan arsitektur sistem andal berbasis pengujian otomatis."
+        }
+    ]
+};
+
 export const cvData = cvDataEn;
+
 
