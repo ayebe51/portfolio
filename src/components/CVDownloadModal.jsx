@@ -50,77 +50,75 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
 
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
                 {/* Backdrop */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={onClose}
-                    className="fixed inset-0 bg-black/85 backdrop-blur-md"
+                    className="fixed inset-0 bg-ink/75 backdrop-blur-xs"
                 />
 
-                {/* Modal Container */}
+                {/* Neo-Brutalist Modal Container */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    initial={{ opacity: 0, scale: 0.98, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative w-full max-w-2xl bg-neutral-dark border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto"
+                    exit={{ opacity: 0, scale: 0.98, y: 20 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative w-full max-w-2xl bg-canvas-card border-2 border-ink p-6 sm:p-8 shadow-brutal-xl z-10 my-8 overflow-hidden max-h-[90vh] overflow-y-auto"
                     role="dialog"
                     aria-modal="true"
-                    aria-labelledby="cv-modal-title"
+                    data-lenis-prevent
                 >
-                    {/* Background glow effect */}
-                    <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
-
                     {/* Close Button */}
                     <button
                         type="button"
                         onClick={onClose}
-                        aria-label={t.close || "Close modal"}
-                        className="absolute top-6 right-6 p-2.5 rounded-full bg-gray-900/80 border border-gray-700/80 text-gray-400 hover:text-white hover:border-gray-500 active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                        aria-label={t.close || "Close dialog"}
+                        className="absolute top-5 right-5 p-2 bg-white hover:bg-ink hover:text-white border-2 border-ink active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#18181B] transition-colors"
                     >
-                        <FiX className="text-xl" />
+                        <FiX className="text-lg" />
                     </button>
 
                     {/* Header */}
-                    <div className="mb-5 pr-10">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-3">
-                            <FiCheck className="text-sm" /> {t.badge}
+                    <div className="mb-6 pr-12">
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-safety border border-ink text-ink font-mono text-xs font-black uppercase mb-3 shadow-[2px_2px_0px_#18181B]">
+                            <FiCheck className="text-sm" /> 
+                            <span>{t.badge}</span>
                         </div>
-                        <h3 id="cv-modal-title" className="text-2xl sm:text-3xl font-heading font-bold text-white uppercase tracking-tight">
+                        <h3 className="text-2xl sm:text-3xl font-display font-black text-ink uppercase tracking-tight">
                             {t.title}
                         </h3>
-                        <p className="text-gray-400 text-sm mt-1 font-body">
+                        <p className="font-sans text-xs sm:text-sm text-ink-muted mt-1">
                             {t.subtitle}
                         </p>
                     </div>
 
-                    {/* Target Specialization Selector */}
+                    {/* Role Specialization Selector */}
                     <div className="mb-5">
-                        <label className="text-[11px] font-bold uppercase tracking-widest text-gray-400 block mb-2">
-                            {t.selectRoleLabel || (isEn ? "Target Specialization:" : "Pilih Spesialisasi Target:")}
+                        <label className="font-mono text-xs font-bold uppercase text-ink block mb-2">
+                            {t.selectRoleLabel || "Target Specialization:"}
                         </label>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <button
                                 type="button"
                                 onClick={() => setSelectedRole('frontend')}
-                                className={`p-3.5 rounded-2xl border text-left transition-all duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                className={`p-3.5 border-2 border-ink text-left transition-all ${
                                     isFrontend
-                                        ? 'border-primary bg-primary/15 shadow-md shadow-primary/10'
-                                        : 'border-neutral-border bg-neutral-surface hover:border-gray-600'
+                                        ? 'bg-blueprint text-white shadow-brutal-sm'
+                                        : 'bg-white hover:bg-stone-50 text-ink shadow-[2px_2px_0px_#18181B]'
                                 }`}
                             >
                                 <div className="flex items-center justify-between mb-1">
-                                    <span className={`text-xs sm:text-sm font-bold ${isFrontend ? 'text-primary' : 'text-white'}`}>
+                                    <span className="font-mono text-xs sm:text-sm font-black uppercase">
                                         {t.roleFrontend || "Front-End Developer"}
                                     </span>
                                     {isFrontend && (
-                                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                        <span className="w-2 h-2 rounded-full bg-safety animate-pulse"></span>
                                     )}
                                 </div>
-                                <p className="text-[11px] text-gray-400 line-clamp-1">
+                                <p className={`font-sans text-[11px] ${isFrontend ? 'text-white/80' : 'text-ink-muted'}`}>
                                     {t.roleFrontendDesc || "React 19 • Next.js • TypeScript • UI Architecture"}
                                 </p>
                             </button>
@@ -128,38 +126,37 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                             <button
                                 type="button"
                                 onClick={() => setSelectedRole('fullstack')}
-                                className={`p-3.5 rounded-2xl border text-left transition-all duration-300 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                                className={`p-3.5 border-2 border-ink text-left transition-all ${
                                     !isFrontend
-                                        ? 'border-primary bg-primary/15 shadow-md shadow-primary/10'
-                                        : 'border-neutral-border bg-neutral-surface hover:border-gray-600'
+                                        ? 'bg-blueprint text-white shadow-brutal-sm'
+                                        : 'bg-white hover:bg-stone-50 text-ink shadow-[2px_2px_0px_#18181B]'
                                 }`}
                             >
                                 <div className="flex items-center justify-between mb-1">
-                                    <span className={`text-xs sm:text-sm font-bold ${!isFrontend ? 'text-primary' : 'text-white'}`}>
+                                    <span className="font-mono text-xs sm:text-sm font-black uppercase">
                                         {t.roleFullstack || "Full-Stack Web Developer"}
                                     </span>
                                     {!isFrontend && (
-                                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                        <span className="w-2 h-2 rounded-full bg-safety animate-pulse"></span>
                                     )}
                                 </div>
-                                <p className="text-[11px] text-gray-400 line-clamp-1">
+                                <p className={`font-sans text-[11px] ${!isFrontend ? 'text-white/80' : 'text-ink-muted'}`}>
                                     {t.roleFullstackDesc || "React 19 • Laravel 12 • NestJS • PostgreSQL"}
                                 </p>
                             </button>
                         </div>
                     </div>
 
-                    {/* Language Selector Tabs */}
-                    <div className="flex items-center justify-between gap-2 flex-wrap mb-5">
-                        <div className="flex items-center gap-2 bg-neutral-surface p-1.5 rounded-2xl border border-neutral-border w-fit">
+                    {/* Language Selector */}
+                    <div className="flex items-center justify-between gap-2 flex-wrap mb-6 pb-4 border-b-2 border-ink">
+                        <div className="flex items-center border-2 border-ink bg-canvas p-0.5 shadow-[2px_2px_0px_#18181B]">
                             <button
                                 type="button"
                                 onClick={() => setSelectedLang('en')}
-                                aria-pressed={isEn}
-                                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
+                                className={`px-3 py-1 font-mono text-xs font-black uppercase transition-colors ${
                                     isEn 
-                                        ? 'bg-primary text-white shadow-lg font-black' 
-                                        : 'text-gray-400 hover:text-white'
+                                        ? 'bg-ink text-white' 
+                                        : 'text-ink-muted hover:text-ink'
                                 }`}
                             >
                                 {translations[selectedLang].cvModal.tabEn}
@@ -167,68 +164,49 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                             <button
                                 type="button"
                                 onClick={() => setSelectedLang('id')}
-                                aria-pressed={!isEn}
-                                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider active:scale-95 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark ${
+                                className={`px-3 py-1 font-mono text-xs font-black uppercase transition-colors ${
                                     !isEn 
-                                        ? 'bg-primary text-white shadow-lg font-black' 
-                                        : 'text-gray-400 hover:text-white'
+                                        ? 'bg-ink text-white' 
+                                        : 'text-ink-muted hover:text-ink'
                                 }`}
                             >
                                 {translations[selectedLang].cvModal.tabId}
                             </button>
                         </div>
-                        <span className="text-xs text-gray-400 font-mono">
-                            {isFrontend ? 'Front-End Focus' : 'Full-Stack Focus'} • {isEn ? 'English' : 'Indonesia'}
+                        <span className="font-mono text-xs text-ink font-bold">
+                            {isFrontend ? 'FRONTEND ARCHITECTURE' : 'DISTRIBUTED SYSTEMS'} {'//'} {isEn ? 'EN' : 'ID'}
                         </span>
                     </div>
 
-                    {/* Candidate Quick Overview */}
-                    <div className="bg-gray-900/70 border border-gray-800/80 rounded-2xl p-5 mb-6 space-y-3 font-body text-xs sm:text-sm">
-                        <div className="flex items-start gap-3">
-                            <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0 mt-0.5">
-                                <FiBriefcase className="text-base" />
-                            </div>
+                    {/* Quick Candidate Snapshot */}
+                    <div className="bg-canvas border-2 border-ink p-4 mb-6 space-y-2.5 font-mono text-xs text-ink">
+                        <div className="flex items-start gap-2.5">
+                            <FiBriefcase className="text-blueprint shrink-0 mt-0.5 text-sm" />
                             <div>
-                                <span className="font-bold text-white block">{activeData.experience[0].role}</span>
-                                <span className="text-gray-400">
-                                    {activeData.experience[0].subtitle} — {activeData.experience[0].company} ({activeData.experience[0].period})
+                                <span className="font-black block uppercase">{activeData.experience[0].role}</span>
+                                <span className="text-ink-muted font-sans text-xs">
+                                    {activeData.experience[0].company} ({activeData.experience[0].period})
                                 </span>
                             </div>
                         </div>
 
-                        <div className="flex items-start gap-3 pt-2 border-t border-gray-800/60">
-                            <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0 mt-0.5">
-                                <FiBookOpen className="text-base" />
-                            </div>
+                        <div className="flex items-start gap-2.5 pt-2 border-t border-ink/20">
+                            <FiBookOpen className="text-blueprint shrink-0 mt-0.5 text-sm" />
                             <div>
-                                <span className="font-bold text-white block">{activeData.education[0].degree}</span>
-                                <span className="text-gray-400">{activeData.education[0].institution} • {activeData.education[0].graduationYear}</span>
+                                <span className="font-black block uppercase">{activeData.education[0].degree}</span>
+                                <span className="text-ink-muted font-sans text-xs">
+                                    {activeData.education[0].institution} • {activeData.education[0].graduationYear}
+                                </span>
                             </div>
                         </div>
 
                         {activeData.certifications && activeData.certifications.length > 0 && (
-                            <div className="flex items-start gap-3 pt-2 border-t border-gray-800/60">
-                                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0 mt-0.5">
-                                    <FiAward className="text-base" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                    <div className="flex items-center justify-between gap-2 flex-wrap">
-                                        <span className="font-bold text-white block">
-                                            {activeData.certifications[0].name}
-                                        </span>
-                                        <a 
-                                            href={activeData.certifications[0].credentialUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-[11px] font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1 hover:underline"
-                                            title={isEn ? "Verify Official Credential" : "Verifikasi Kredensial Resmi"}
-                                        >
-                                            <span>{isEn ? 'Verify' : 'Verifikasi'}</span>
-                                            <FiExternalLink className="text-[10px]" />
-                                        </a>
-                                    </div>
-                                    <span className="text-gray-400 text-xs block">
-                                        {activeData.certifications[0].issuer} • {activeData.certifications[0].issueDate} – {activeData.certifications[0].expiryDate}
+                            <div className="flex items-start gap-2.5 pt-2 border-t border-ink/20">
+                                <FiAward className="text-telemetry shrink-0 mt-0.5 text-sm" />
+                                <div className="flex-1">
+                                    <span className="font-black block uppercase">{activeData.certifications[0].name}</span>
+                                    <span className="text-ink-muted font-sans text-xs">
+                                        {activeData.certifications[0].issuer} • {activeData.certifications[0].issueDate}
                                     </span>
                                 </div>
                             </div>
@@ -237,77 +215,78 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
 
                     {/* Download Actions */}
                     <div className="space-y-3 mb-6">
-                        {/* Primary: PDF */}
+                        {/* PDF Download Button */}
                         <a
                             href={pdfPath}
                             download={pdfDownloadName}
-                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/5 to-transparent border border-primary/40 hover:border-primary hover:from-primary/25 active:scale-[0.99] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="brutal-card brutal-card-hover p-4 bg-canvas-card flex items-center justify-between group"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-xl bg-primary text-black flex items-center justify-center font-bold text-xl group-hover:scale-105 transition-transform">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-blueprint text-white flex items-center justify-center font-bold text-lg border-2 border-ink">
                                     <FiFileText />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-white font-heading font-bold text-base sm:text-lg">
-                                             {t.pdfTitle}
+                                        <span className="font-display font-black text-sm sm:text-base text-ink uppercase">
+                                            {t.pdfTitle}
                                         </span>
-                                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 uppercase tracking-widest">
+                                        <span className="font-mono text-[10px] font-bold px-1.5 py-0.2 bg-telemetry-light border border-ink text-telemetry-dark">
                                             {t.recommended}
                                         </span>
                                     </div>
-                                    <span className="text-gray-400 text-xs font-body block mt-0.5">
+                                    <span className="font-sans text-xs text-ink-muted block">
                                         {t.pdfDesc}
                                     </span>
                                 </div>
                             </div>
-                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                                <FiDownload className="text-lg" />
+                            <div className="p-2 border-2 border-ink bg-white group-hover:bg-safety transition-colors">
+                                <FiDownload className="text-ink" />
                             </div>
                         </a>
 
-                        {/* Secondary: DOCX */}
+                        {/* DOCX Download Button */}
                         <a
                             href={docxPath}
                             download={docxDownloadName}
-                            className="flex items-center justify-between p-4 sm:p-5 rounded-2xl bg-neutral-surface border border-neutral-border hover:border-gray-600 hover:bg-neutral-surface/60 active:scale-[0.99] transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
+                            className="brutal-card brutal-card-hover p-4 bg-canvas-card flex items-center justify-between group"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 flex items-center justify-center font-bold text-xl group-hover:scale-105 transition-transform">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-white text-ink flex items-center justify-center font-bold text-lg border-2 border-ink">
                                     <FiFileText />
                                 </div>
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-white font-heading font-semibold text-base sm:text-lg">
+                                        <span className="font-display font-black text-sm sm:text-base text-ink uppercase">
                                             {t.docxTitle}
                                         </span>
-                                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-neutral-dark text-gray-400 border border-neutral-border uppercase tracking-widest">
+                                        <span className="font-mono text-[10px] font-bold px-1.5 py-0.2 bg-canvas border border-ink text-ink-muted">
                                             {t.editable}
                                         </span>
                                     </div>
-                                    <span className="text-gray-400 text-xs font-body block mt-0.5">
+                                    <span className="font-sans text-xs text-ink-muted block">
                                         {t.docxDesc}
                                     </span>
                                 </div>
                             </div>
-                            <div className="w-10 h-10 rounded-full bg-neutral-dark flex items-center justify-center text-gray-300 group-hover:bg-white group-hover:text-neutral-dark transition-all">
-                                <FiDownload className="text-lg" />
+                            <div className="p-2 border-2 border-ink bg-white group-hover:bg-safety transition-colors">
+                                <FiDownload className="text-ink" />
                             </div>
                         </a>
                     </div>
 
-                    {/* Preview Online Button */}
-                    <div className="pt-4 border-t border-gray-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
-                        <span className="text-xs text-gray-400 font-body">
-                            <strong className="text-primary">{isFrontend ? 'Front-End' : 'Full-Stack'}</strong> • <strong className="text-white">{isEn ? 'English (EN)' : 'Bahasa Indonesia (ID)'}</strong> • {t.verified}
+                    {/* Footer Verification Note */}
+                    <div className="pt-3 border-t-2 border-ink flex flex-col sm:flex-row justify-between items-center gap-2 font-mono text-xs text-ink-muted">
+                        <span>
+                            {t.verified}
                         </span>
                         <a
                             href={pdfPath}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-xs text-primary hover:text-white font-bold uppercase tracking-wider rounded px-1.5 py-0.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            className="text-blueprint font-bold hover:underline flex items-center gap-1"
                         >
-                            {t.openPdf} <FiExternalLink />
+                            <span>{t.openPdf}</span>
+                            <FiExternalLink />
                         </a>
                     </div>
                 </motion.div>

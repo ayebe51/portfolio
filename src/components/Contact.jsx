@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import MagneticButton from './ui/MagneticButton';
-import { FiArrowUpRight, FiMail } from 'react-icons/fi';
+import { FiMail, FiCheck, FiArrowRight, FiCopy } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
@@ -8,8 +7,15 @@ import { translations } from '../data/translations';
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState(null);
+    const [isCopied, setIsCopied] = useState(false);
     const { language } = useLanguage();
     const t = translations[language].contact;
+
+    const handleCopyEmail = () => {
+        navigator.clipboard.writeText('ayb.n1994@gmail.com');
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 3000);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,12 +24,12 @@ const Contact = () => {
         try {
             const subject = encodeURIComponent(
                 language === 'id' 
-                    ? `Pertanyaan Portfolio dari ${formData.name}` 
-                    : `Portfolio Inquiry from ${formData.name}`
+                    ? `Pertanyaan Sistem/Portfolio dari ${formData.name}` 
+                    : `System Engineering Inquiry from ${formData.name}`
             );
             const greeting = language === 'id' ? 'Halo Ahmad' : 'Hello Ahmad';
             const body = encodeURIComponent(
-                `${greeting},\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent via Portfolio Contact Form`
+                `${greeting},\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent via Portfolio Technical Dispatch`
             );
             window.location.href = `mailto:ayb.n1994@gmail.com?subject=${subject}&body=${body}`;
             setStatus('success');
@@ -41,141 +47,188 @@ const Contact = () => {
     };
 
     const waText = language === 'id'
-        ? "Halo%20Ahmad,%20saya%20melihat%20portfolio%20Anda%20dan%20ingin%20mendiskusikan%20peluang%20kerja."
-        : "Hello%20Ahmad,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity.";
+        ? "Halo%20Ahmad,%20saya%20tertarik%20dengan%20pengalaman%20rekayasa%20sistem%20dan%20frontend%20Anda."
+        : "Hello%20Ahmad,%20I%20am%20interested%20in%20your%20system%20engineering%20and%20frontend%20experience.";
 
     return (
-        <section id="contact" className="section-padding bg-neutral-dark relative z-10 overflow-hidden">
-            <div className="container mx-auto container-padding">
-                <div className="grid md:grid-cols-2 gap-16 lg:gap-20">
-                    <div>
-                        <h2 className="text-[12vw] md:text-[6vw] leading-[0.9] font-heading font-bold text-white uppercase mb-6">
-                            {language === 'id' ? (
-                                <>Mari<br />Terhubung</>
-                            ) : (
-                                <>Let's<br />Connect</>
-                            )}
+        <section id="contact" className="py-16 sm:py-24 bg-canvas border-t-2 border-ink relative overflow-x-clip">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 pb-6 border-b-2 border-ink">
+                    <div className="space-y-2">
+                        <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-blueprint text-white font-mono text-xs font-black uppercase border border-ink shadow-[2px_2px_0px_#18181B]">
+                            <FiMail className="text-xs" />
+                            <span>[ {t.badge} ]</span>
+                        </div>
+                        <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-ink">
+                            {t.title}
                         </h2>
-                        <p className="text-gray-300 text-base md:text-lg mb-8 max-w-md leading-relaxed font-body">
+                        <p className="font-sans text-sm sm:text-base text-ink-muted max-w-2xl">
                             {t.subtitle}
                         </p>
-
-                        {/* Direct Communication CTAs */}
-                        <div className="space-y-4 mb-10 max-w-md">
-                            <a 
-                                href={`https://wa.me/62895349177555?text=${waText}`}
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-between p-5 rounded-2xl bg-neutral-surface border border-neutral-border hover:border-green-500/60 hover:bg-neutral-surface/80 active:scale-[0.99] transition-all duration-300 group shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-green-400 group-hover:scale-105 transition-transform">
-                                        <FaWhatsapp className="text-2xl" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[11px] uppercase tracking-widest text-gray-400 font-bold block">{t.whatsappLabel}</span>
-                                        <span className="text-white text-base md:text-lg font-heading font-semibold">+62 895-3491-77555</span>
-                                    </div>
-                                </div>
-                                <FiArrowUpRight className="text-gray-400 group-hover:text-green-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-xl" />
-                            </a>
-
-                            <a 
-                                href="mailto:ayb.n1994@gmail.com" 
-                                className="flex items-center justify-between p-5 rounded-2xl bg-neutral-surface border border-neutral-border hover:border-primary/60 hover:bg-neutral-surface/80 active:scale-[0.99] transition-all duration-300 group shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
-                            >
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                                        <FiMail className="text-xl" />
-                                    </div>
-                                    <div>
-                                        <span className="text-[11px] uppercase tracking-widest text-gray-400 font-bold block">{t.emailLabel}</span>
-                                        <span className="text-white text-base md:text-lg font-heading font-semibold">ayb.n1994@gmail.com</span>
-                                    </div>
-                                </div>
-                                <FiArrowUpRight className="text-gray-400 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-xl" />
-                            </a>
-                        </div>
-
-                        {/* Location & Availability Note */}
-                        <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400 uppercase tracking-widest font-body">
-                            <span className="flex items-center gap-2">
-                                <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
-                                {t.statusBadge}
-                            </span>
-                            <span>•</span>
-                            <span>{t.location}</span>
-                        </div>
                     </div>
 
-                    <div className="flex flex-col justify-end">
-                        <form 
-                            onSubmit={handleSubmit} 
-                            className="space-y-8"
-                        >
+                    <div className="mt-4 md:mt-0 font-mono text-xs text-ink font-bold bg-white px-3 py-1.5 border-2 border-ink shadow-brutal-sm">
+                        DIRECT DISPATCH // NO BROKERS
+                    </div>
+                </div>
 
-                             <div className="space-y-4">
-                                <label className="text-gray-400 text-xs uppercase tracking-widest ml-4 font-bold">{t.nameLabel}</label>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12">
+                    
+                    {/* Left Communication Channels (5 Cols) */}
+                    <div className="lg:col-span-5 space-y-6">
+                        
+                        {/* 1-Click Copy Email Button */}
+                        <div className="brutal-card bg-canvas-card p-5 sm:p-6 space-y-3">
+                            <span className="font-mono text-xs font-black uppercase text-ink-muted block">
+                                Direct Email Dispatch
+                            </span>
+                            <div className="font-mono font-bold text-base sm:text-lg text-ink">
+                                ayb.n1994@gmail.com
+                            </div>
+                            <button
+                                type="button"
+                                onClick={handleCopyEmail}
+                                className={`brutal-btn w-full text-xs font-mono font-bold transition-all ${
+                                    isCopied 
+                                        ? 'bg-telemetry text-white border-2 border-ink' 
+                                        : 'bg-white hover:bg-stone-50 text-ink'
+                                }`}
+                            >
+                                {isCopied ? (
+                                    <>
+                                        <FiCheck className="text-sm" />
+                                        <span>{t.copied}</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <FiCopy className="text-sm" />
+                                        <span>{t.copyEmail}</span>
+                                    </>
+                                )}
+                            </button>
+                        </div>
+
+                        {/* WhatsApp Direct Chat */}
+                        <a
+                            href={`https://wa.me/62895349177555?text=${waText}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="brutal-card brutal-card-hover bg-canvas-card p-5 sm:p-6 flex items-center justify-between group cursor-pointer block"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-telemetry-light border-2 border-ink flex items-center justify-center text-telemetry-dark text-2xl shadow-[2px_2px_0px_#18181B]">
+                                    <FaWhatsapp />
+                                </div>
+                                <div>
+                                    <span className="font-mono text-xs font-bold text-ink-muted uppercase block">
+                                        {t.whatsappLabel}
+                                    </span>
+                                    <span className="font-mono font-black text-base sm:text-lg text-ink group-hover:text-telemetry transition-colors">
+                                        +62 895-3491-77555
+                                    </span>
+                                </div>
+                            </div>
+                            <FiArrowRight className="text-xl text-ink group-hover:translate-x-1 transition-transform" />
+                        </a>
+
+                        {/* Status Stamp */}
+                        <div className="p-4 bg-canvas border-2 border-ink font-mono text-xs space-y-1.5">
+                            <div className="flex items-center gap-2 text-ink font-bold">
+                                <span className="w-2 h-2 rounded-full bg-telemetry animate-ping"></span>
+                                <span>{t.statusBadge}</span>
+                            </div>
+                            <div className="text-ink-muted">
+                                {t.location}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* Right Form Dispatch Box (7 Cols) */}
+                    <div className="lg:col-span-7">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="brutal-card bg-canvas-card p-6 sm:p-8 space-y-5 shadow-brutal-lg"
+                        >
+                            <div className="font-mono text-xs font-black uppercase pb-3 border-b-2 border-ink flex items-center justify-between text-ink">
+                                <span>TRANSMISSION FORM // INQUIRY</span>
+                                <span>ENCRYPTED</span>
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <label className="font-mono text-xs font-bold uppercase text-ink block">
+                                    {t.nameLabel} *
+                                </label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
                                     placeholder={t.namePlaceholder}
-                                    className="w-full bg-transparent border-b border-gray-700 px-4 py-4 text-xl text-white focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600"
                                     required
+                                    className="w-full bg-white border-2 border-ink p-3 font-mono text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-blueprint"
                                 />
                             </div>
-                            <div className="space-y-4">
-                                <label className="text-gray-400 text-xs uppercase tracking-widest ml-4 font-bold">{t.emailInputLabel}</label>
+
+                            <div className="space-y-1.5">
+                                <label className="font-mono text-xs font-bold uppercase text-ink block">
+                                    {t.emailInputLabel} *
+                                </label>
                                 <input
                                     type="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
                                     placeholder={t.emailPlaceholder}
-                                    className="w-full bg-transparent border-b border-gray-700 px-4 py-4 text-xl text-white focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600"
                                     required
+                                    className="w-full bg-white border-2 border-ink p-3 font-mono text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-blueprint"
                                 />
                             </div>
-                            <div className="space-y-4">
-                                <label className="text-gray-400 text-xs uppercase tracking-widest ml-4 font-bold">{t.messageLabel}</label>
+
+                            <div className="space-y-1.5">
+                                <label className="font-mono text-xs font-bold uppercase text-ink block">
+                                    {t.messageLabel} *
+                                </label>
                                 <textarea
                                     name="message"
                                     rows="4"
                                     value={formData.message}
                                     onChange={handleChange}
                                     placeholder={t.messagePlaceholder}
-                                    className="w-full bg-transparent border-b border-gray-700 px-4 py-4 text-xl text-white focus:outline-none focus:border-primary transition-colors placeholder:text-gray-600 resize-none"
                                     required
-                                ></textarea>
+                                    className="w-full bg-white border-2 border-ink p-3 font-mono text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-blueprint resize-none"
+                                />
                             </div>
 
-                            <div className="pt-8">
-                                <MagneticButton 
+                            <div className="pt-2">
+                                <button
                                     type="submit"
-                                    className="w-full md:w-auto px-12 py-5 bg-white text-neutral-dark font-heading font-bold text-xl uppercase tracking-widest rounded-full hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 flex items-center justify-between gap-4 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark"
                                     disabled={status === 'sending'}
+                                    className="brutal-btn-primary w-full sm:w-auto text-xs sm:text-sm font-mono font-black"
                                 >
-                                    {status === 'sending' ? t.sendingBtn : t.sendBtn}
-                                    <FiArrowUpRight />
-                                </MagneticButton>
+                                    <span>{status === 'sending' ? t.sendingBtn : t.sendBtn}</span>
+                                    <FiArrowRight />
+                                </button>
                             </div>
 
-                            {/* Success/Error Messages */}
                             {status === 'success' && (
-                                <div className="mt-4 p-4 bg-green-500/10 border border-green-500/50 rounded-lg text-green-400 text-sm">
+                                <div className="p-3 bg-telemetry-light border-2 border-ink font-mono text-xs text-telemetry-dark font-bold">
                                     {t.successMsg}
                                 </div>
                             )}
+
                             {status === 'error' && (
-                                <div className="mt-4 p-4 bg-red-500/10 border border-red-500/50 rounded-lg text-red-400 text-sm">
+                                <div className="p-3 bg-red-100 border-2 border-ink font-mono text-xs text-red-700 font-bold">
                                     {t.errorMsg}
                                 </div>
                             )}
                         </form>
                     </div>
+
                 </div>
+
             </div>
         </section>
     );

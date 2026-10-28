@@ -1,72 +1,97 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiArrowUpRight } from 'react-icons/fi';
+import { FiPlus, FiMinus, FiCpu } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
 const Services = () => {
-    const [hoveredService, setHoveredService] = useState(null);
+    const [openId, setOpenId] = useState("01");
     const { language } = useLanguage();
     const t = translations[language].services;
 
     return (
-        <section id="services" className="section-padding bg-neutral-dark relative z-10">
-            <div className="container mx-auto container-padding">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-[calc(5vw*1.618)]">
-                    <h2 className="text-[10vw] leading-[0.8] font-heading font-bold text-white uppercase opacity-100">
-                        {t.title}
-                    </h2>
-                    <p className="text-gray-200 text-lg max-w-sm text-right mt-8 md:mt-0 font-body uppercase tracking-widest font-medium">
-                        {t.subtitle}
-                    </p>
+        <section id="services" className="py-16 sm:py-24 bg-canvas border-t-2 border-ink relative overflow-x-clip">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Section Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 pb-6 border-b-2 border-ink">
+                    <div className="space-y-2">
+                        <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-ink text-white font-mono text-xs font-black uppercase border border-ink shadow-[2px_2px_0px_#18181B]">
+                            <FiCpu className="text-xs" />
+                            <span>[ CAPABILITY ROSTER ]</span>
+                        </div>
+                        <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-ink">
+                            {t.title}
+                        </h2>
+                        <p className="font-sans text-sm sm:text-base text-ink-muted max-w-2xl">
+                            {t.subtitle}
+                        </p>
+                    </div>
+
+                    <div className="mt-4 md:mt-0 font-mono text-xs text-ink font-bold bg-white px-3 py-1.5 border-2 border-ink shadow-brutal-sm">
+                        TOTAL DISCIPLINES: 06
+                    </div>
                 </div>
 
-                <div className="flex flex-col">
-                    {t.items.map((service) => (
-                        <motion.div
-                            key={service.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.618 }}
-                            onMouseEnter={() => setHoveredService(service.id)}
-                            onMouseLeave={() => setHoveredService(null)}
-                            onClick={() => setHoveredService(hoveredService === service.id ? null : service.id)}
-                            className="group border-t border-neutral-border py-12 md:py-[5vw] grid grid-cols-1 md:grid-cols-[0.38fr_auto] gap-8 cursor-pointer hover:bg-white/5 transition-colors duration-500 px-4 md:px-0"
-                        >
-                            <span className="text-gray-400 font-body text-sm tracking-widest uppercase font-bold pt-4">
-                                /{service.id}
-                            </span>
-                            
-                            <div className="flex-1 relative">
-                                <h3 className="text-5xl md:text-[5vw] leading-[1.1] font-heading font-bold text-white uppercase mb-4 group-hover:text-primary transition-colors duration-300">
-                                    {service.title}
-                                </h3>
-                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${hoveredService === service.id ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'} md:group-hover:max-h-[600px] md:group-hover:opacity-100`}>
-                                    <p className="text-base sm:text-lg md:text-xl text-neutral-300 max-w-2xl md:max-w-3xl leading-relaxed mb-6 font-normal">
-                                        {service.description}
-                                    </p>
-                                    <div className="flex flex-wrap gap-2.5 pb-2">
-                                        {service.tags.map(tag => (
-                                            <span key={tag} className="px-3.5 py-1.5 border border-neutral-border bg-neutral-surface/80 rounded-full text-xs sm:text-sm text-gray-200 uppercase tracking-wider font-semibold hover:border-primary/50 hover:text-primary transition-colors">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
+                {/* Industrial Accordion Grid */}
+                <div className="space-y-4">
+                    {t.items.map((service) => {
+                        const isOpen = openId === service.id;
 
-                            <motion.div 
-                                className="hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        return (
+                            <div
+                                key={service.id}
+                                className={`brutal-card transition-all duration-150 overflow-hidden ${
+                                    isOpen 
+                                        ? 'bg-canvas-card border-2 border-ink shadow-brutal-md ring-2 ring-blueprint/20' 
+                                        : 'bg-white hover:bg-stone-50 border-2 border-ink shadow-brutal-sm'
+                                }`}
                             >
-                                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-black">
-                                    <FiArrowUpRight className="text-3xl" />
-                                </div>
-                            </motion.div>
-                        </motion.div>
-                    ))}
-                    <div className="border-t border-gray-800"></div>
+                                <button
+                                    type="button"
+                                    onClick={() => setOpenId(isOpen ? null : service.id)}
+                                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus-visible:outline-none"
+                                >
+                                    <div className="flex items-center gap-4 sm:gap-6">
+                                        <span className={`font-mono text-sm sm:text-base font-black px-2.5 py-1 border-2 border-ink shadow-[2px_2px_0px_#18181B] ${
+                                            isOpen ? 'bg-blueprint text-white' : 'bg-canvas text-ink'
+                                        }`}>
+                                            /{service.id}
+                                        </span>
+                                        <h3 className="font-display font-black text-lg sm:text-2xl text-ink uppercase tracking-tight">
+                                            {service.title}
+                                        </h3>
+                                    </div>
+
+                                    <div className={`w-8 h-8 flex items-center justify-center border-2 border-ink font-bold transition-transform ${
+                                        isOpen ? 'bg-safety text-ink rotate-180' : 'bg-canvas text-ink'
+                                    }`}>
+                                        {isOpen ? <FiMinus /> : <FiPlus />}
+                                    </div>
+                                </button>
+
+                                {isOpen && (
+                                    <div className="px-5 sm:px-6 pb-6 pt-2 border-t-2 border-ink/10 space-y-4 bg-canvas/40">
+                                        <p className="font-sans text-sm sm:text-base text-ink leading-relaxed max-w-4xl">
+                                            {service.description}
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-2 pt-2">
+                                            {service.tags.map((tag) => (
+                                                <span 
+                                                    key={tag}
+                                                    className="font-mono text-xs font-bold px-3 py-1 bg-white border border-ink text-ink shadow-[1px_1px_0px_#18181B]"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
+
             </div>
         </section>
     );

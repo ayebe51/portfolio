@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { FiAward } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
@@ -7,58 +7,62 @@ const Testimonials = () => {
     const t = translations[language].testimonials;
 
     return (
-        <section className="section-padding bg-neutral-dark relative z-10 overflow-hidden border-t border-neutral-border">
-            <div className="container mx-auto container-padding">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-24">
-                     <h2 className="text-[10vw] leading-[0.8] font-heading font-bold text-white uppercase opacity-100">
-                        {language === 'id' ? (
-                            <>Rekam<br />Jejak</>
-                        ) : (
-                            <>Track<br />Record</>
-                        )}
-                    </h2>
-                     <div className="flex items-center gap-4 mt-8 md:mt-0">
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-                        <span className="text-gray-200 font-mono text-sm tracking-widest uppercase font-bold">{t.status}</span>
-                     </div>
+        <section id="track-record" className="py-16 sm:py-24 bg-canvas border-t-2 border-ink relative overflow-x-clip">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Section Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 pb-6 border-b-2 border-ink">
+                    <div className="space-y-2">
+                        <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-telemetry text-white font-mono text-xs font-black uppercase border border-ink shadow-[2px_2px_0px_#18181B]">
+                            <FiAward className="text-xs" />
+                            <span>[ PRODUCTION AUDIT ]</span>
+                        </div>
+                        <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-ink">
+                            {t.title}
+                        </h2>
+                    </div>
+
+                    <div className="flex items-center gap-2 mt-4 md:mt-0 font-mono text-xs font-bold text-ink bg-white px-3 py-1.5 border-2 border-ink shadow-brutal-sm">
+                        <span className="w-2.5 h-2.5 rounded-full bg-telemetry animate-ping"></span>
+                        <span>{t.status}</span>
+                    </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-12">
-                    {t.stats.map((stat, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
-                            className="relative group h-full"
+                {/* 3 Pillar Verification Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    {t.stats.map((stat, idx) => (
+                        <div
+                            key={idx}
+                            className="brutal-card brutal-card-hover bg-canvas-card p-6 sm:p-8 flex flex-col justify-between"
                         >
-                            <div className="h-full flex flex-col bg-neutral-surface backdrop-blur-sm border border-neutral-border rounded-3xl overflow-hidden p-8 hover:border-primary/50 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]">
-                                <h3 className="text-6xl md:text-7xl font-heading font-bold text-white mb-4 group-hover:text-primary transition-colors">
+                            <div>
+                                <div className="font-mono font-black text-4xl sm:text-5xl text-ink tracking-tight mb-3">
                                     {stat.number}
-                                </h3>
-                                <h4 className="text-xl font-heading font-bold text-white uppercase tracking-wider mb-2">
+                                </div>
+                                <h3 className="font-display font-black text-xl text-ink uppercase tracking-tight mb-3">
                                     {stat.label}
-                                </h4>
-                                <p className="text-neutral-300 text-sm leading-relaxed mb-6">
+                                </h3>
+                                <p className="font-sans text-xs sm:text-sm text-ink-muted leading-relaxed mb-6">
                                     {stat.description}
                                 </p>
-                                {stat.tags && (
-                                    <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-neutral-border">
-                                        {stat.tags.map((tag, tIndex) => (
-                                            <span 
-                                                key={tIndex}
-                                                className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-neutral-dark border border-neutral-border text-gray-400 group-hover:border-primary/30 group-hover:text-primary transition-all duration-300"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                )}
                             </div>
-                        </motion.div>
+
+                            {stat.tags && (
+                                <div className="pt-4 border-t-2 border-ink flex flex-wrap gap-1.5">
+                                    {stat.tags.map((tag, tIdx) => (
+                                        <span 
+                                            key={tIdx}
+                                            className="font-mono text-[11px] font-bold px-2 py-0.5 bg-canvas border border-ink text-ink"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     ))}
                 </div>
+
             </div>
         </section>
     );

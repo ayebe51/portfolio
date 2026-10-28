@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiExternalLink, FiGithub, FiLock } from 'react-icons/fi';
+import { FiX, FiExternalLink, FiGithub, FiLock, FiCheckCircle, FiCpu, FiLayers } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
@@ -28,219 +28,247 @@ const ProjectModal = ({ project, onClose }) => {
 
     if (!project) return null;
 
+    const mobileGallery = project.gallery?.filter(item => item.isMobile) || [];
+    const webGallery = project.gallery?.filter(item => !item.isMobile) || [];
+
     return (
         <AnimatePresence>
-            {project && (
-                <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={onClose}
-                        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-                    ></motion.div>
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+                
+                {/* Backdrop */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={onClose}
+                    className="fixed inset-0 bg-ink/70 backdrop-blur-xs"
+                />
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 50, scale: 0.95 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative bg-neutral-surface rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.8)] w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col overflow-hidden border border-neutral-border"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="project-modal-title"
-                        data-lenis-prevent
-                    >
+                {/* Neo-Brutalist Blueprint Modal Container */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 20, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-canvas-card border-2 border-ink shadow-brutal-xl flex flex-col z-10"
+                    role="dialog"
+                    aria-modal="true"
+                    data-lenis-prevent
+                >
+                    {/* Top Control Bar */}
+                    <div className="sticky top-0 z-30 bg-canvas px-4 sm:px-6 py-3 border-b-2 border-ink flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <span className="font-mono text-xs font-black uppercase bg-safety px-2 py-0.5 border border-ink">
+                                SPEC_SHEET // ID #{project.id}
+                            </span>
+                            <span className="hidden sm:inline font-mono text-xs font-bold text-ink-muted">
+                                {project.category}
+                            </span>
+                        </div>
+
                         <button
+                            type="button"
                             onClick={onClose}
-                            className="absolute top-6 right-6 z-20 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-white hover:text-neutral-dark rounded-full text-white backdrop-blur-md transition-all duration-300 border border-white/20 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
+                            className="font-mono text-xs font-black uppercase px-2.5 py-1 bg-white hover:bg-ink hover:text-white border-2 border-ink active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#18181B] transition-colors flex items-center gap-1.5"
                             aria-label={t.close}
                         >
-                            <FiX className="text-xl" />
+                            <span>{t.close}</span>
+                            <FiX className="text-sm" />
                         </button>
+                    </div>
 
-                        {/* Image Header */}
-                        <div className="w-full aspect-video bg-neutral-dark relative border-b border-neutral-border flex-shrink-0">
-                            <div className="absolute inset-0 bg-gradient-to-t from-neutral-surface via-transparent to-transparent z-10"></div>
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                decoding="async"
-                                className="w-full h-full object-cover object-top"
-                            />
-                            <div className="absolute bottom-6 left-8 z-20">
-                                <span className="text-primary font-bold tracking-widest text-xs uppercase bg-black/50 backdrop-blur-md px-4 py-2 rounded-full inline-block border border-primary/20 shadow-lg">
-                                    {project.category}
-                                </span>
+                    {/* Banner Image */}
+                    <div className="w-full aspect-[21/9] sm:aspect-[21/8] bg-canvas border-b-2 border-ink relative overflow-hidden flex-shrink-0">
+                        <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover object-top"
+                        />
+                        <div className="absolute bottom-3 left-4 sm:left-6">
+                            <span className="font-mono text-xs font-bold px-3 py-1 bg-ink text-white border border-canvas shadow-[2px_2px_0px_#18181B]">
+                                {project.category}
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Content Body */}
+                    <div className="p-6 sm:p-8 space-y-8">
+                        
+                        {/* Title & Overview */}
+                        <div>
+                            <h3 className="font-display font-black text-2xl sm:text-4xl text-ink uppercase tracking-tight mb-3">
+                                {project.title}
+                            </h3>
+                            <p className="font-sans text-sm sm:text-base text-ink-muted leading-relaxed">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        {/* Production Demo Note */}
+                        {project.demoNote && (
+                            <div className="p-4 bg-canvas border-2 border-ink flex items-start gap-3">
+                                <span className="w-2.5 h-2.5 rounded-full bg-telemetry mt-1.5 flex-shrink-0 animate-ping"></span>
+                                <div className="font-sans text-xs sm:text-sm text-ink leading-relaxed">
+                                    <strong className="font-mono font-bold uppercase">{t.liveDemoAccess} </strong>
+                                    {project.demoNote}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Engineering Analysis 3-Column Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                            
+                            <div className="p-4 bg-canvas border-2 border-ink space-y-2">
+                                <h4 className="font-mono text-xs font-black uppercase text-ink flex items-center gap-1.5">
+                                    <FiCpu className="text-blueprint" />
+                                    <span>{t.challenge}</span>
+                                </h4>
+                                <p className="font-sans text-xs text-ink-muted leading-relaxed">
+                                    {project.challenge}
+                                </p>
+                            </div>
+
+                            <div className="p-4 bg-canvas border-2 border-ink space-y-2">
+                                <h4 className="font-mono text-xs font-black uppercase text-ink flex items-center gap-1.5">
+                                    <FiLayers className="text-safety-dark" />
+                                    <span>{t.approach}</span>
+                                </h4>
+                                <p className="font-sans text-xs text-ink-muted leading-relaxed">
+                                    {project.approach}
+                                </p>
+                            </div>
+
+                            <div className="p-4 bg-canvas border-2 border-ink space-y-2">
+                                <h4 className="font-mono text-xs font-black uppercase text-ink flex items-center gap-1.5">
+                                    <FiCheckCircle className="text-telemetry" />
+                                    <span>{t.results}</span>
+                                </h4>
+                                <p className="font-sans text-xs text-ink-muted leading-relaxed">
+                                    {project.results}
+                                </p>
+                            </div>
+
+                        </div>
+
+                        {/* Stack Badges */}
+                        <div>
+                            <h4 className="font-mono text-xs font-black uppercase text-ink mb-3">
+                                [ {t.tools} ]
+                            </h4>
+                            <div className="flex flex-wrap gap-2">
+                                {project.tools.map((tool, idx) => (
+                                    <span 
+                                        key={idx}
+                                        className="font-mono text-xs font-bold px-3 py-1 bg-white border-2 border-ink shadow-[2px_2px_0px_#18181B] text-ink"
+                                    >
+                                        {tool}
+                                    </span>
+                                ))}
                             </div>
                         </div>
 
-                        {/* Content Body */}
-                        <div className="p-8 md:p-12 w-full">
-                            <h3 id="project-modal-title" className="text-4xl md:text-5xl font-black mb-6 font-heading text-white tracking-tight">{project.title}</h3>
-                            <p className="text-gray-300 mb-8 leading-relaxed text-lg font-body">
-                                {project.description}
-                            </p>
+                        {/* Gallery Section */}
+                        {/* Mobile Flutter App Views */}
+                        {mobileGallery.length > 0 && (
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2 pb-2 border-b-2 border-ink">
+                                    <span className="w-2.5 h-2.5 bg-telemetry animate-ping"></span>
+                                    <h4 className="font-mono text-xs font-black uppercase text-ink">
+                                        {t.mobileTitle} ({mobileGallery.length} {t.screens})
+                                    </h4>
+                                </div>
 
-                            {project.demoNote && (
-                                <div className="mb-10 p-4 bg-primary/10 border border-primary/30 rounded-2xl flex items-start gap-3">
-                                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0 animate-pulse"></div>
-                                    <div className="text-sm text-gray-200 leading-relaxed font-body">
-                                        <strong className="text-white font-semibold">{t.liveDemoAccess} </strong>
-                                        {project.demoNote}
-                                    </div>
-                                </div>
-                            )}
-
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                                <div>
-                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">{t.challenge}</h4>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{project.challenge}</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">{t.approach}</h4>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{project.approach}</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-white mb-2 uppercase tracking-wider text-sm">{t.results}</h4>
-                                    <p className="text-sm text-gray-400 leading-relaxed">{project.results}</p>
-                                </div>
-                            </div>
-
-                            <div className="mb-10">
-                                <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-sm">{t.tools}</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tools.map((tool, idx) => (
-                                        <span key={idx} className="text-sm font-medium text-gray-300 bg-gray-800/50 hover:bg-gray-800 px-4 py-2 rounded-lg border border-gray-700/50 transition-colors">
-                                             {tool}
-                                        </span>
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    {mobileGallery.map((item, idx) => (
+                                        <div key={idx} className="border-2 border-ink bg-canvas shadow-brutal-sm overflow-hidden flex flex-col">
+                                            <div className="aspect-[9/18] overflow-hidden bg-black border-b border-ink">
+                                                <img 
+                                                    src={item.src} 
+                                                    alt={item.alt}
+                                                    loading="lazy"
+                                                    className="w-full h-full object-cover object-top"
+                                                />
+                                            </div>
+                                            {item.caption && (
+                                                <div className="p-3 bg-white font-sans text-xs text-ink-muted leading-relaxed">
+                                                    <span className="font-mono font-bold text-blueprint mr-1">{'//'}</span>
+                                                    {item.caption}
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                 </div>
                             </div>
+                        )}
 
-                            {/* Project Gallery */}
-                            {project.gallery && project.gallery.length > 0 && (() => {
-                                const mobileItems = project.gallery.filter(item => item.isMobile);
-                                const webItems = project.gallery.filter(item => !item.isMobile);
+                        {/* Web Enterprise Platform Views */}
+                        {webGallery.length > 0 && (
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2 pb-2 border-b-2 border-ink">
+                                    <span className="w-2.5 h-2.5 bg-blueprint animate-ping"></span>
+                                    <h4 className="font-mono text-xs font-black uppercase text-ink">
+                                        {mobileGallery.length > 0 ? t.webTitle : t.defaultGalleryTitle}
+                                    </h4>
+                                </div>
 
-                                return (
-                                    <div className="mb-10 space-y-10">
-                                        {/* Mobile App Showcase */}
-                                        {mobileItems.length > 0 && (
-                                            <div>
-                                                <div className="flex items-center gap-3 mb-6">
-                                                    <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></div>
-                                                    <h4 className="font-bold text-white uppercase tracking-wider text-sm">
-                                                        {t.mobileTitle}
-                                                    </h4>
-                                                    <span className="text-xs font-mono text-gray-400 bg-gray-800/80 px-2.5 py-0.5 rounded-full border border-gray-700/80">
-                                                        {mobileItems.length} {t.screens}
-                                                    </span>
-                                                </div>
-                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                                                    {mobileItems.map((item, idx) => {
-                                                        const imgSrc = typeof item === 'string' ? item : item.src;
-                                                        const imgAlt = typeof item === 'object' && item.alt ? item.alt : `${project.title} mobile screenshot ${idx + 1}`;
-                                                        const imgCaption = typeof item === 'object' && item.caption ? item.caption : null;
-
-                                                        return (
-                                                            <div key={idx} className="flex flex-col rounded-3xl overflow-hidden border border-gray-800/90 bg-gray-950 shadow-2xl hover:border-primary/50 transition-all duration-300 group">
-                                                                <div className="w-full aspect-[9/18] overflow-hidden bg-black relative flex items-center justify-center">
-                                                                    <img 
-                                                                        src={imgSrc} 
-                                                                        alt={imgAlt} 
-                                                                        loading="lazy"
-                                                                        decoding="async"
-                                                                        className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500 ease-out" 
-                                                                    />
-                                                                </div>
-                                                                {imgCaption && (
-                                                                    <div className="p-4 bg-gray-900/95 border-t border-gray-800/80 flex items-start gap-2 text-xs text-gray-300 leading-relaxed font-body">
-                                                                        <span className="text-primary font-bold select-none">{"//"}</span>
-                                                                        <span>{imgCaption}</span>
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {webGallery.map((item, idx) => (
+                                        <div key={idx} className="border-2 border-ink bg-canvas shadow-brutal-sm overflow-hidden flex flex-col">
+                                            <div className="aspect-video overflow-hidden bg-stone-100 border-b border-ink">
+                                                <img 
+                                                    src={item.src} 
+                                                    alt={item.alt}
+                                                    loading="lazy"
+                                                    className="w-full h-full object-cover object-top"
+                                                />
                                             </div>
-                                        )}
-
-                                        {/* Web Platform Views */}
-                                        {webItems.length > 0 && (
-                                            <div>
-                                                <div className="flex items-center gap-3 mb-6">
-                                                    <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>
-                                                    <h4 className="font-bold text-white uppercase tracking-wider text-sm">
-                                                        {mobileItems.length > 0 ? t.webTitle : t.defaultGalleryTitle}
-                                                    </h4>
+                                            {item.caption && (
+                                                <div className="p-3 bg-white font-sans text-xs text-ink-muted leading-relaxed">
+                                                    <span className="font-mono font-bold text-blueprint mr-1">{'//'}</span>
+                                                    {item.caption}
                                                 </div>
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                    {webItems.map((item, idx) => {
-                                                        const imgSrc = typeof item === 'string' ? item : item.src;
-                                                        const imgAlt = typeof item === 'object' && item.alt ? item.alt : `${project.title} screenshot ${idx + 1}`;
-                                                        const imgCaption = typeof item === 'object' && item.caption ? item.caption : null;
-
-                                                        return (
-                                                            <div key={idx} className="flex flex-col rounded-2xl overflow-hidden border border-gray-800/80 bg-gray-900/60 shadow-lg hover:border-primary/40 transition-all duration-300 group">
-                                                                <div className="aspect-video w-full overflow-hidden bg-black/60 relative">
-                                                                    <img 
-                                                                        src={imgSrc} 
-                                                                        alt={imgAlt} 
-                                                                        loading="lazy"
-                                                                        decoding="async"
-                                                                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out" 
-                                                                    />
-                                                                </div>
-                                                                {imgCaption && (
-                                                                    <div className="p-4 bg-gray-900/90 border-t border-gray-800/60 flex items-start gap-2 text-xs text-gray-300 leading-relaxed font-body">
-                                                                        <span className="text-primary font-bold select-none">{"//"}</span>
-                                                                        <span>{imgCaption}</span>
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        );
-                                                    })}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })()}
-
-                            {/* Actions */}
-                            <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-neutral-border">
-                                {project.demoUrl && (
-                                    <a
-                                        href={project.demoUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-primary text-white hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg shadow-indigo-500/25 flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
-                                    >
-                                        {t.viewLive} <FiExternalLink className="text-lg" />
-                                    </a>
-                                )}
-                                {project.repoType === 'private' ? (
-                                    <div className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-neutral-dark border border-amber-500/40 text-amber-300/90 shadow-lg flex-1 text-center select-none cursor-default">
-                                        <FiLock className="text-base text-amber-400" />
-                                        <span>{t.proprietaryCode || 'Private Enterprise Codebase'}</span>
-                                    </div>
-                                ) : project.repoUrl ? (
-                                    <a
-                                        href={project.repoUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest py-3.5 px-6 rounded-full bg-neutral-dark border border-neutral-border hover:border-white text-white hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg flex-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-surface"
-                                    >
-                                        {project.repoType === 'showcase' ? (t.showcaseSpecs || 'Showcase Specs') : t.sourceCode} <FiGithub className="text-lg" />
-                                    </a>
-                                ) : null}
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
+                        )}
+
+                        {/* Action Footer */}
+                        <div className="pt-6 border-t-2 border-ink flex flex-wrap gap-3">
+                            {project.demoUrl && (
+                                <a
+                                    href={project.demoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="brutal-btn-primary flex-1 text-center"
+                                >
+                                    <span>{t.viewLive}</span>
+                                    <FiExternalLink />
+                                </a>
+                            )}
+
+                            {project.repoType === 'private' ? (
+                                <div className="brutal-btn bg-safety text-ink flex-1 text-center cursor-default select-none">
+                                    <FiLock />
+                                    <span>{t.proprietaryCode}</span>
+                                </div>
+                            ) : project.repoUrl ? (
+                                <a
+                                    href={project.repoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="brutal-btn-white flex-1 text-center"
+                                >
+                                    <FiGithub />
+                                    <span>{t.sourceCode}</span>
+                                </a>
+                            ) : null}
                         </div>
-                    </motion.div>
-                </div>
-            )}
+
+                    </div>
+                </motion.div>
+            </div>
         </AnimatePresence>
     );
 };

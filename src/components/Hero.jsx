@@ -1,250 +1,197 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'framer-motion';
-import MagneticButton from './ui/MagneticButton';
-import TechOrbit from './ui/TechOrbit';
-import { FiDownload } from 'react-icons/fi';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiArrowRight, FiTerminal, FiDownload, FiCheckCircle, FiInfo } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
+import ScrambleText from './ui/ScrambleText';
+import KineticCounter from './ui/KineticCounter';
+import { useSound } from '../context/SoundContext';
 
-const ROLES = [
-    { text: 'FRONT END', size: 'text-[13vw] sm:text-[14vw] md:text-[11vw]' },
-    { text: 'FULL STACK', size: 'text-[13vw] sm:text-[14vw] md:text-[11vw]' },
-    { text: 'WEB DEVELOPER', size: 'text-[9.2vw] sm:text-[10vw] md:text-[7.8vw]' },
-];
-
-const Hero = ({ onOpenCV }) => {
+const Hero = ({ onOpenCV, onOpenCommandPalette }) => {
     const { language } = useLanguage();
     const t = translations[language].hero;
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-    const y2 = useTransform(scrollY, [0, 500], [0, -100]);
-    const imageScale = useTransform(scrollY, [0, 500], [1, 1.1]);
+    const telemetry = translations[language].telemetry;
+    const { playClick } = useSound();
+    const [focusedMetric, setFocusedMetric] = useState(null);
 
-    const [isPhotoHovered, setIsPhotoHovered] = useState(false);
-    const [isPinned, setIsPinned] = useState(false);
-    const [isMobileView, setIsMobileView] = useState(false);
-    const [roleIndex, setRoleIndex] = useState(0);
-    const hoverTimeoutRef = useRef(null);
+    // Deep micro-telemetry breakdown data
+    const microTelemetryEn = [
+        "Across 14 Districts • Centralized LP Ma'arif NU Cilacap Admin",
+        "15,000+ Active Students • 2,000+ Verified Teachers & Staff",
+        "Pest + PHPUnit • 36,000+ Assertions • Zero Flaky Tests in CI",
+        "Double-Entry Accounting • Closed-Loop Wallet Cashier Balanced"
+    ];
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setRoleIndex((prev) => (prev + 1) % ROLES.length);
-        }, 3500);
-        return () => clearInterval(timer);
-    }, []);
+    const microTelemetryId = [
+        "Tersebar di 14 Kecamatan • Tata Kelola LP Ma'arif NU Cilacap",
+        "15.000+ Siswa Aktif • 2.000+ Guru & Staf Tervalidasi",
+        "Pest + PHPUnit • 36.000+ Assertions • Nol Test Gagal di CI",
+        "Buku Besar Double-Entry • Rekonsiliasi Kasir & Dompet Tertutup"
+    ];
 
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobileView(window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches);
-        };
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
-
-    const handleMouseEnter = () => {
-        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-        setIsPhotoHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        if (isPinned) return; // Keep orbit open if pinned by user click
-        // 450ms grace period to allow mouse to travel smoothly to orbiting badges
-        hoverTimeoutRef.current = setTimeout(() => {
-            setIsPhotoHovered(false);
-        }, 450);
-    };
-
-    const handleToggleClick = (e) => {
-        e.stopPropagation();
-        if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-        setIsPinned(prev => {
-            const nextPinned = !prev;
-            setIsPhotoHovered(nextPinned);
-            return nextPinned;
-        });
-    };
-
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const handleMouseMove = ({ currentTarget, clientX, clientY }) => {
-        const { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    };
+    const microData = language === 'id' ? microTelemetryId : microTelemetryEn;
 
     return (
-        <section 
-            id="about" 
-            className="group relative min-h-[110vh] flex items-center justify-center overflow-hidden bg-neutral-dark"
-            onMouseMove={handleMouseMove}
-        >
-            {/* Dynamic Interactive Grid Pattern (Linear / Vercel Indigo Style) */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-                {/* Subtle base grid visible everywhere */}
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50" />
+        <section className="relative pt-8 pb-16 sm:pt-14 sm:pb-24 overflow-x-clip">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                {/* Glowing electric indigo grid revealed strictly under cursor */}
+                {/* Specification Header Tag with Text Scrambler */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 brutal-card !shadow-brutal-sm bg-canvas-card mb-6 sm:mb-8"
+                >
+                    <span className="w-2.5 h-2.5 bg-telemetry animate-ping"></span>
+                    <span className="font-mono text-xs font-black tracking-wider text-ink uppercase">
+                        <ScrambleText text={t.eyebrow} delay={200} />
+                    </span>
+                </motion.div>
+
+                {/* Dual-Identity Headline with Kinetic Decoder */}
                 <motion.div
-                    className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.35)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.35)_1px,transparent_1px)] bg-[size:4rem_4rem]"
-                    style={{
-                        maskImage: useMotionTemplate`radial-gradient(30vw circle at ${mouseX}px ${mouseY}px, black, transparent)`,
-                        WebkitMaskImage: useMotionTemplate`radial-gradient(30vw circle at ${mouseX}px ${mouseY}px, black, transparent)`
-                    }}
-                />
-            </div>
-
-            {/* Floating Fullstack Symbols */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-                <motion.div animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }} className="absolute top-[25%] left-[10%] text-gray-700/30 text-4xl md:text-6xl font-mono font-bold">
-                    {'</>'}
-                </motion.div>
-                <motion.div animate={{ y: [0, 30, 0], rotate: [0, -15, 0] }} transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1 }} className="absolute bottom-[30%] left-[20%] text-primary/20 text-5xl md:text-7xl font-mono font-light">
-                    {'{ }'}
-                </motion.div>
-                <motion.div animate={{ y: [0, -40, 0], rotate: [0, 20, 0] }} transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }} className="absolute top-[20%] right-[15%] text-gray-700/30 text-5xl md:text-8xl font-mono font-light">
-                    {'()'}
-                </motion.div>
-                <motion.div animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }} className="absolute bottom-[25%] right-[25%] text-primary/20 text-3xl md:text-5xl font-mono font-bold">
-                    {'[ ]'}
-                </motion.div>
-            </div>
-
-            <div className="container mx-auto container-padding relative z-20 h-full flex flex-col justify-center">
-                
-                {/* 1. Status Line (Top Left - In flow to prevent collision with hero heading) */}
-                <div className="w-full flex items-center justify-start pt-20 sm:pt-24 md:pt-28 pb-2 md:pb-4 z-30 pointer-events-none">
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="flex items-center gap-3 pointer-events-auto"
-                    >
-                         <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3 flex-shrink-0">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-green-500"></span>
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="space-y-2 mb-6 sm:mb-8"
+                >
+                    <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-ink uppercase">
+                        <span className="block">
+                            <ScrambleText text={t.headlineTop} delay={400} />
                         </span>
-                        <span className="font-heading uppercase tracking-wider md:tracking-widest text-xs sm:text-sm text-gray-400">{t.status}</span>
-                    </motion.div>
-                </div>
+                        <span className="text-blueprint underline decoration-4 decoration-ink underline-offset-8 inline-block">
+                            <ScrambleText text={t.headlineBottom} delay={700} />
+                        </span>
+                    </h1>
+                </motion.div>
 
-                {/* LAYERED LAYOUT WRAPPER - Refined Vertical Balance */}
-                <div className="relative w-full flex flex-col items-center justify-center">
+                {/* Subtitle / Value Proposition */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="font-sans text-base sm:text-lg md:text-xl text-ink-muted max-w-3xl leading-relaxed mb-8 sm:mb-10"
+                >
+                    {t.desc}
+                </motion.p>
 
-                    {/* Layer 0: Background Text "AHMAD AYUB" (Opsi 1: Depth Sandwich - z-10 behind z-20 profile photo) */}
-                    {/* Size Relationship: The Foundation (Largest) */}
-                    <div className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-[50%] w-screen z-10 pointer-events-none overflow-hidden flex justify-center">
-                        <motion.h1 style={{ y: y1 }} className="text-[14vw] sm:text-[15vw] md:text-[13vw] leading-[0.8] font-heading font-black text-transparent text-stroke opacity-50 md:opacity-60 uppercase tracking-wider md:tracking-widest whitespace-nowrap text-center select-none mix-blend-screen">
-                            AHMAD AYUB
-                        </motion.h1>
-                    </div>
-
-                    {/* Layer 1: Middle Text - Dynamic Role Rotator */}
-                    {/* Size Relationship: The Subject (Phi * Image) */}
-                    <div className="relative z-10 w-full flex justify-center items-center -mb-[8vw] pointer-events-none mix-blend-screen py-1">
-                        <motion.h2 
-                            style={{ y: y2 }} 
-                            className="leading-[0.8] font-heading font-black text-white/90 uppercase tracking-tighter whitespace-nowrap drop-shadow-2xl flex justify-center items-center min-h-[1.1em] text-center"
-                        >
-                            <AnimatePresence mode="wait">
-                                <motion.span
-                                    key={ROLES[roleIndex].text}
-                                    initial={{ opacity: 0, y: 25, filter: 'blur(8px)' }}
-                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                                    exit={{ opacity: 0, y: -25, filter: 'blur(8px)' }}
-                                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                                    className={`inline-block ${ROLES[roleIndex].size}`}
-                                >
-                                    {ROLES[roleIndex].text}
-                                </motion.span>
-                            </AnimatePresence>
-                        </motion.h2>
-                    </div>
-                    {/* Layer 2: Interactive Profile & Tech Orbit Wrapper */}
-                    <div 
-                        className="group/profile relative z-30 w-[85vw] md:w-[38.2vw] mx-auto flex items-center justify-center cursor-pointer"
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        onClick={handleToggleClick}
+                {/* Interactive Action Triggers with Sound Hook */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="flex flex-wrap items-center gap-3 sm:gap-4 mb-14 sm:mb-20"
+                >
+                    <a
+                        href="#architecture"
+                        onClick={playClick}
+                        className="brutal-btn-primary"
                     >
-                        {/* Tech Stack Orbiting Halo (Positioned outside overflow-hidden) */}
-                        <TechOrbit 
-                            isHovered={isPhotoHovered} 
-                            isMobileView={isMobileView} 
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
-                        />
+                        <span>{t.exploreWork}</span>
+                        <FiArrowRight className="text-sm" />
+                    </a>
 
-                        {/* Profile Image */}
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.9, y: 50 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            transition={{ duration: 1.618, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ scale: imageScale }}
-                            onMouseEnter={handleMouseEnter}
-                            className="relative z-20 w-full overflow-hidden rounded-sm shadow-2xl"
+                    {onOpenCommandPalette && (
+                        <button
+                            type="button"
+                            onClick={() => {
+                                playClick();
+                                onOpenCommandPalette();
+                            }}
+                            className="brutal-btn-white"
                         >
-                             {/* Seamless fade to neutral-dark at the bottom */}
-                             <div className="absolute inset-0 bg-gradient-to-t from-neutral-dark via-neutral-dark/40 to-transparent z-20 pointer-events-none"></div>
-                             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-neutral-dark to-transparent z-20 pointer-events-none"></div>
-                             <img 
-                                src="/assets/profile.png" 
-                                alt="Ahmad Ayub Nu'man" 
-                                onMouseEnter={handleMouseEnter}
-                                className={`w-full h-auto object-cover object-center transition-all duration-[1.2s] ease-out ${
-                                    (isPhotoHovered || isPinned)
-                                        ? 'grayscale-0 contrast-100' 
-                                        : 'grayscale contrast-110 group-hover/profile:grayscale-0 group-hover/profile:contrast-100'
-                                }`} 
-                            />
-                        </motion.div>
+                            <FiTerminal className="text-sm" />
+                            <span>{t.cmdBtn}</span>
+                        </button>
+                    )}
+
+                    <button
+                        type="button"
+                        onClick={() => {
+                            playClick();
+                            onOpenCV();
+                        }}
+                        className="brutal-btn-safety"
+                    >
+                        <FiDownload className="text-sm" />
+                        <span>{t.downloadCv}</span>
+                    </button>
+                </motion.div>
+
+                {/* The Telemetry Strip with Kinetic Counters & Micro-Telemetry Tooltips */}
+                <motion.div
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="border-t-2 border-ink pt-8"
+                >
+                    <div className="flex items-center justify-between mb-4">
+                        <span className="font-mono text-xs font-black uppercase tracking-wider text-ink bg-safety px-2 py-0.5 border border-ink">
+                            [ {telemetry.badge} ]
+                        </span>
+                        <span className="font-mono text-[11px] text-ink-muted hidden sm:inline">
+                            HOVER / FOCUS FOR MICRO-TELEMETRY SPEC
+                        </span>
                     </div>
 
-                    {/* Layer 3: Foreground Subtitle & Actions */}
-                    <div className="relative z-30 mt-4 md:mt-6 flex flex-col items-center justify-center gap-6 pb-12 pointer-events-none">
-                        <motion.p 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.8 }}
-                            className="text-gray-300 font-body text-sm md:text-base uppercase tracking-widest text-center max-w-xl leading-relaxed px-4 pointer-events-auto"
-                        >
-                            {t.subtitle}
-                        </motion.p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                        {telemetry.items.map((item, idx) => {
+                            const isInspecting = focusedMetric === idx;
 
-                        <div className="flex flex-wrap items-center justify-center gap-4 pointer-events-auto relative z-40">
-                            <MagneticButton href="#portfolio">
-                                <span className="inline-block px-8 py-3 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white font-body uppercase tracking-widest text-sm hover:bg-white hover:text-neutral-dark active:scale-95 transition-all duration-300 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                    {t.exploreWork}
-                                </span>
-                            </MagneticButton>
-                            <MagneticButton onClick={onOpenCV} className="cursor-pointer">
-                                <span className="px-8 py-3 rounded-full bg-primary/20 border border-primary/50 text-primary hover:bg-primary hover:text-white active:scale-95 font-body uppercase tracking-widest text-sm transition-all duration-300 shadow-lg flex items-center gap-2 group font-semibold backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                    <FiDownload className="text-base group-hover:translate-y-0.5 transition-transform" />
-                                    {t.downloadCv}
-                                </span>
-                            </MagneticButton>
-                            <MagneticButton href="#contact">
-                                <span className="inline-block px-8 py-3 rounded-full bg-white text-neutral-dark font-body uppercase tracking-widest text-sm hover:bg-primary hover:text-white active:scale-95 transition-all duration-300 shadow-lg font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-dark">
-                                    {t.letsTalk}
-                                </span>
-                            </MagneticButton>
-                        </div>
+                            return (
+                                <div 
+                                    key={idx}
+                                    tabIndex={0}
+                                    onMouseEnter={() => setFocusedMetric(idx)}
+                                    onMouseLeave={() => setFocusedMetric(null)}
+                                    onFocus={() => setFocusedMetric(idx)}
+                                    onBlur={() => setFocusedMetric(null)}
+                                    className={`brutal-card p-4 sm:p-5 bg-canvas-card relative overflow-hidden transition-all duration-200 outline-none ${
+                                        isInspecting 
+                                            ? '!shadow-brutal-lg ring-2 ring-blueprint -translate-x-0.5 -translate-y-0.5' 
+                                            : 'brutal-card-hover'
+                                    }`}
+                                >
+                                    <div className="absolute top-0 right-0 w-8 h-8 bg-ink/5 transition-colors border-l-2 border-b-2 border-ink flex items-center justify-center font-mono text-[10px] font-bold text-ink">
+                                        0{idx + 1}
+                                    </div>
+
+                                    {/* Kinetic Count-Up Number */}
+                                    <div className="font-mono font-black text-3xl sm:text-4xl text-ink tracking-tight mb-1 group-hover:text-blueprint transition-colors">
+                                        <KineticCounter value={item.count} duration={1600} />
+                                    </div>
+
+                                    <div className="font-mono font-bold text-xs uppercase text-ink mb-1">
+                                        {item.label}
+                                    </div>
+
+                                    <div className="font-sans text-xs text-ink-muted flex items-center gap-1.5 mb-2">
+                                        <FiCheckCircle className="text-telemetry flex-shrink-0 text-xs" />
+                                        <span>{item.sub}</span>
+                                    </div>
+
+                                    {/* Micro-Telemetry Tooltip Popover */}
+                                    <AnimatePresence>
+                                        {isInspecting && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 5 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 5 }}
+                                                transition={{ duration: 0.15 }}
+                                                className="mt-2 pt-2 border-t border-ink/20 font-mono text-[11px] font-semibold text-blueprint flex items-start gap-1.5"
+                                            >
+                                                <FiInfo className="text-xs shrink-0 mt-0.5" />
+                                                <span>{microData[idx]}</span>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            );
+                        })}
                     </div>
+                </motion.div>
 
-                </div>
             </div>
-            
-            {/* Scroll Indicator */}
-            <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2 }}
-                className="absolute right-8 md:right-12 bottom-12 flex flex-col items-center gap-4 z-30"
-            >
-                <span className="writing-vertical text-xs uppercase tracking-widest text-gray-500 font-heading">{t.scrollDown || 'Scroll Down'}</span>
-                <div className="h-16 w-[1px] bg-gray-600"></div>
-            </motion.div>
         </section>
     );
 };
