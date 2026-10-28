@@ -97,7 +97,7 @@ function AppContent() {
                     >
                         <span className="w-2 h-2 rounded-full bg-[#00FF66] animate-pulse"></span>
                         <FiTerminal className="text-sm" />
-                        <span>&gt;_ DEV_CLI [`~`]</span>
+                        <span>&gt;_ DEV_CONSOLE (Tekan ~)</span>
                     </button>
                 </div>
 

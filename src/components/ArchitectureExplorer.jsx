@@ -223,11 +223,11 @@ const ArchitectureExplorer = () => {
                                 playClick();
                                 setIsExplodedOpen(true);
                             }}
-                            className="brutal-btn-white !py-2 !px-3 text-xs font-mono font-bold flex items-center gap-1.5"
+                            className="brutal-btn-white !py-2 !px-3 text-xs font-mono font-bold flex items-center gap-1.5 cursor-pointer"
                             title="Open 3D Isometric CAD Exploded Blueprint"
                         >
                             <FiBox className="text-blueprint text-sm" />
-                            <span>CAD EXPLODED 3D</span>
+                            <span>📐 3D EXPLODED SCHEMATIC</span>
                         </button>
 
                         <button
@@ -258,8 +258,8 @@ const ArchitectureExplorer = () => {
                         <div className="flex items-center gap-1.5">
                             {[
                                 { rps: '100', label: '100 RPS', sub: '8ms' },
-                                { rps: '1000', label: '1,000 RPS', sub: '28ms' },
-                                { rps: '10000', label: '10,000 RPS', sub: '74ms' }
+                                { rps: '1000', label: '1,000 RPS', sub: '24ms' },
+                                { rps: '10000', label: '10,000 RPS', sub: 'P99: 42ms' }
                             ].map((item) => (
                                 <button
                                     key={item.rps}
@@ -275,11 +275,30 @@ const ArchitectureExplorer = () => {
                                     }`}
                                 >
                                     <span>{item.label}</span>
-                                    <span className={`ml-1 text-[10px] ${trafficRps === item.rps ? 'text-safety' : 'text-blueprint'}`}>
+                                    <span className={`ml-1 text-[10px] ${trafficRps === item.rps ? 'text-safety font-black' : 'text-blueprint'}`}>
                                         ({item.sub})
                                     </span>
                                 </button>
                             ))}
+                        </div>
+                    </div>
+
+                    {/* Speedometer Latency Gauge Bar */}
+                    <div className="flex items-center gap-2 bg-white px-3 py-1.5 border-2 border-ink shadow-[1px_1px_0px_#18181B]">
+                        <div className="flex flex-col">
+                            <span className="text-[9px] font-black uppercase text-ink-muted leading-tight">SPEEDOMETER // LATENCY:</span>
+                            <div className="flex items-center gap-1.5 font-bold text-xs">
+                                <span className={`w-2 h-2 rounded-full ${trafficRps === '10000' ? 'bg-safety animate-ping' : 'bg-telemetry'}`}></span>
+                                <span className={`font-mono font-black ${trafficRps === '10000' ? 'text-blueprint' : 'text-ink'}`}>
+                                    {trafficRps === '10000' ? 'P99: 42ms [VIBRATING]' : trafficRps === '1000' ? 'P99: 24ms' : 'P99: 8ms'}
+                                </span>
+                            </div>
+                        </div>
+                        {/* Mechanical vibrating indicator bar */}
+                        <div className="flex items-end gap-0.5 h-5 w-8 bg-stone-100 p-0.5 border border-ink">
+                            <span className={`w-1.5 bg-blueprint transition-all duration-75 ${trafficRps === '10000' ? 'h-full animate-bounce' : trafficRps === '1000' ? 'h-3' : 'h-1.5'}`}></span>
+                            <span className={`w-1.5 bg-safety transition-all duration-75 ${trafficRps === '10000' ? 'h-4/5 animate-pulse' : trafficRps === '1000' ? 'h-2' : 'h-1'}`}></span>
+                            <span className={`w-1.5 bg-telemetry transition-all duration-75 ${trafficRps === '10000' ? 'h-full animate-bounce' : trafficRps === '1000' ? 'h-2.5' : 'h-2'}`}></span>
                         </div>
                     </div>
 
@@ -325,7 +344,7 @@ const ArchitectureExplorer = () => {
                             title="Simulate Gateway outage and test circuit breaker failover"
                         >
                             <FiAlertOctagon />
-                            <span>{isChaosActive ? 'CHAOS MONKEY ACTIVE...' : 'INJECT CHAOS'}</span>
+                            <span>{isChaosActive ? 'CHAOS MONKEY ACTIVE...' : 'CHAOS TEST'}</span>
                         </button>
 
                         {logs.length > 0 && (
@@ -379,7 +398,7 @@ const ArchitectureExplorer = () => {
                                             left: simStep === 1 ? '15%' : simStep === 2 ? '50%' : '88%' 
                                         }}
                                         transition={{ 
-                                            duration: trafficRps === '10000' ? 0.3 : trafficRps === '1000' ? 0.45 : 0.6, 
+                                            duration: trafficRps === '10000' ? 0.25 : trafficRps === '1000' ? 0.45 : 0.6, 
                                             ease: "linear" 
                                         }}
                                         className="absolute -top-1.5 flex items-center gap-1 z-20"
@@ -387,14 +406,42 @@ const ArchitectureExplorer = () => {
                                         <span className="w-3 h-3 bg-safety border border-ink font-mono text-[8px] font-black flex items-center justify-center text-ink shadow-[1px_1px_0px_#18181B]">
                                             ■
                                         </span>
+                                        {trafficRps === '10000' && (
+                                            <>
+                                                <span className="w-2.5 h-2.5 bg-yellow-400 border border-ink animate-pulse font-mono text-[7px] flex items-center justify-center font-black">■</span>
+                                                <span className="w-2.5 h-2.5 bg-blueprint border border-ink font-mono text-[7px] flex items-center justify-center text-white font-black">■</span>
+                                                <span className="w-2 h-2 bg-telemetry border border-ink"></span>
+                                            </>
+                                        )}
                                         <span className="w-2 h-2 bg-blueprint border border-ink"></span>
                                     </motion.div>
                                 )}
+
+                                {/* Continuous high-speed data waterfall stream at 10,000 RPS */}
+                                {trafficRps === '10000' && !isSimulating && !isChaosActive && (
+                                    <div className="absolute inset-x-0 -top-1 flex justify-between pointer-events-none opacity-80">
+                                        {[10, 30, 50, 70, 90].map((pos) => (
+                                            <span 
+                                                key={pos} 
+                                                className="w-2 h-2 bg-safety border border-ink animate-pulse"
+                                                style={{ left: `${pos}%` }}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Trace 3: Return ACK Bus */}
+                            {/* Trace 3: Return ACK Bus / Circuit Breaker Failover Bypass */}
                             <div className="h-[2px] w-full bg-ink/25 relative">
                                 <span className="absolute left-1/2 -top-1 w-2 h-2 rounded-full border border-ink bg-white"></span>
+                                
+                                {isChaosActive && (
+                                    <div className="absolute -top-3 inset-x-0 flex items-center justify-center">
+                                        <span className="bg-yellow-400 text-ink font-mono text-[8px] font-black uppercase px-2 py-0.5 border border-ink shadow-[1px_1px_0px_#18181B] animate-pulse">
+                                            CIRCUIT BREAKER: AUTOMATIC FAILOVER ROUTE ACTIVE
+                                        </span>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

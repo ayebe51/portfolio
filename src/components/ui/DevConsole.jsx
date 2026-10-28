@@ -104,10 +104,10 @@ const DevConsole = ({ isOpen, onClose }) => {
                     "[ PASS ] src/tests/batch-docxtemplater.spec.ts (380 tests) [51ms]",
                     "[ PASS ] src/tests/maker-checker-rbac.spec.ts (422 tests) [39ms]",
                     "--------------------------------------------------------------------------------",
-                    "TEST SUITES: 4 passed, 4 total",
-                    "TESTS:       1,842 passed (100% CI pass rate)",
+                    "✓ 1,800 tests passed, 36,000 assertions, 0 failures (1.42s).",
+                    "TEST SUITES: 4 passed, 4 total (100% CI pass rate)",
                     "ASSERTIONS:  36,840 verified with 0 flakiness",
-                    "DURATION:    0.200s // ALL CHECKS GREEN ✓"
+                    "DURATION:    1.42s // ALL CHECKS GREEN ✓"
                 );
                 break;
 
@@ -206,13 +206,22 @@ const DevConsole = ({ isOpen, onClose }) => {
             case 'sudo hire':
                 playPing();
                 newLines.push(
-                    "[ROOT AUTHORIZATION VERIFIED]",
-                    "Executing contact dispatch protocol...",
-                    "Redirecting to mail client (ahmadayub51@gmail.com)..."
+                    "================================================================================",
+                    "  _    _ _____ _____  ______ _____  _ ",
+                    " | |  | |_   _|  __ \\|  ____|  __ \\| |",
+                    " | |__| | | | | |__) | |__  | |  | | |",
+                    " |  __  | | | |  _  /|  __| | |  | |_|",
+                    " | |  | |_| |_| | \\ \\| |____| |__| (_)",
+                    " |_|  |_|_____|_|  \\_\\______|_____/(_)",
+                    "                                      ",
+                    " [ROOT PERMISSION GRANTED: OFFER EXTENDED // HTTP 200 OK]",
+                    " CANDIDATE: AHMAD AYUB NU'MAN [STATUS: HIRED // MISSION-CRITICAL READY]",
+                    " Dispatching email client handshake to ahmadayub51@gmail.com...",
+                    "================================================================================"
                 );
                 setTimeout(() => {
                     window.location.href = "mailto:ahmadayub51@gmail.com?subject=Engineering%20Opportunity%20-%20Ahmad%20Ayub";
-                }, 800);
+                }, 1000);
                 break;
 
             case 'clear':

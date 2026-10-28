@@ -120,7 +120,7 @@ const ProjectModal = ({ project, onClose }) => {
                             <div className="flex-shrink-0 self-center sm:self-start">
                                 <InkStamp 
                                     text="100% CI/CD VERIFIED"
-                                    subtext="ZERO REGRESSION RECORD"
+                                    subtext="ZERO DEFECT // 1,842 TESTS"
                                     refCode={`AYN-PRJ-${project.id}`}
                                     color="red"
                                 />
@@ -266,10 +266,10 @@ const ProjectModal = ({ project, onClose }) => {
                                     playClick();
                                     setIsExplodedOpen(true);
                                 }}
-                                className="brutal-btn-white flex-1 text-center font-mono text-xs font-black flex items-center justify-center gap-2"
+                                className="brutal-btn-white flex-1 text-center font-mono text-xs font-black flex items-center justify-center gap-2 cursor-pointer"
                             >
                                 <FiBox className="text-blueprint text-sm" />
-                                <span>CAD EXPLODED VIEW</span>
+                                <span>📐 3D EXPLODED SCHEMATIC</span>
                             </button>
 
                             {project.demoUrl && (
