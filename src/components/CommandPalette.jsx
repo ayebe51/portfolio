@@ -14,7 +14,7 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
-const CommandPalette = ({ isOpen, onClose, onOpenCV }) => {
+const CommandPalette = ({ isOpen, onClose, onOpenCV, onOpenCLI }) => {
     const { language, setLanguage, isEn } = useLanguage();
     const t = translations[language].commandPalette;
     const [searchQuery, setSearchQuery] = useState('');
@@ -22,6 +22,17 @@ const CommandPalette = ({ isOpen, onClose, onOpenCV }) => {
     const inputRef = useRef(null);
 
     const items = [
+        // Diagnostics CLI
+        {
+            id: 'action-cli',
+            group: t.actions,
+            icon: FiTerminal,
+            title: 'Launch Kernel Diagnostic Console Drawer (`~`)',
+            action: () => {
+                onClose();
+                onOpenCLI?.();
+            }
+        },
         // Projects
         {
             id: 'proj-simmaci',

@@ -12,11 +12,16 @@ import {
     FiTerminal,
     FiRadio,
     FiPlay,
-    FiRefreshCw
+    FiRefreshCw,
+    FiAlertOctagon,
+    FiBox
 } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { useSound } from '../context/SoundContext';
+import InkStamp from './ui/InkStamp';
+import ExplodedViewModal from './ui/ExplodedViewModal';
+import LedgerSandboxModal from './ui/LedgerSandboxModal';
 
 const ArchitectureExplorer = () => {
     const { language } = useLanguage();
@@ -32,11 +37,23 @@ const ArchitectureExplorer = () => {
         clearBtn: "Reset Simulation"
     };
 
-    const { playClick, playPing, playRelay } = useSound();
+    const { playClick, playPing, playRelay, playChaos } = useSound();
+    
+    // Core state
     const [activeNodeId, setActiveNodeId] = useState('gateway');
     const [isSimulating, setIsSimulating] = useState(false);
     const [simStep, setSimStep] = useState(0); // 0: idle, 1: client, 2: gateway, 3: ledger, 4: complete
     const [logs, setLogs] = useState([]);
+    
+    // Masterclass Chaos & Load Simulator state
+    const [trafficRps, setTrafficRps] = useState('100'); // '100', '1000', '10000'
+    const [isChaosActive, setIsChaosActive] = useState(false);
+    const [circuitBreakerState, setCircuitBreakerState] = useState('CLOSED'); // 'CLOSED', 'OPEN', 'HALF_OPEN'
+    
+    // Modals
+    const [isExplodedOpen, setIsExplodedOpen] = useState(false);
+    const [isLedgerOpen, setIsLedgerOpen] = useState(false);
+
     const terminalRef = useRef(null);
     const timeoutIds = useRef([]);
 
@@ -65,15 +82,20 @@ const ArchitectureExplorer = () => {
         }
     }, [logs]);
 
+    // Transaction Simulation execution
     const runSimulation = () => {
-        if (isSimulating) return;
+        if (isSimulating || isChaosActive) return;
         playRelay();
         clearTimeouts();
         setIsSimulating(true);
         setSimStep(1);
         setActiveNodeId('client');
+
+        const latencyMul = trafficRps === '10000' ? 1.6 : trafficRps === '1000' ? 1.2 : 1.0;
+        const roundtripMs = Math.round(54 * latencyMul);
+
         setLogs([
-            `[00:00.012] POST /api/v1/ledger/batch-decrees HTTP/1.1 (Client SPA: React 19 / Docxtemplater)`,
+            `[00:00.012] POST /api/v1/ledger/batch-decrees HTTP/1.1 (Load: ${trafficRps} RPS)`,
             `[00:00.012] CLIENT: Dynamic payload compiled, client-side cryptographic checksum calculated.`
         ]);
 
@@ -84,12 +106,12 @@ const ArchitectureExplorer = () => {
             playClick();
             setLogs(prev => [
                 ...prev,
-                `[00:00.036] GATEWAY: Ingress received at NestJS gateway. Rate limit status: 0ms throttled.`,
+                `[00:00.036] GATEWAY: Ingress received at NestJS gateway. Rate limiter token bucket: PASSED.`,
                 `[00:00.036] GATEWAY: Tenant verified [tenant_id=madrasah_271], RBAC Maker-Checker policy: APPROVED.`
             ]);
-        }, 750);
+        }, 650);
 
-        // Step 3: Database & Ledger (Relay click + Ping)
+        // Step 3: Database & Ledger
         const t2 = setTimeout(() => {
             setSimStep(3);
             setActiveNodeId('ledger');
@@ -101,7 +123,7 @@ const ArchitectureExplorer = () => {
                 `[00:00.054] DB: SELECT * FROM ledger_balances WHERE tenant_id=271 FOR UPDATE; [Row Lock Acquired]`,
                 `[00:00.054] DB: INSERT INTO audit_events (...) VALUES (...); COMMIT; [0 Discrepancy Verified]`
             ]);
-        }, 1500);
+        }, 1350);
 
         // Step 4: Roundtrip Complete
         const t3 = setTimeout(() => {
@@ -109,9 +131,57 @@ const ArchitectureExplorer = () => {
             setIsSimulating(false);
             setLogs(prev => [
                 ...prev,
-                `[00:00.054] RESPONSE: HTTP/1.1 200 OK (Roundtrip: 54ms, Data Integrity: 100%, State: COMMITTED ✓)`
+                `[00:00.0${roundtripMs}] RESPONSE: HTTP/1.1 200 OK (Roundtrip: ${roundtripMs}ms, Data Integrity: 100%, State: COMMITTED ✓)`
             ]);
-        }, 2250);
+        }, 2050);
+
+        timeoutIds.current = [t1, t2, t3];
+    };
+
+    // Chaos Monkey Failure Injection
+    const injectChaosMonkey = () => {
+        if (isChaosActive) return;
+        clearTimeouts();
+        setIsSimulating(false);
+        setIsChaosActive(true);
+        setCircuitBreakerState('OPEN');
+        playChaos();
+
+        setLogs([
+            `[00:00.005] 🐒 CHAOS MONKEY: Injecting simulated network partition into Primary Gateway Worker!`,
+            `[00:00.018] ⚠️ FAILURE: Primary node unreachable (HTTP 504 GATEWAY_TIMEOUT)`,
+            `[00:00.024] CIRCUIT BREAKER: Error threshold tripped -> STATE: OPEN (Ingress Protected)`
+        ]);
+
+        // Step 2: Auto Failover
+        const t1 = setTimeout(() => {
+            playRelay();
+            setLogs(prev => [
+                ...prev,
+                `[00:00.045] AUTOMATIC FAILOVER: Diverting traffic to STANDBY_REPLICA_02 (Latency: 14ms)`,
+                `[00:00.050] DATA INTEGRITY: 0 transactions lost. PostgreSQL replication lag: 0.2ms.`
+            ]);
+        }, 900);
+
+        // Step 3: Half-Open Probe
+        const t2 = setTimeout(() => {
+            setCircuitBreakerState('HALF_OPEN');
+            setLogs(prev => [
+                ...prev,
+                `[00:01.800] CIRCUIT BREAKER: Probing primary worker recovery -> STATE: HALF_OPEN...`
+            ]);
+        }, 1900);
+
+        // Step 4: Recovery Closed
+        const t3 = setTimeout(() => {
+            playPing();
+            setCircuitBreakerState('CLOSED');
+            setIsChaosActive(false);
+            setLogs(prev => [
+                ...prev,
+                `[00:02.800] RECOVERY VERIFIED: Primary worker healthy -> STATE: CLOSED (NOMINAL) ✓`
+            ]);
+        }, 2900);
 
         timeoutIds.current = [t1, t2, t3];
     };
@@ -120,6 +190,8 @@ const ArchitectureExplorer = () => {
         playClick();
         clearTimeouts();
         setIsSimulating(false);
+        setIsChaosActive(false);
+        setCircuitBreakerState('CLOSED');
         setSimStep(0);
         setLogs([]);
     };
@@ -129,7 +201,7 @@ const ArchitectureExplorer = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* Section Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 pb-6 border-b-2 border-ink">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-6 border-b-2 border-ink">
                     <div className="space-y-2">
                         <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-blueprint text-white font-mono text-xs font-black uppercase border border-ink shadow-[2px_2px_0px_#18181B]">
                             <FiActivity className="text-xs animate-pulse" />
@@ -143,13 +215,95 @@ const ArchitectureExplorer = () => {
                         </p>
                     </div>
 
-                    <div className="mt-4 md:mt-0 flex flex-wrap items-center gap-3">
-                        {/* Simulation Trigger Button */}
+                    {/* Masterclass Action Buttons (CAD Exploded & Concurrency Sandbox) */}
+                    <div className="mt-4 md:mt-0 flex flex-wrap items-center gap-2">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                playClick();
+                                setIsExplodedOpen(true);
+                            }}
+                            className="brutal-btn-white !py-2 !px-3 text-xs font-mono font-bold flex items-center gap-1.5"
+                            title="Open 3D Isometric CAD Exploded Blueprint"
+                        >
+                            <FiBox className="text-blueprint text-sm" />
+                            <span>CAD EXPLODED 3D</span>
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => {
+                                playClick();
+                                setIsLedgerOpen(true);
+                            }}
+                            className="brutal-btn-white !py-2 !px-3 text-xs font-mono font-bold flex items-center gap-1.5"
+                            title="Open Concurrency & Double-Entry Ledger Sandbox"
+                        >
+                            <FiShield className="text-telemetry text-sm" />
+                            <span>LEDGER SANDBOX</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Industrial Load & Chaos Control Console Bar */}
+                <div className="mb-6 p-4 bg-canvas-card border-2 border-ink shadow-brutal-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 font-mono text-xs">
+                    
+                    {/* Traffic RPS Dial */}
+                    <div className="flex flex-wrap items-center gap-3">
+                        <span className="font-black uppercase text-ink flex items-center gap-1.5">
+                            <FiRadio className="text-blueprint animate-pulse" />
+                            <span>TRAFFIC LOAD:</span>
+                        </span>
+
+                        <div className="flex items-center gap-1.5">
+                            {[
+                                { rps: '100', label: '100 RPS', sub: '8ms' },
+                                { rps: '1000', label: '1,000 RPS', sub: '28ms' },
+                                { rps: '10000', label: '10,000 RPS', sub: '74ms' }
+                            ].map((item) => (
+                                <button
+                                    key={item.rps}
+                                    type="button"
+                                    onClick={() => {
+                                        playClick();
+                                        setTrafficRps(item.rps);
+                                    }}
+                                    className={`px-2.5 py-1 font-bold border-2 border-ink transition-all cursor-pointer ${
+                                        trafficRps === item.rps 
+                                            ? 'bg-ink text-white shadow-none' 
+                                            : 'bg-white text-ink hover:bg-stone-50 shadow-[1px_1px_0px_#18181B]'
+                                    }`}
+                                >
+                                    <span>{item.label}</span>
+                                    <span className={`ml-1 text-[10px] ${trafficRps === item.rps ? 'text-safety' : 'text-blueprint'}`}>
+                                        ({item.sub})
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Circuit Breaker Status Indicator */}
+                    <div className="flex items-center gap-2">
+                        <span className="font-black uppercase text-ink">CIRCUIT BREAKER:</span>
+                        <span className={`px-2 py-0.5 font-black border border-ink ${
+                            circuitBreakerState === 'CLOSED'
+                                ? 'bg-telemetry text-white'
+                                : circuitBreakerState === 'OPEN'
+                                    ? 'bg-red-600 text-white animate-pulse'
+                                    : 'bg-safety text-ink animate-bounce'
+                        }`}>
+                            STATE: {circuitBreakerState}
+                        </span>
+                    </div>
+
+                    {/* Simulation & Chaos Triggers */}
+                    <div className="flex flex-wrap items-center gap-2">
                         <button
                             type="button"
                             onClick={runSimulation}
-                            disabled={isSimulating}
-                            className={`brutal-btn !py-2 !px-4 text-xs font-mono font-black ${
+                            disabled={isSimulating || isChaosActive}
+                            className={`brutal-btn !py-1.5 !px-3 text-xs font-mono font-black ${
                                 isSimulating 
                                     ? 'bg-safety text-ink animate-pulse cursor-wait' 
                                     : 'bg-blueprint text-white hover:bg-blueprint-hover'
@@ -159,11 +313,26 @@ const ArchitectureExplorer = () => {
                             <span>{isSimulating ? sim.runningBtn : sim.triggerBtn}</span>
                         </button>
 
+                        <button
+                            type="button"
+                            onClick={injectChaosMonkey}
+                            disabled={isSimulating || isChaosActive}
+                            className={`brutal-btn !py-1.5 !px-3 text-xs font-mono font-black border-2 border-ink ${
+                                isChaosActive 
+                                    ? 'bg-red-600 text-white animate-bounce' 
+                                    : 'bg-safety text-ink hover:bg-yellow-400'
+                            }`}
+                            title="Simulate Gateway outage and test circuit breaker failover"
+                        >
+                            <FiAlertOctagon />
+                            <span>{isChaosActive ? 'CHAOS MONKEY ACTIVE...' : 'INJECT CHAOS'}</span>
+                        </button>
+
                         {logs.length > 0 && (
                             <button
                                 type="button"
                                 onClick={resetSimulation}
-                                className="brutal-btn-white !py-2 !px-3 text-xs font-mono"
+                                className="brutal-btn-white !py-1.5 !px-2.5 text-xs font-mono"
                                 title={sim.clearBtn}
                             >
                                 <FiRefreshCw className="text-xs" />
@@ -176,11 +345,11 @@ const ArchitectureExplorer = () => {
                 <div className="hidden lg:flex items-center justify-between mb-4 font-mono text-[10px] font-black uppercase tracking-wider text-ink-muted px-2 border-x-2 border-t-2 border-ink/30 pt-1.5 pb-1 bg-canvas">
                     <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-blueprint"></span>
-                        <span>BUS_CH_01: CLIENT_INGRESS (TX)</span>
+                        <span>BUS_CH_01: CLIENT_INGRESS (TX) [{trafficRps} RPS]</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-safety"></span>
-                        <span>BUS_CH_02: RPC_GATEWAY (ISOLATION)</span>
+                        <span className={`w-1.5 h-1.5 ${circuitBreakerState === 'CLOSED' ? 'bg-safety' : 'bg-red-600 animate-ping'}`}></span>
+                        <span>BUS_CH_02: RPC_GATEWAY ({circuitBreakerState})</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-telemetry"></span>
@@ -209,7 +378,10 @@ const ArchitectureExplorer = () => {
                                         animate={{ 
                                             left: simStep === 1 ? '15%' : simStep === 2 ? '50%' : '88%' 
                                         }}
-                                        transition={{ duration: 0.6, ease: "linear" }}
+                                        transition={{ 
+                                            duration: trafficRps === '10000' ? 0.3 : trafficRps === '1000' ? 0.45 : 0.6, 
+                                            ease: "linear" 
+                                        }}
                                         className="absolute -top-1.5 flex items-center gap-1 z-20"
                                     >
                                         <span className="w-3 h-3 bg-safety border border-ink font-mono text-[8px] font-black flex items-center justify-center text-ink shadow-[1px_1px_0px_#18181B]">
@@ -234,6 +406,7 @@ const ArchitectureExplorer = () => {
                             (idx === 1 && simStep === 2) ||
                             (idx === 2 && simStep === 3)
                         );
+                        const isNodeFaulted = isChaosActive && idx === 1;
                         const IconComponent = nodeIcons[node.id];
 
                         return (
@@ -245,11 +418,13 @@ const ArchitectureExplorer = () => {
                                     setActiveNodeId(node.id);
                                 }}
                                 className={`text-left w-full brutal-card p-5 sm:p-6 transition-all duration-150 relative z-10 cursor-pointer ${
-                                    isNodeSimulating
-                                        ? 'bg-canvas-card !shadow-brutal-xl ring-4 ring-safety border-2 !border-ink'
-                                        : isSelected 
-                                            ? 'bg-canvas-card !shadow-brutal-lg ring-4 ring-blueprint/30 border-2 !border-blueprint' 
-                                            : 'bg-white hover:bg-stone-50 !shadow-brutal-sm sm:!shadow-brutal'
+                                    isNodeFaulted
+                                        ? 'bg-red-50 !shadow-brutal-xl ring-4 ring-red-600 border-2 !border-red-600'
+                                        : isNodeSimulating
+                                            ? 'bg-canvas-card !shadow-brutal-xl ring-4 ring-safety border-2 !border-ink'
+                                            : isSelected 
+                                                ? 'bg-canvas-card !shadow-brutal-lg ring-4 ring-blueprint/30 border-2 !border-blueprint' 
+                                                : 'bg-white hover:bg-stone-50 !shadow-brutal-sm sm:!shadow-brutal'
                                 }`}
                             >
                                 {/* Schematic Pin Labels on Card Header */}
@@ -257,33 +432,37 @@ const ArchitectureExplorer = () => {
                                     <span className="font-mono text-[10px] font-bold text-ink-muted">
                                         {idx === 0 ? 'TERMINAL: PIN_01 [TX]' : idx === 1 ? 'TERMINAL: PIN_02 [ROUTER]' : 'TERMINAL: PIN_03 [ACID]'}
                                     </span>
-                                    <span className="font-mono text-[10px] text-blueprint font-black">
-                                        {idx === 0 ? 'VCC: 3.3V' : idx === 1 ? 'BUS: 64-BIT' : 'LOCK: SERIALIZABLE'}
+                                    <span className={`font-mono text-[10px] font-black ${isNodeFaulted ? 'text-red-600' : 'text-blueprint'}`}>
+                                        {isNodeFaulted ? 'FAULT: SIMULATED' : idx === 0 ? 'VCC: 3.3V' : idx === 1 ? 'BUS: 64-BIT' : 'LOCK: SERIALIZABLE'}
                                     </span>
                                 </div>
 
                                 {/* Top Tag & Status */}
                                 <div className="flex items-center justify-between mb-4">
                                     <span className={`font-mono text-[11px] font-black uppercase px-2 py-0.5 border border-ink ${
-                                        isNodeSimulating 
-                                            ? 'bg-safety text-ink animate-bounce'
-                                            : isSelected 
-                                                ? 'bg-blueprint text-white' 
-                                                : 'bg-canvas text-ink'
+                                        isNodeFaulted
+                                            ? 'bg-red-600 text-white animate-pulse'
+                                            : isNodeSimulating 
+                                                ? 'bg-safety text-ink animate-bounce'
+                                                : isSelected 
+                                                    ? 'bg-blueprint text-white' 
+                                                    : 'bg-canvas text-ink'
                                     }`}>
                                         {node.step}
                                     </span>
 
                                     <div className="flex items-center gap-1.5">
                                         <span className={`w-2 h-2 rounded-full ${
-                                            isNodeSimulating 
-                                                ? 'bg-safety animate-ping' 
-                                                : isSelected 
-                                                    ? 'bg-telemetry animate-ping' 
-                                                    : 'bg-ink/30'
+                                            isNodeFaulted
+                                                ? 'bg-red-600 animate-ping'
+                                                : isNodeSimulating 
+                                                    ? 'bg-safety animate-ping' 
+                                                    : isSelected 
+                                                        ? 'bg-telemetry animate-ping' 
+                                                        : 'bg-ink/30'
                                         }`}></span>
                                         <span className="font-mono text-[10px] uppercase font-bold text-ink-muted">
-                                            {isNodeSimulating ? 'TRANSMITTING' : isSelected ? 'INSPECTING' : 'READY'}
+                                            {isNodeFaulted ? 'FAILOVER ROUTING' : isNodeSimulating ? 'TRANSMITTING' : isSelected ? 'INSPECTING' : 'READY'}
                                         </span>
                                     </div>
                                 </div>
@@ -291,7 +470,13 @@ const ArchitectureExplorer = () => {
                                 {/* Node Icon & Title */}
                                 <div className="flex items-center gap-3 mb-3">
                                     <div className={`w-10 h-10 border-2 border-ink flex items-center justify-center font-bold text-lg shadow-[2px_2px_0px_#18181B] ${
-                                        isNodeSimulating ? 'bg-safety text-ink' : isSelected ? 'bg-safety text-ink' : 'bg-canvas text-ink'
+                                        isNodeFaulted 
+                                            ? 'bg-red-600 text-white' 
+                                            : isNodeSimulating 
+                                                ? 'bg-safety text-ink' 
+                                                : isSelected 
+                                                    ? 'bg-safety text-ink' 
+                                                    : 'bg-canvas text-ink'
                                     }`}>
                                         <IconComponent />
                                     </div>
@@ -353,11 +538,11 @@ const ArchitectureExplorer = () => {
                     >
                         <div className="bg-ink px-4 py-2 border-b-2 border-ink flex items-center justify-between font-mono text-xs font-bold text-canvas-card">
                             <div className="flex items-center gap-2">
-                                <span className="w-2.5 h-2.5 rounded-full bg-safety animate-pulse"></span>
-                                <span>{sim.terminalTitle}</span>
+                                <span className={`w-2.5 h-2.5 rounded-full ${isChaosActive ? 'bg-red-500 animate-ping' : 'bg-safety animate-pulse'}`}></span>
+                                <span>{isChaosActive ? 'CHAOS INJECTION TELEMETRY STREAM' : sim.terminalTitle}</span>
                             </div>
                             <span className="text-[10px] text-telemetry font-mono font-black">
-                                {isSimulating ? 'STREAMING PACKETS...' : 'COMMITTED // HTTP 200'}
+                                {isChaosActive ? 'FAILOVER ACTIVE' : isSimulating ? 'STREAMING PACKETS...' : 'COMMITTED // HTTP 200'}
                             </span>
                         </div>
 
@@ -370,11 +555,15 @@ const ArchitectureExplorer = () => {
                                 <div key={i} className="flex items-start gap-2">
                                     <span className="text-blueprint select-none font-black">&gt;</span>
                                     <span className={
-                                        log.includes('RESPONSE') 
-                                            ? 'text-telemetry font-black' 
-                                            : log.includes('DB:') 
-                                                ? 'text-safety font-bold' 
-                                                : 'text-stone-300'
+                                        log.includes('CRITICAL') || log.includes('FAILURE') || log.includes('🐒') 
+                                            ? 'text-red-400 font-black' 
+                                            : log.includes('RECOVERY') || log.includes('RESPONSE') 
+                                                ? 'text-telemetry font-black' 
+                                                : log.includes('CIRCUIT BREAKER') 
+                                                    ? 'text-yellow-400 font-bold' 
+                                                    : log.includes('DB:') 
+                                                        ? 'text-safety font-bold' 
+                                                        : 'text-stone-300'
                                     }>
                                         {log}
                                     </span>
@@ -392,9 +581,19 @@ const ArchitectureExplorer = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -15 }}
                         transition={{ duration: 0.2 }}
-                        className="brutal-card bg-canvas-card p-6 sm:p-8 border-2 border-ink shadow-brutal-lg"
+                        className="brutal-card bg-canvas-card p-6 sm:p-8 border-2 border-ink shadow-brutal-lg relative overflow-hidden"
                     >
-                        <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-4 mb-6 border-b-2 border-ink gap-4">
+                        {/* Physical Industrial Ink Stamp in top right corner */}
+                        <div className="absolute top-4 right-4 hidden sm:block pointer-events-auto">
+                            <InkStamp 
+                                text="100% PRODUCTION VERIFIED"
+                                subtext="1,842 AUTOMATED TESTS PASSED"
+                                refCode="AYN-ARCH-2026"
+                                color="red"
+                            />
+                        </div>
+
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-4 mb-6 border-b-2 border-ink gap-4 sm:pr-48">
                             <div className="flex items-center gap-3">
                                 <div className="w-12 h-12 bg-ink text-white flex items-center justify-center text-xl font-bold border-2 border-ink shadow-[2px_2px_0px_#2563EB]">
                                     <ActiveIcon />
@@ -468,6 +667,19 @@ const ArchitectureExplorer = () => {
                 </AnimatePresence>
 
             </div>
+
+            {/* Exploded 3D View Modal */}
+            <ExplodedViewModal 
+                isOpen={isExplodedOpen}
+                onClose={() => setIsExplodedOpen(false)}
+                defaultSystem="SIMMACI"
+            />
+
+            {/* Concurrency Ledger Sandbox Modal */}
+            <LedgerSandboxModal 
+                isOpen={isLedgerOpen}
+                onClose={() => setIsLedgerOpen(false)}
+            />
         </section>
     );
 };

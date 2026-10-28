@@ -135,3 +135,130 @@ export const playToggleClick = () => {
         // Graceful silent fallback
     }
 };
+
+// Physical industrial rubber ink stamp thud (heavy solenoid impact + mechanical thud)
+export const playStampThud = () => {
+    try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+
+        // Heavy bass punch (65Hz -> 25Hz)
+        const bassOsc = ctx.createOscillator();
+        const bassGain = ctx.createGain();
+        bassOsc.type = 'sine';
+        bassOsc.frequency.setValueAtTime(75, now);
+        bassOsc.frequency.exponentialRampToValueAtTime(28, now + 0.12);
+
+        bassGain.gain.setValueAtTime(0.35, now);
+        bassGain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+
+        bassOsc.connect(bassGain);
+        bassGain.connect(ctx.destination);
+        bassOsc.start(now);
+        bassOsc.stop(now + 0.14);
+
+        // Tactile snap impact (transient click)
+        const snapOsc = ctx.createOscillator();
+        const snapGain = ctx.createGain();
+        snapOsc.type = 'square';
+        snapOsc.frequency.setValueAtTime(180, now);
+        snapOsc.frequency.exponentialRampToValueAtTime(40, now + 0.025);
+
+        snapGain.gain.setValueAtTime(0.2, now);
+        snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+        snapOsc.connect(snapGain);
+        snapGain.connect(ctx.destination);
+        snapOsc.start(now);
+        snapOsc.stop(now + 0.03);
+    } catch {
+        // Graceful silent fallback
+    }
+};
+
+// Industrial Chaos / Klaxon warning alert tone
+export const playChaosAlarm = () => {
+    try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        // Warbling frequency
+        osc.frequency.setValueAtTime(420, now);
+        osc.frequency.linearRampToValueAtTime(540, now + 0.08);
+        osc.frequency.linearRampToValueAtTime(380, now + 0.16);
+
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.22);
+    } catch {
+        // Graceful silent fallback
+    }
+};
+
+// Vintage mechanical terminal keystroke
+export const playTerminalKeystroke = () => {
+    try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        // High transient click
+        osc.type = 'triangle';
+        const randomFreq = 300 + Math.random() * 80;
+        osc.frequency.setValueAtTime(randomFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.015);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.015);
+    } catch {
+        // Graceful silent fallback
+    }
+};
+
+// Database row-lock acquisition clatter
+export const playLedgerLock = () => {
+    try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(110, now);
+        osc.frequency.exponentialRampToValueAtTime(55, now + 0.03);
+
+        gain.gain.setValueAtTime(0.16, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.035);
+    } catch {
+        // Graceful silent fallback
+    }
+};

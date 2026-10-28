@@ -1,5 +1,14 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { playMechanicalClick, playTelemetryPing, playToggleClick, playRelayClick } from '../utils/soundEffects';
+import { 
+    playMechanicalClick, 
+    playTelemetryPing, 
+    playToggleClick, 
+    playRelayClick,
+    playStampThud,
+    playChaosAlarm,
+    playTerminalKeystroke,
+    playLedgerLock
+} from '../utils/soundEffects';
 
 const SoundContext = createContext();
 
@@ -54,8 +63,43 @@ export const SoundProvider = ({ children }) => {
         }
     }, [isSoundEnabled]);
 
+    const playStamp = useCallback(() => {
+        if (isSoundEnabled) {
+            playStampThud();
+        }
+    }, [isSoundEnabled]);
+
+    const playChaos = useCallback(() => {
+        if (isSoundEnabled) {
+            playChaosAlarm();
+        }
+    }, [isSoundEnabled]);
+
+    const playKeystroke = useCallback(() => {
+        if (isSoundEnabled) {
+            playTerminalKeystroke();
+        }
+    }, [isSoundEnabled]);
+
+    const playLock = useCallback(() => {
+        if (isSoundEnabled) {
+            playLedgerLock();
+        }
+    }, [isSoundEnabled]);
+
     return (
-        <SoundContext.Provider value={{ isSoundEnabled, toggleSound, playClick, playPing, playToggle, playRelay }}>
+        <SoundContext.Provider value={{ 
+            isSoundEnabled, 
+            toggleSound, 
+            playClick, 
+            playPing, 
+            playToggle, 
+            playRelay,
+            playStamp,
+            playChaos,
+            playKeystroke,
+            playLock
+        }}>
             {children}
         </SoundContext.Provider>
     );
@@ -71,7 +115,11 @@ export const useSound = () => {
             playClick: () => {},
             playPing: () => {},
             playToggle: () => {},
-            playRelay: () => {}
+            playRelay: () => {},
+            playStamp: () => {},
+            playChaos: () => {},
+            playKeystroke: () => {},
+            playLock: () => {}
         };
     }
     return context;

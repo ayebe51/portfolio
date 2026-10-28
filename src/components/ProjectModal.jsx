@@ -1,12 +1,17 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiExternalLink, FiGithub, FiLock, FiCheckCircle, FiCpu, FiLayers } from 'react-icons/fi';
+import { FiX, FiExternalLink, FiGithub, FiLock, FiCheckCircle, FiCpu, FiLayers, FiBox } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
+import { useSound } from '../context/SoundContext';
+import InkStamp from './ui/InkStamp';
+import ExplodedViewModal from './ui/ExplodedViewModal';
 
 const ProjectModal = ({ project, onClose }) => {
     const { language } = useLanguage();
     const t = translations[language].modal;
+    const { playClick } = useSound();
+    const [isExplodedOpen, setIsExplodedOpen] = useState(false);
 
     useEffect(() => {
         if (project) {
@@ -30,6 +35,12 @@ const ProjectModal = ({ project, onClose }) => {
 
     const mobileGallery = project.gallery?.filter(item => item.isMobile) || [];
     const webGallery = project.gallery?.filter(item => !item.isMobile) || [];
+
+    const getSystemName = (id) => {
+        if (id === 1) return 'Kiro';
+        if (id === 2) return 'Koneksi';
+        return 'SIMMACI';
+    };
 
     return (
         <AnimatePresence>
@@ -69,7 +80,7 @@ const ProjectModal = ({ project, onClose }) => {
                         <button
                             type="button"
                             onClick={onClose}
-                            className="font-mono text-xs font-black uppercase px-2.5 py-1 bg-white hover:bg-ink hover:text-white border-2 border-ink active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#18181B] transition-colors flex items-center gap-1.5"
+                            className="font-mono text-xs font-black uppercase px-2.5 py-1 bg-white hover:bg-ink hover:text-white border-2 border-ink active:translate-x-0.5 active:translate-y-0.5 shadow-[2px_2px_0px_#18181B] transition-colors flex items-center gap-1.5 cursor-pointer"
                             aria-label={t.close}
                         >
                             <span>{t.close}</span>
@@ -92,16 +103,28 @@ const ProjectModal = ({ project, onClose }) => {
                     </div>
 
                     {/* Content Body */}
-                    <div className="p-6 sm:p-8 space-y-8">
+                    <div className="p-6 sm:p-8 space-y-8 relative">
                         
-                        {/* Title & Overview */}
-                        <div>
-                            <h3 className="font-display font-black text-2xl sm:text-4xl text-ink uppercase tracking-tight mb-3">
-                                {project.title}
-                            </h3>
-                            <p className="font-sans text-sm sm:text-base text-ink-muted leading-relaxed">
-                                {project.description}
-                            </p>
+                        {/* Title, Overview & Physical Stamp */}
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 pb-2 border-b-2 border-ink">
+                            <div className="flex-1">
+                                <h3 className="font-display font-black text-2xl sm:text-4xl text-ink uppercase tracking-tight mb-3">
+                                    {project.title}
+                                </h3>
+                                <p className="font-sans text-sm sm:text-base text-ink-muted leading-relaxed">
+                                    {project.description}
+                                </p>
+                            </div>
+
+                            {/* Physical Industrial Ink Stamp */}
+                            <div className="flex-shrink-0 self-center sm:self-start">
+                                <InkStamp 
+                                    text="100% CI/CD VERIFIED"
+                                    subtext="ZERO REGRESSION RECORD"
+                                    refCode={`AYN-PRJ-${project.id}`}
+                                    color="red"
+                                />
+                            </div>
                         </div>
 
                         {/* Production Demo Note */}
@@ -236,6 +259,19 @@ const ProjectModal = ({ project, onClose }) => {
 
                         {/* Action Footer */}
                         <div className="pt-6 border-t-2 border-ink flex flex-wrap gap-3">
+                            {/* CAD Exploded View Trigger */}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    playClick();
+                                    setIsExplodedOpen(true);
+                                }}
+                                className="brutal-btn-white flex-1 text-center font-mono text-xs font-black flex items-center justify-center gap-2"
+                            >
+                                <FiBox className="text-blueprint text-sm" />
+                                <span>CAD EXPLODED VIEW</span>
+                            </button>
+
                             {project.demoUrl && (
                                 <a
                                     href={project.demoUrl}
@@ -269,6 +305,13 @@ const ProjectModal = ({ project, onClose }) => {
                     </div>
                 </motion.div>
             </div>
+
+            {/* Exploded 3D Modal scoped to this project */}
+            <ExplodedViewModal 
+                isOpen={isExplodedOpen}
+                onClose={() => setIsExplodedOpen(false)}
+                defaultSystem={getSystemName(project.id)}
+            />
         </AnimatePresence>
     );
 };
