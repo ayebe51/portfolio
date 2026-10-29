@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiExternalLink, FiGithub, FiLock, FiCheckCircle, FiCpu, FiLayers, FiBox } from 'react-icons/fi';
+import { FiX, FiExternalLink, FiGithub, FiLock, FiCheckCircle, FiCpu, FiLayers, FiBox, FiZap } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { useSound } from '../context/SoundContext';
 import InkStamp from './ui/InkStamp';
 import ExplodedViewModal from './ui/ExplodedViewModal';
+import ExplainAnalyzeModal from './ui/ExplainAnalyzeModal';
 
 const ProjectModal = ({ project, onClose }) => {
     const { language } = useLanguage();
     const t = translations[language].modal;
     const { playClick } = useSound();
     const [isExplodedOpen, setIsExplodedOpen] = useState(false);
+    const [isExplainOpen, setIsExplainOpen] = useState(false);
 
     useEffect(() => {
         if (project) {
@@ -272,6 +274,20 @@ const ProjectModal = ({ project, onClose }) => {
                                 <span>📐 3D EXPLODED SCHEMATIC</span>
                             </button>
 
+                            {/* PostgreSQL EXPLAIN ANALYZE Inspector Trigger */}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    playClick();
+                                    setIsExplainOpen(true);
+                                }}
+                                className="brutal-btn-white flex-1 text-center font-mono text-xs font-black flex items-center justify-center gap-2 cursor-pointer"
+                                title="Inspect PostgreSQL 16 EXPLAIN ANALYZE Execution Plan"
+                            >
+                                <FiZap className="text-yellow-500 text-sm" />
+                                <span>⚡ EXPLAIN ANALYZE</span>
+                            </button>
+
                             {project.demoUrl && (
                                 <a
                                     href={project.demoUrl}
@@ -310,6 +326,13 @@ const ProjectModal = ({ project, onClose }) => {
             <ExplodedViewModal 
                 isOpen={isExplodedOpen}
                 onClose={() => setIsExplodedOpen(false)}
+                defaultSystem={getSystemName(project.id)}
+            />
+
+            {/* PostgreSQL EXPLAIN ANALYZE Modal scoped to this project */}
+            <ExplainAnalyzeModal
+                isOpen={isExplainOpen}
+                onClose={() => setIsExplainOpen(false)}
                 defaultSystem={getSystemName(project.id)}
             />
         </AnimatePresence>

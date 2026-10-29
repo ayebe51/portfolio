@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { FiMail, FiCheck, FiArrowRight, FiCopy } from 'react-icons/fi';
+import { FiMail, FiCheck, FiArrowRight, FiCopy, FiRadio, FiCheckCircle, FiAlertOctagon } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
+import { useSound } from '../context/SoundContext';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -10,15 +11,24 @@ const Contact = () => {
     const [isCopied, setIsCopied] = useState(false);
     const { language } = useLanguage();
     const t = translations[language].contact;
+    const { playKeystroke, playRelay, playPing, playClick } = useSound();
 
     const handleCopyEmail = () => {
+        playClick();
         navigator.clipboard.writeText('ayb.n1994@gmail.com');
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 3000);
     };
 
+    const handleTypingKey = (e) => {
+        if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+            playKeystroke();
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        playRelay();
         setStatus('sending');
 
         try {
@@ -31,10 +41,14 @@ const Contact = () => {
             const body = encodeURIComponent(
                 `${greeting},\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\n---\nSent via Portfolio Technical Dispatch`
             );
-            window.location.href = `mailto:ayb.n1994@gmail.com?subject=${subject}&body=${body}`;
-            setStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-            setTimeout(() => setStatus(null), 5000);
+            
+            setTimeout(() => {
+                playPing();
+                window.location.href = `mailto:ayb.n1994@gmail.com?subject=${subject}&body=${body}`;
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus(null), 7000);
+            }, 600);
         } catch (error) {
             console.error('Contact form submission error:', error);
             setStatus('error');
@@ -69,8 +83,9 @@ const Contact = () => {
                         </p>
                     </div>
 
-                    <div className="mt-4 md:mt-0 font-mono text-xs text-ink font-bold bg-white px-3 py-1.5 border-2 border-ink shadow-brutal-sm">
-                        DIRECT DISPATCH // NO BROKERS
+                    <div className="mt-4 md:mt-0 font-mono text-xs text-ink font-bold bg-white px-3 py-1.5 border-2 border-ink shadow-brutal-sm flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-telemetry animate-ping"></span>
+                        <span>TELEGRAPHIC DISPATCH // NO BROKERS</span>
                     </div>
                 </div>
 
@@ -99,7 +114,7 @@ const Contact = () => {
                                 {isCopied ? (
                                     <>
                                         <FiCheck className="text-sm" />
-                                        <span>{t.copied}</span>
+                                        <span>[ BUFFER STORED // 64-BIT CLIPBOARD ]</span>
                                     </>
                                 ) : (
                                     <>
@@ -115,6 +130,7 @@ const Contact = () => {
                             href={`https://wa.me/62895349177555?text=${waText}`}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={playClick}
                             className="brutal-card brutal-card-hover bg-canvas-card p-5 sm:p-6 flex items-center justify-between group cursor-pointer block"
                         >
                             <div className="flex items-center gap-4">
@@ -146,15 +162,20 @@ const Contact = () => {
 
                     </div>
 
-                    {/* Right Form Dispatch Box (7 Cols) */}
+                    {/* Right Form Dispatch Box (7 Cols) with Teletypewriter Feedback */}
                     <div className="lg:col-span-7">
                         <form
                             onSubmit={handleSubmit}
                             className="brutal-card bg-canvas-card p-6 sm:p-8 space-y-5 shadow-brutal-lg"
                         >
                             <div className="font-mono text-xs font-black uppercase pb-3 border-b-2 border-ink flex items-center justify-between text-ink">
-                                <span>TRANSMISSION FORM // INQUIRY</span>
-                                <span>ENCRYPTED</span>
+                                <span className="flex items-center gap-1.5">
+                                    <FiRadio className="text-blueprint animate-pulse" />
+                                    <span>TELETYPE TRANSMISSION FORM // INQUIRY</span>
+                                </span>
+                                <span className="text-[10px] bg-ink text-white px-1.5 py-0.5 border border-ink font-mono">
+                                    ENCRYPTED
+                                </span>
                             </div>
 
                             <div className="space-y-1.5">
@@ -166,6 +187,7 @@ const Contact = () => {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
+                                    onKeyDown={handleTypingKey}
                                     placeholder={t.namePlaceholder}
                                     required
                                     className="w-full bg-white border-2 border-ink p-3 font-mono text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-blueprint"
@@ -181,6 +203,7 @@ const Contact = () => {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
+                                    onKeyDown={handleTypingKey}
                                     placeholder={t.emailPlaceholder}
                                     required
                                     className="w-full bg-white border-2 border-ink p-3 font-mono text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-blueprint"
@@ -196,6 +219,7 @@ const Contact = () => {
                                     rows="4"
                                     value={formData.message}
                                     onChange={handleChange}
+                                    onKeyDown={handleTypingKey}
                                     placeholder={t.messagePlaceholder}
                                     required
                                     className="w-full bg-white border-2 border-ink p-3 font-mono text-sm text-ink placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-blueprint resize-none"
@@ -206,22 +230,40 @@ const Contact = () => {
                                 <button
                                     type="submit"
                                     disabled={status === 'sending'}
-                                    className="brutal-btn-primary w-full sm:w-auto text-xs sm:text-sm font-mono font-black"
+                                    className={`brutal-btn w-full sm:w-auto text-xs sm:text-sm font-mono font-black ${
+                                        status === 'sending' 
+                                            ? 'bg-safety text-ink animate-pulse cursor-wait' 
+                                            : 'brutal-btn-primary'
+                                    }`}
                                 >
-                                    <span>{status === 'sending' ? t.sendingBtn : t.sendBtn}</span>
+                                    <span>{status === 'sending' ? 'TRANSMITTING DISPATCH...' : t.sendBtn}</span>
                                     <FiArrowRight />
                                 </button>
                             </div>
 
+                            {status === 'sending' && (
+                                <div className="p-3 bg-safety-light border-2 border-ink font-mono text-xs text-ink font-bold flex items-center gap-2 animate-pulse">
+                                    <span className="w-2 h-2 rounded-full bg-ink animate-ping"></span>
+                                    <span>[ TRANSMITTING DISPATCH PACKETS VIA CH_01 // ENCRYPTED ]</span>
+                                </div>
+                            )}
+
                             {status === 'success' && (
-                                <div className="p-3 bg-telemetry-light border-2 border-ink font-mono text-xs text-telemetry-dark font-bold">
-                                    {t.successMsg}
+                                <div className="p-4 bg-telemetry-light border-2 border-ink font-mono text-xs text-telemetry-dark font-bold space-y-1">
+                                    <div className="flex items-center gap-1.5 text-sm font-black">
+                                        <FiCheckCircle className="text-base" />
+                                        <span>[ DISPATCH TRANSMITTED // ACK 200 OK // 0 PACKETS LOST ]</span>
+                                    </div>
+                                    <div className="text-[11px] font-sans font-semibold text-ink">
+                                        {t.successMsg} Handshake dispatched to ayb.n1994@gmail.com. Response expected &lt; 24h.
+                                    </div>
                                 </div>
                             )}
 
                             {status === 'error' && (
-                                <div className="p-3 bg-red-100 border-2 border-ink font-mono text-xs text-red-700 font-bold">
-                                    {t.errorMsg}
+                                <div className="p-3 bg-red-100 border-2 border-ink font-mono text-xs text-red-700 font-bold flex items-center gap-2">
+                                    <FiAlertOctagon />
+                                    <span>{t.errorMsg}</span>
                                 </div>
                             )}
                         </form>
