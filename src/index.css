@@ -139,3 +139,101 @@
   animation-play-state: paused;
 }
 
+/* ==========================================================================
+   PRINT STYLESHEET — TECHNICAL EXECUTIVE DATASHEET (@media print)
+   ========================================================================== */
+@media print {
+  /* Reset document canvas to pristine paper */
+  *, *::before, *::after {
+    background-color: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Suppress non-printable UI / interactive overlays / audio controls */
+  #grain-overlay,
+  #cad-crosshair,
+  #coordinate-hud,
+  .conveyor-tape,
+  .animate-marquee-left,
+  .animate-marquee-right,
+  [data-print-hide="true"],
+  button,
+  .brutal-btn,
+  form,
+  .fixed,
+  nav button,
+  nav a[role="button"] {
+    display: none !important;
+  }
+
+  /* Remove backgrounds from drafting grid */
+  .bg-drafting-grid,
+  .bg-drafting-lines {
+    background-image: none !important;
+    background-color: #FFFFFF !important;
+  }
+
+  /* Clean up cards and borders for physical ink rendering */
+  .brutal-card {
+    border: 1.5px solid #000000 !important;
+    background: #FFFFFF !important;
+    margin-bottom: 12pt !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Section flow and page breaks */
+  section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    padding-top: 14pt !important;
+    padding-bottom: 14pt !important;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000 !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Preserve essential technical badges */
+  .brutal-badge {
+    border: 1px solid #000000 !important;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    padding: 2px 6px !important;
+  }
+
+  /* Ensure links are cleanly readable */
+  a {
+    text-decoration: underline !important;
+    color: #000000 !important;
+  }
+
+  /* Print-only document header */
+  body::before {
+    content: "[ OFFICIAL CANDIDATE DOSSIER // AHMAD AYUB NU'MAN // DISTRIBUTED SYSTEMS & HIGH-CRAFT FRONT-END ENGINEER ]";
+    display: block;
+    font-family: monospace;
+    font-size: 8pt;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 6pt;
+    margin-bottom: 14pt;
+    letter-spacing: 0.08em;
+  }
+}
+

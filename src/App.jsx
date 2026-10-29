@@ -19,17 +19,24 @@ import CommandPalette from './components/CommandPalette';
 import CoordinateHud from './components/ui/CoordinateHud';
 import CadCrosshairCursor from './components/ui/CadCrosshairCursor';
 import DevConsole from './components/ui/DevConsole';
+import KeyboardShortcutsModal from './components/ui/KeyboardShortcutsModal';
+import { useLanguage } from './context/LanguageContext';
 
 function AppContent() {
     const [isCVModalOpen, setIsCVModalOpen] = useState(false);
     const [isCmdPaletteOpen, setIsCmdPaletteOpen] = useState(false);
     const [isConsoleOpen, setIsConsoleOpen] = useState(false);
-    const { playClick, playRelay } = useSound();
+    const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
+    const { playClick, playRelay, toggleSound } = useSound();
+    const { toggleLanguage } = useLanguage();
 
-    // Global Cmd+K / Ctrl+K and Backtick `~` keyboard shortcuts listener
+    // Global keyboard shortcuts listener (?, ~, Cmd+K, M, L)
     useEffect(() => {
         const handleKeyDown = (e) => {
-            // Cmd+K / Ctrl+K for Command Palette
+            const activeTag = document.activeElement?.tagName?.toLowerCase();
+            const isFormInput = activeTag === 'input' || activeTag === 'textarea' || document.activeElement?.isContentEditable;
+
+            // Cmd+K / Ctrl+K for Command Palette (works even in inputs if user wants palette)
             if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
                 e.preventDefault();
                 playClick();
@@ -39,22 +46,45 @@ function AppContent() {
 
             // Backtick (`) or Tilde (~) for Quake Retro CLI Console
             if (e.key === '`' || e.key === '~') {
-                // If user is not typing in a real form input or textarea
-                const activeTag = document.activeElement?.tagName?.toLowerCase();
-                const isFormInput = activeTag === 'input' || activeTag === 'textarea';
-                
                 // Allow backtick to toggle console if not typing in regular inputs
                 if (!isFormInput || document.activeElement?.placeholder?.includes('Type \'help\'')) {
                     e.preventDefault();
                     playRelay();
                     setIsConsoleOpen(prev => !prev);
+                    return;
                 }
+            }
+
+            // If user is actively typing in a form input, prevent single key triggers (M, L, ?)
+            if (isFormInput) return;
+
+            // '?' for Keyboard Shortcuts Modal
+            if (e.key === '?') {
+                e.preventDefault();
+                playClick();
+                setIsShortcutsOpen(prev => !prev);
+                return;
+            }
+
+            // 'M' or 'm' for Mute / Audio Toggle
+            if ((e.key === 'm' || e.key === 'M') && !e.metaKey && !e.ctrlKey) {
+                e.preventDefault();
+                toggleSound();
+                return;
+            }
+
+            // 'L' or 'l' for Language Switch
+            if ((e.key === 'l' || e.key === 'L') && !e.metaKey && !e.ctrlKey) {
+                e.preventDefault();
+                playClick();
+                toggleLanguage();
+                return;
             }
         };
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [playClick, playRelay]);
+    }, [playClick, playRelay, toggleSound, toggleLanguage]);
 
     return (
         <ReactLenis root>
@@ -66,6 +96,7 @@ function AppContent() {
                 <Header 
                     onOpenCV={() => setIsCVModalOpen(true)} 
                     onOpenCommandPalette={() => setIsCmdPaletteOpen(true)}
+                    onOpenShortcuts={() => setIsShortcutsOpen(true)}
                 />
 
                 <main>
@@ -84,8 +115,21 @@ function AppContent() {
 
                 <Footer onOpenCV={() => setIsCVModalOpen(true)} />
 
-                {/* Sticky Industrial CLI Drawer Quick Trigger Button */}
-                <div className="fixed bottom-3 right-3 z-40 hidden sm:block">
+                {/* Sticky Industrial HUD & CLI Drawer Quick Trigger Buttons */}
+                <div className="fixed bottom-3 right-3 z-40 hidden sm:flex items-center gap-2">
+                    <button
+                        type="button"
+                        onClick={() => {
+                            playClick();
+                            setIsShortcutsOpen(prev => !prev);
+                        }}
+                        className="font-mono text-xs font-black uppercase px-2.5 py-1.5 bg-canvas text-ink border-2 border-ink shadow-brutal-sm hover:bg-safety active:translate-x-0.5 active:translate-y-0.5 transition-all flex items-center gap-1.5 cursor-pointer"
+                        title="Operator Keyboard Shortcuts Guide (?)"
+                    >
+                        <span className="w-4 h-4 bg-ink text-white text-[10px] flex items-center justify-center font-bold">?</span>
+                        <span className="hidden md:inline text-[10px]">HOTKEYS</span>
+                    </button>
+
                     <button
                         type="button"
                         onClick={() => {
@@ -116,6 +160,11 @@ function AppContent() {
                 <DevConsole
                     isOpen={isConsoleOpen}
                     onClose={() => setIsConsoleOpen(false)}
+                />
+
+                <KeyboardShortcutsModal
+                    isOpen={isShortcutsOpen}
+                    onClose={() => setIsShortcutsOpen(false)}
                 />
             </div>
         </ReactLenis>

@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { useSound } from '../context/SoundContext';
 
-const Header = ({ onOpenCV, onOpenCommandPalette }) => {
+const Header = ({ onOpenCV, onOpenCommandPalette, onOpenShortcuts }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { language, setLanguage, isEn } = useLanguage();
@@ -130,6 +130,21 @@ const Header = ({ onOpenCV, onOpenCommandPalette }) => {
                             >
                                 <FiTerminal className="text-xs" />
                                 <span>{t.terminal}</span>
+                            </button>
+                        )}
+
+                        {/* Keyboard Shortcuts Guide Trigger */}
+                        {onOpenShortcuts && (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    playClick();
+                                    onOpenShortcuts();
+                                }}
+                                className="hidden md:inline-flex items-center justify-center w-7 h-7 bg-canvas border-2 border-ink text-xs font-mono font-black text-ink shadow-[1px_1px_0px_#18181B] hover:bg-safety active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                                title="Keyboard Shortcuts Operator Guide (?)"
+                            >
+                                ?
                             </button>
                         )}
 
