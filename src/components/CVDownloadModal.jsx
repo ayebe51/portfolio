@@ -5,14 +5,17 @@ import { cvDataEn, cvDataId, frontendCvDataEn, frontendCvDataId } from '../data/
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
-const CVDownloadModal = ({ isOpen, onClose }) => {
+const CVDownloadModal = ({ isOpen, onClose, initialRole = 'fullstack' }) => {
     const { language: currentLang } = useLanguage();
     const [selectedLang, setSelectedLang] = useState(currentLang || 'en');
-    const [selectedRole, setSelectedRole] = useState('frontend'); // 'frontend' | 'fullstack'
+    const [selectedRole, setSelectedRole] = useState(initialRole === 'frontend' ? 'frontend' : 'fullstack');
 
     useEffect(() => {
         if (isOpen) {
             setSelectedLang(currentLang);
+            if (initialRole) {
+                setSelectedRole(initialRole === 'frontend' ? 'frontend' : 'fullstack');
+            }
             document.body.style.overflow = 'hidden';
             const handleKeyDown = (e) => {
                 if (e.key === 'Escape') {
@@ -27,7 +30,7 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
         } else {
             document.body.style.overflow = 'unset';
         }
-    }, [isOpen, currentLang, onClose]);
+    }, [isOpen, currentLang, onClose, initialRole]);
 
     if (!isOpen) return null;
 
@@ -40,13 +43,23 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
 
     const t = translations[selectedLang].cvModal;
 
-    const roleSlug = isFrontend ? 'Frontend-Developer' : 'Full-Stack-Software-Engineer';
     const langSuffix = isEn ? 'EN' : 'ID';
 
-    const pdfPath = `/cv/Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.pdf`;
-    const docxPath = `/cv/Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.docx`;
-    const pdfDownloadName = `Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.pdf`;
-    const docxDownloadName = `Ahmad-Ayub-Numan-${roleSlug}-CV-${langSuffix}.docx`;
+    const pdfPath = isFrontend
+        ? `/cv/Ahmad-Ayub-Numan-Frontend-Developer-CV-${langSuffix}.pdf`
+        : `/cv/Ahmad-Ayub-Numan-Full-Stack-Engineer-Harvard-CV-${langSuffix}.pdf`;
+
+    const docxPath = isFrontend
+        ? `/cv/Ahmad-Ayub-Numan-Frontend-Developer-CV-${langSuffix}.docx`
+        : `/cv/Ahmad-Ayub-Numan-Full-Stack-Engineer-Harvard-CV-${langSuffix}.docx`;
+
+    const pdfDownloadName = isFrontend
+        ? `Ahmad-Ayub-Numan-Frontend-Developer-CV-${langSuffix}.pdf`
+        : `Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-Harvard-CV-${langSuffix}.pdf`;
+
+    const docxDownloadName = isFrontend
+        ? `Ahmad-Ayub-Numan-Frontend-Developer-CV-${langSuffix}.docx`
+        : `Ahmad-Ayub-Numan-Full-Stack-Software-Engineer-Harvard-CV-${langSuffix}.docx`;
 
     return (
         <AnimatePresence>
@@ -103,6 +116,33 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <button
                                 type="button"
+                                onClick={() => setSelectedRole('fullstack')}
+                                className={`p-3.5 border-2 border-ink text-left transition-all ${
+                                    !isFrontend
+                                        ? 'bg-blueprint text-white shadow-brutal-sm'
+                                        : 'bg-white hover:bg-stone-50 text-ink shadow-[2px_2px_0px_#18181B]'
+                                }`}
+                            >
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="font-mono text-xs sm:text-sm font-black uppercase">
+                                        {t.roleFullstack || "Full-Stack Software Engineer"}
+                                    </span>
+                                    {!isFrontend && (
+                                        <span className="w-2 h-2 rounded-full bg-safety animate-pulse"></span>
+                                    )}
+                                </div>
+                                <p className={`font-sans text-[11px] ${!isFrontend ? 'text-white/80' : 'text-ink-muted'}`}>
+                                    {t.roleFullstackDesc || "React 19 • Laravel 12 • NestJS • PostgreSQL"}
+                                </p>
+                                <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                                    <span className={`font-mono text-[9px] font-bold px-1.5 py-0.5 border ${!isFrontend ? 'bg-safety text-ink border-ink' : 'bg-canvas text-ink border-ink/40'} uppercase tracking-tight`}>
+                                        Harvard Resume Standard • 1-Page A4
+                                    </span>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
                                 onClick={() => setSelectedRole('frontend')}
                                 className={`p-3.5 border-2 border-ink text-left transition-all ${
                                     isFrontend
@@ -121,28 +161,11 @@ const CVDownloadModal = ({ isOpen, onClose }) => {
                                 <p className={`font-sans text-[11px] ${isFrontend ? 'text-white/80' : 'text-ink-muted'}`}>
                                     {t.roleFrontendDesc || "React 19 • Next.js • TypeScript • UI Architecture"}
                                 </p>
-                            </button>
-
-                            <button
-                                type="button"
-                                onClick={() => setSelectedRole('fullstack')}
-                                className={`p-3.5 border-2 border-ink text-left transition-all ${
-                                    !isFrontend
-                                        ? 'bg-blueprint text-white shadow-brutal-sm'
-                                        : 'bg-white hover:bg-stone-50 text-ink shadow-[2px_2px_0px_#18181B]'
-                                }`}
-                            >
-                                <div className="flex items-center justify-between mb-1">
-                                    <span className="font-mono text-xs sm:text-sm font-black uppercase">
-                                        {t.roleFullstack || "Full-Stack Web Developer"}
+                                <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                                    <span className={`font-mono text-[9px] font-bold px-1.5 py-0.5 border ${isFrontend ? 'bg-safety text-ink border-ink' : 'bg-canvas text-ink border-ink/40'} uppercase tracking-tight`}>
+                                        Specialist ATS Format
                                     </span>
-                                    {!isFrontend && (
-                                        <span className="w-2 h-2 rounded-full bg-safety animate-pulse"></span>
-                                    )}
                                 </div>
-                                <p className={`font-sans text-[11px] ${!isFrontend ? 'text-white/80' : 'text-ink-muted'}`}>
-                                    {t.roleFullstackDesc || "React 19 • Laravel 12 • NestJS • PostgreSQL"}
-                                </p>
                             </button>
                         </div>
                     </div>

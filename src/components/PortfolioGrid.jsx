@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiCheckSquare, FiGithub, FiLayers } from 'react-icons/fi';
 import { getProjects } from '../data/projects';
@@ -7,14 +7,20 @@ import ProjectCard from './ProjectCard';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 
-const FILTER_KEYS = ['all', 'frontend', 'fullstack', 'mobile'];
+const FILTER_KEYS = ['all', 'fullstack', 'frontend', 'mobile'];
 
-const PortfolioGrid = () => {
+const PortfolioGrid = ({ initialFilter = 'all' }) => {
     const [selectedProjectId, setSelectedProjectId] = useState(null);
-    const [activeFilter, setActiveFilter] = useState('all');
+    const [activeFilter, setActiveFilter] = useState(initialFilter || 'all');
     const { language } = useLanguage();
     const t = translations[language].portfolio;
     const currentProjects = getProjects(language);
+
+    useEffect(() => {
+        if (initialFilter && FILTER_KEYS.includes(initialFilter)) {
+            setActiveFilter(initialFilter);
+        }
+    }, [initialFilter]);
 
     const filteredProjects = activeFilter === 'all'
         ? currentProjects

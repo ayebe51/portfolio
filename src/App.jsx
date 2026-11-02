@@ -30,6 +30,17 @@ function AppContent() {
     const { playClick, playRelay, toggleSound } = useSound();
     const { toggleLanguage } = useLanguage();
 
+    // Read optional role target from URL query parameter (e.g. ?role=frontend or ?role=fullstack)
+    const [initialRole] = useState(() => {
+        if (typeof window === 'undefined') return 'fullstack';
+        const params = new URLSearchParams(window.location.search);
+        const role = params.get('role')?.toLowerCase()?.trim();
+        if (!role) return 'fullstack';
+        if (role === 'frontend' || role === 'fe' || role === 'front-end') return 'frontend';
+        if (role === 'mobile' || role === 'flutter') return 'mobile';
+        return 'fullstack';
+    });
+
     // Global keyboard shortcuts listener (?, ~, Cmd+K, M, L)
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -106,7 +117,7 @@ function AppContent() {
                     />
                     <ConveyorTape />
                     <ArchitectureExplorer />
-                    <PortfolioGrid />
+                    <PortfolioGrid initialFilter={initialRole === 'frontend' ? 'frontend' : (initialRole === 'mobile' ? 'mobile' : 'all')} />
                     <Skills />
                     <Services />
                     <Testimonials />
@@ -148,6 +159,7 @@ function AppContent() {
                 <CVDownloadModal 
                     isOpen={isCVModalOpen} 
                     onClose={() => setIsCVModalOpen(false)} 
+                    initialRole={initialRole}
                 />
 
                 <CommandPalette

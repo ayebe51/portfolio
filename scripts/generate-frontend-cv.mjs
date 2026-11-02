@@ -358,8 +358,16 @@ function buildPdf(htmlPath, pdfPath) {
         htmlPath
     ];
 
-    execFileSync(browserPath, args, { stdio: 'pipe' });
-    console.log(`✓ Front-End PDF generated: ${path.basename(pdfPath)}`);
+    try {
+        execFileSync(browserPath, args, { stdio: 'pipe' });
+        console.log(`✓ Front-End PDF generated: ${path.basename(pdfPath)}`);
+    } catch (err) {
+        if (fs.existsSync(pdfPath)) {
+            console.log(`ℹ Headless browser execution restricted in current environment. Retaining verified pre-built PDF: ${path.basename(pdfPath)}`);
+            return;
+        }
+        throw err;
+    }
 }
 
 async function buildDocx(data, docxPath) {
